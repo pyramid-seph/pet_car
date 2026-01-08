@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://x0j1vby3b13c"]
+
+[ext_resource type="Script" uid="uid://c1vgco8t1mpr5" path="res://game.gd" id="1_80nbo"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_80nbo"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_e2o6t"]
+
+[node name="Game" type="Node" unique_id=158280699]
+script = ExtResource("1_80nbo")
+_max_tick_sec = 5
+_min_hunger_damage = 10
+_max_hunger_damage = 30
+_min_wear_damage = 10
+_max_wear_damage = 30
+_min_dirt_damage = 10
+_max_dirt_damage = 30
+_min_hunger_reduction = 5
+_max_hunger_reduction = 20
+_min_wear_reduction = 5
+_max_wear_reduction = 20
+_min_dirt_reduction = 5
+_max_dirt_reduction = 20
+
+[node name="TickTimer" type="Timer" parent="." unique_id=663058141]
+one_shot = true
+
+[node name="UI" type="Control" parent="." unique_id=337055363]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=1238189058]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer" unique_id=1504578226]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer" unique_id=883915351]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="WearBar" type="VBoxContainer" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1201580588]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2/WearBar" unique_id=1249623327]
+layout_mode = 2
+text = "Wear"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2/WearBar" unique_id=147282276]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+value = 75.0
+nine_patch_stretch = true
+texture_under = SubResource("CanvasTexture_80nbo")
+texture_progress = SubResource("CanvasTexture_e2o6t")
+tint_under = Color(0, 0, 0, 1)
+
+[node name="HungerBar" type="VBoxContainer" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=205938671]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2/HungerBar" unique_id=115935489]
+layout_mode = 2
+text = "Hunger"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2/HungerBar" unique_id=1299721822]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+value = 75.0
+nine_patch_stretch = true
+texture_under = SubResource("CanvasTexture_80nbo")
+texture_progress = SubResource("CanvasTexture_e2o6t")
+tint_under = Color(0, 0, 0, 1)
+
+[node name="DirtBar" type="VBoxContainer" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=472645839]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2/DirtBar" unique_id=327080928]
+layout_mode = 2
+text = "Dirt"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/MarginContainer/VBoxContainer/HBoxContainer2/DirtBar" unique_id=1729613468]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+value = 75.0
+nine_patch_stretch = true
+texture_under = SubResource("CanvasTexture_80nbo")
+texture_progress = SubResource("CanvasTexture_e2o6t")
+tint_under = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/MarginContainer/VBoxContainer" unique_id=1466157710]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StateLabel" type="Label" parent="UI/MarginContainer/VBoxContainer/CenterContainer" unique_id=28237016]
+unique_name_in_owner = true
+layout_mode = 2
+text = "STATE"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer" unique_id=191001152]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="RepairButton" type="Button" parent="UI/MarginContainer/VBoxContainer/HBoxContainer" unique_id=264933189]
+unique_name_in_owner = true
+layout_mode = 2
+text = "REPAIR"
+
+[node name="FeedButton" type="Button" parent="UI/MarginContainer/VBoxContainer/HBoxContainer" unique_id=627898900]
+unique_name_in_owner = true
+layout_mode = 2
+text = "FEED"
+
+[node name="CleanButton" type="Button" parent="UI/MarginContainer/VBoxContainer/HBoxContainer" unique_id=444270962]
+unique_name_in_owner = true
+layout_mode = 2
+text = "CLEAN"
+
+[connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]
+[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/HBoxContainer/RepairButton" to="." method="_on_repair_button_pressed"]
+[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/HBoxContainer/FeedButton" to="." method="_on_feed_button_pressed"]
+[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/HBoxContainer/CleanButton" to="." method="_on_clean_button_pressed"]
