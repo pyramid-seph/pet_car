@@ -9,6 +9,7 @@
 [node name="Game" type="Node" unique_id=158280699]
 script = ExtResource("1_80nbo")
 _max_tick_sec = 5
+_max_duration_lost_per_tick_sec = 1.0
 _min_hunger_damage = 10
 _max_hunger_damage = 30
 _min_wear_damage = 10

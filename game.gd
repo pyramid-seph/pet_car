@@ -13,6 +13,8 @@ const MIN_STATUS_VALUE: int = 0
 
 @export_range(1, 60, 1, "or_greater") var _min_tick_sec: int = 1
 @export_range(1, 60, 1, "or_greater") var _max_tick_sec: int = 1
+@export_range(0.1, 1.0, 0.05, "or_greater")
+var _max_duration_lost_per_tick_sec: float = 0.5
 @export_group("Damage")
 @export_range(1, 100) var _min_hunger_damage: int = 1
 @export_range(1, 100) var _max_hunger_damage: int = 1
@@ -28,6 +30,7 @@ const MIN_STATUS_VALUE: int = 0
 @export_range(1, 100) var _min_dirt_reduction: int = 1
 @export_range(1, 100) var _max_dirt_reduction: int = 1
 
+var _curr_max_tick_duration: float
 var _tick_start_sec: float
 var _tick_end_sec: float
 
@@ -67,17 +70,35 @@ func _process(_delta: float) -> void:
 
 func _start_game() -> void:
 	print("Game started.")
+	print("==================================\n")
+	_curr_max_tick_duration = _max_tick_sec
 	_start_a_tick()
 
 
+func _progress_difficulty() -> void:
+	print("Making it more difficult.")
+	var tick_duration_lose: float = \
+			randf_range(0.0, _max_duration_lost_per_tick_sec)
+	_curr_max_tick_duration = clampf(
+			_curr_max_tick_duration - tick_duration_lose, 
+			_min_tick_sec, 
+			_max_tick_sec)
+	print("New max tick duration is: %s (lost %s sec)" %
+			[_curr_max_tick_duration, tick_duration_lose])
+
+
 func _start_a_tick() -> void:
-	var tick_duration_sec: int = randi_range(_min_tick_sec, _max_tick_sec)
+	var tick_duration_sec: float = randf_range(_min_tick_sec, _curr_max_tick_duration)
 	_tick_start_sec = Time.get_unix_time_from_system()
-	print("A new tick has started at %s. Duration: %s" % [_tick_start_sec, tick_duration_sec])
+	print("A new tick has started at %s. Duration: %s" % 
+			[_tick_start_sec, tick_duration_sec])
 	_tick_timer.start(tick_duration_sec)
 
 
 func _damage_pet() -> void:
+	if _is_dead():
+		return
+	
 	var damaged_statuses: int = randi_range(0, 7)
 	print("Damaging statuses: ", damaged_statuses)
 	if damaged_statuses == 0:
@@ -101,18 +122,27 @@ func _damage_pet() -> void:
 
 
 func _feed_pet() -> void:
+	if _is_dead():
+		return
+	
 	var reduction: int = randi_range(_min_hunger_reduction, _max_hunger_reduction)
 	_hunger -= reduction
 	print("Fed. Reduction: ", reduction, " - Current val: ", _hunger)
 
 
 func _repair_pet() -> void:
+	if _is_dead():
+		return
+	
 	var reduction: int = randi_range(_min_wear_reduction, _max_wear_reduction)
 	_wear -= reduction
 	print("Mantained. Reduction: ", reduction, " - Current val: ", _wear)
 
 
 func _clean_pet() -> void:
+	if _is_dead():
+		return
+	
 	var reduction: int = randi_range(_min_dirt_reduction, _max_dirt_reduction)
 	_dirt -= reduction
 	print("Cleaned. Reduction: ", reduction, " - Current val: ", _dirt)
@@ -154,6 +184,7 @@ func _on_tick_timer_timeout() -> void:
 	else:
 		print("Pet is still alive!")
 		print("==================================\n")
+		_progress_difficulty()
 		_start_a_tick()
 
 
