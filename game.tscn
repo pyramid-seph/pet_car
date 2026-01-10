@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://x0j1vby3b13c"]
 
 [ext_resource type="Script" uid="uid://c1vgco8t1mpr5" path="res://game.gd" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://ce7isfjmefsjf" path="res://pet.tscn" id="2_e2o6t"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_80nbo"]
 
@@ -8,23 +9,6 @@
 
 [node name="Game" type="Node" unique_id=158280699]
 script = ExtResource("1_80nbo")
-_max_tick_sec = 5
-_max_duration_lost_per_tick_sec = 1.0
-_min_hunger_damage = 10
-_max_hunger_damage = 30
-_min_wear_damage = 10
-_max_wear_damage = 30
-_min_dirt_damage = 10
-_max_dirt_damage = 30
-_min_hunger_reduction = 5
-_max_hunger_reduction = 20
-_min_wear_reduction = 5
-_max_wear_reduction = 20
-_min_dirt_reduction = 5
-_max_dirt_reduction = 20
-
-[node name="TickTimer" type="Timer" parent="." unique_id=663058141]
-one_shot = true
 
 [node name="UI" type="Control" parent="." unique_id=337055363]
 layout_mode = 3
@@ -113,10 +97,23 @@ tint_under = Color(0, 0, 0, 1)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="StateLabel" type="Label" parent="UI/MarginContainer/VBoxContainer/CenterContainer" unique_id=28237016]
+[node name="Pet" parent="UI/MarginContainer/VBoxContainer/CenterContainer" unique_id=1504390640 instance=ExtResource("2_e2o6t")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "STATE"
+_max_tick_sec = 5
+_max_duration_lost_per_tick_sec = 1.0
+_min_hunger_damage = 10
+_max_hunger_damage = 30
+_min_wear_damage = 10
+_max_wear_damage = 30
+_min_dirt_damage = 10
+_max_dirt_damage = 30
+_min_hunger_reduction = 5
+_max_hunger_reduction = 15
+_min_wear_reduction = 5
+_max_wear_reduction = 15
+_min_dirt_reduction = 5
+_max_dirt_reduction = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer" unique_id=191001152]
 layout_mode = 2
@@ -138,7 +135,10 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "CLEAN"
 
-[connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]
+[connection signal="died" from="UI/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_died"]
+[connection signal="dirty_changed" from="UI/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_dirty_changed"]
+[connection signal="hunger_changed" from="UI/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_hunger_changed"]
+[connection signal="wear_changed" from="UI/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_wear_changed"]
 [connection signal="pressed" from="UI/MarginContainer/VBoxContainer/HBoxContainer/RepairButton" to="." method="_on_repair_button_pressed"]
 [connection signal="pressed" from="UI/MarginContainer/VBoxContainer/HBoxContainer/FeedButton" to="." method="_on_feed_button_pressed"]
 [connection signal="pressed" from="UI/MarginContainer/VBoxContainer/HBoxContainer/CleanButton" to="." method="_on_clean_button_pressed"]
