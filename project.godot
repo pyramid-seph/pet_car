@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="PetCar"
-run/main_scene="res://game.tscn"
+run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://scenes/icon.svg"
 
 [display]
 
@@ -22,6 +22,10 @@ window/size/viewport_height=640
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 window/handheld/orientation=1
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg")
 
 [physics]
 

@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://b76vraxp4k4yq"]
+
+[ext_resource type="Script" uid="uid://3386ukhqgrem" path="res://scenes/progress_bar_button.gd" id="1_4h5wg"]
+[ext_resource type="Texture2D" uid="uid://des7u7v3ionlm" path="res://art/ui/radial_progressbar/bar_under.png" id="2_wp4ul"]
+[ext_resource type="Texture2D" uid="uid://dlf47rbu6wylv" path="res://art/ui/radial_progressbar/bar_over.png" id="3_x54t0"]
+[ext_resource type="Texture2D" uid="uid://c8bmxpxyyyah" path="res://art/ui/radial_progressbar/bar_progress.png" id="4_rjihv"]
+[ext_resource type="Texture2D" uid="uid://brbv0e7vu86qd" path="res://art/ui/buttons/button_normal.png" id="5_kpxjd"]
+[ext_resource type="Texture2D" uid="uid://y7f8qscouor5" path="res://art/ui/buttons/button_pressed.png" id="6_riqpk"]
+[ext_resource type="Texture2D" uid="uid://d0p0d0jbwqxmf" path="res://art/ui/buttons/button_hover.png" id="7_af3b8"]
+[ext_resource type="BitMap" uid="uid://d4g8udxm7d0kj" path="res://art/ui/buttons/button_click_mask.png" id="7_tedg1"]
+
+[node name="ProgressBarButton" type="CenterContainer" unique_id=816560037]
+offset_right = 80.0
+offset_bottom = 80.0
+script = ExtResource("1_4h5wg")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1711971636]
+unique_name_in_owner = true
+layout_mode = 2
+fill_mode = 4
+radial_initial_angle = 270.0
+radial_fill_degrees = 180.0
+texture_under = ExtResource("2_wp4ul")
+texture_over = ExtResource("3_x54t0")
+texture_progress = ExtResource("4_rjihv")
+tint_progress = Color(1, 0, 0, 1)
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1892869779]
+layout_mode = 2
+focus_mode = 1
+action_mode = 0
+texture_normal = ExtResource("5_kpxjd")
+texture_pressed = ExtResource("6_riqpk")
+texture_hover = ExtResource("7_af3b8")
+texture_click_mask = ExtResource("7_tedg1")
+
+[node name="IconTextureRect" type="TextureRect" parent="TextureButton" unique_id=373798739]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 2
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

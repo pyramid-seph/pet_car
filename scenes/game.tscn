@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://x0j1vby3b13c"]
+
+[ext_resource type="Script" uid="uid://c1vgco8t1mpr5" path="res://scenes/game.gd" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://ce7isfjmefsjf" path="res://scenes/pet.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://b76vraxp4k4yq" path="res://scenes/progress_bar_button.tscn" id="3_feb5d"]
+[ext_resource type="Texture2D" uid="uid://dtpfbhegrrdi7" path="res://art/ui/icons/ic_repair.png" id="4_p57ef"]
+[ext_resource type="Texture2D" uid="uid://diawwkp2obeyn" path="res://art/ui/icons/ic_feed.png" id="5_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://rt01cvw2h5wq" path="res://art/ui/icons/ic_clean.png" id="6_gee14"]
+
+[node name="Game" type="Node" unique_id=158280699]
+script = ExtResource("1_80nbo")
+
+[node name="UI" type="Control" parent="." unique_id=337055363]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=1238189058]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer" unique_id=1504578226]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/MarginContainer/VBoxContainer" unique_id=1466157710]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Pet" parent="UI/MarginContainer/VBoxContainer/CenterContainer" unique_id=1504390640 instance=ExtResource("2_e2o6t")]
+unique_name_in_owner = true
+layout_mode = 2
+_max_tick_sec = 5
+_max_duration_lost_per_tick_sec = 1.0
+_min_hunger_damage = 10
+_max_hunger_damage = 30
+_min_wear_damage = 10
+_max_wear_damage = 30
+_min_dirt_damage = 10
+_max_dirt_damage = 30
+_min_hunger_reduction = 5
+_max_hunger_reduction = 15
+_min_wear_reduction = 5
+_max_wear_reduction = 15
+_min_dirt_reduction = 5
+_max_dirt_reduction = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer" unique_id=191001152]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="RepairProgressBarButton" parent="UI/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1527686584 instance=ExtResource("3_feb5d")]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("4_p57ef")
+progress = 50
+
+[node name="FeedProgressBarButton" parent="UI/MarginContainer/VBoxContainer/HBoxContainer" unique_id=428784174 instance=ExtResource("3_feb5d")]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("5_u5sy4")
+progress = 50
+
+[node name="CleanProgressBarButton" parent="UI/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1790869760 instance=ExtResource("3_feb5d")]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("6_gee14")
+progress = 50
+
+[connection signal="died" from="UI/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_died"]
+[connection signal="dirty_changed" from="UI/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_dirty_changed"]
+[connection signal="hunger_changed" from="UI/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_hunger_changed"]
+[connection signal="wear_changed" from="UI/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_wear_changed"]
+[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/HBoxContainer/RepairProgressBarButton" to="." method="_on_repair_progress_bar_button_pressed"]
+[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/HBoxContainer/FeedProgressBarButton" to="." method="_on_feed_progress_bar_button_pressed"]
+[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/HBoxContainer/CleanProgressBarButton" to="." method="_on_clean_progress_bar_button_pressed"]

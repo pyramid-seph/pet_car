@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ce7isfjmefsjf"]
 
-[ext_resource type="Script" uid="uid://kea21l63608s" path="res://pet.gd" id="1_34gfr"]
+[ext_resource type="Script" uid="uid://kea21l63608s" path="res://scenes/pet.gd" id="1_34gfr"]
 
 [node name="Pet" type="Control" unique_id=163637920]
 layout_mode = 3
