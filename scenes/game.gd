@@ -87,3 +87,10 @@ func _on_pet_dirty_changed() -> void:
 		_clean_progress_bar_button.set_progress_no_anim(new_val)
 	else:
 		_clean_progress_bar_button.progress = new_val
+
+
+func _on_power_off_button_pressed() -> void:
+	print("\n*****\n")
+	print("Game quit.")
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+	get_tree().quit()

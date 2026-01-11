@@ -51,7 +51,6 @@ func _get_progress_color() -> Color:
 
 
 func _update_progress_bar_no_anim() -> void:
-	print(_update_progress_bar_no_anim)
 	_back_progress_bar.value = progress
 	_front_progress_bar.value = progress
 	var progress_color: Color = _get_progress_color()
