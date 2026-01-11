@@ -14,16 +14,24 @@ offset_right = 80.0
 offset_bottom = 80.0
 script = ExtResource("1_4h5wg")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1711971636]
+[node name="DelayedTextureProgressBar" type="TextureProgressBar" parent="." unique_id=1711971636]
 unique_name_in_owner = true
 layout_mode = 2
 fill_mode = 4
 radial_initial_angle = 270.0
 radial_fill_degrees = 180.0
 texture_under = ExtResource("2_wp4ul")
+texture_progress = ExtResource("4_rjihv")
+tint_progress = Color(0.77371854, 0.6091585, 0.04802905, 1)
+
+[node name="ActualTextureProgressBar" type="TextureProgressBar" parent="DelayedTextureProgressBar" unique_id=2027876930]
+unique_name_in_owner = true
+layout_mode = 0
+fill_mode = 4
+radial_initial_angle = 270.0
+radial_fill_degrees = 180.0
 texture_over = ExtResource("3_x54t0")
 texture_progress = ExtResource("4_rjihv")
-tint_progress = Color(1, 0, 0, 1)
 
 [node name="TextureButton" type="TextureButton" parent="." unique_id=1892869779]
 layout_mode = 2
