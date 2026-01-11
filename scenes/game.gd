@@ -1,5 +1,13 @@
 extends Node
 
+enum State {
+	TITLE_SCREEN,
+	STARTED,
+	GAME_OVER,
+}
+
+var _state: State
+
 @onready var _pet := %Pet
 @onready var _repair_progress_bar_button := %RepairProgressBarButton
 @onready var _feed_progress_bar_button := %FeedProgressBarButton
@@ -24,10 +32,12 @@ func _start_game() -> void:
 	_repair_progress_bar_button.disabled = false
 	_feed_progress_bar_button.disabled = false
 	_clean_progress_bar_button.disabled = false
+	_state = State.STARTED
 
 
 func _game_over() -> void:
 	print("Game over.")
+	_state = State.GAME_OVER
 
 
 func _on_repair_progress_bar_button_pressed() -> void:
@@ -50,12 +60,24 @@ func _on_pet_died() -> void:
 
 
 func _on_pet_wear_changed() -> void:
-	_repair_progress_bar_button.progress = 100 - _pet.get_wear()
+	var new_val: int = 100 - _pet.get_wear()
+	if _state == State.TITLE_SCREEN:
+		_repair_progress_bar_button.set_progress_no_anim(new_val)
+	else:
+		_repair_progress_bar_button.progress = new_val
 
 
 func _on_pet_hunger_changed() -> void:
-	_feed_progress_bar_button.progress = 100 - _pet.get_hunger()
+	var new_val: int = 100 - _pet.get_hunger()
+	if _state == State.TITLE_SCREEN:
+		_feed_progress_bar_button.set_progress_no_anim(new_val)
+	else:
+		_feed_progress_bar_button.progress = new_val
 
 
 func _on_pet_dirty_changed() -> void:
-	_clean_progress_bar_button.progress = 100 - _pet.get_dirt()
+	var new_val: int = 100 - _pet.get_dirt()
+	if _state == State.TITLE_SCREEN:
+		_clean_progress_bar_button.set_progress_no_anim(new_val)
+	else:
+		_clean_progress_bar_button.progress = new_val

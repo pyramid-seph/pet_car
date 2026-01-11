@@ -18,6 +18,7 @@ extends Control
 @export var increment_tint: Color = Color.BLUE
 @export var decrement_tint: Color = Color.YELLOW
 
+var _skip_progress_change_animation: bool
 var _old_progress_value: int
 var _progress_tween: Tween
 
@@ -27,6 +28,12 @@ var _progress_tween: Tween
 
 func _ready() -> void:
 	_update_progress_bar_no_anim()
+
+
+func set_progress_no_anim(value: int) -> void:
+	_skip_progress_change_animation = true
+	progress = value
+	_skip_progress_change_animation = false
 
 
 func _get_progress_color() -> Color:
@@ -76,7 +83,7 @@ func _on_progress_set() -> void:
 	if not is_node_ready():
 		return
 	
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() or _skip_progress_change_animation:
 		_update_progress_bar_no_anim()
 	else:
 		_animate_progress_change()

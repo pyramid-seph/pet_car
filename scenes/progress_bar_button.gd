@@ -31,6 +31,10 @@ func _ready() -> void:
 	_on_progress_set()
 
 
+func set_progress_no_anim(value: int) -> void:
+	_delayed_progress_bar.set_progress_no_anim(value)
+
+
 func _on_icon_texture_set() -> void:
 	if is_node_ready():
 		_icon_texture_rect.texture = icon
