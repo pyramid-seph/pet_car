@@ -61,6 +61,8 @@ func _on_pet_died() -> void:
 
 func _on_pet_wear_changed() -> void:
 	var new_val: int = 100 - _pet.get_wear()
+	if new_val > 0 and new_val < 5:
+		new_val = 5
 	if _state == State.TITLE_SCREEN:
 		_repair_progress_bar_button.set_progress_no_anim(new_val)
 	else:
@@ -69,6 +71,8 @@ func _on_pet_wear_changed() -> void:
 
 func _on_pet_hunger_changed() -> void:
 	var new_val: int = 100 - _pet.get_hunger()
+	if new_val > 0 and new_val < 5:
+		new_val = 5
 	if _state == State.TITLE_SCREEN:
 		_feed_progress_bar_button.set_progress_no_anim(new_val)
 	else:
@@ -77,6 +81,8 @@ func _on_pet_hunger_changed() -> void:
 
 func _on_pet_dirty_changed() -> void:
 	var new_val: int = 100 - _pet.get_dirt()
+	if new_val > 0 and new_val < 5:
+		new_val = 5
 	if _state == State.TITLE_SCREEN:
 		_clean_progress_bar_button.set_progress_no_anim(new_val)
 	else:

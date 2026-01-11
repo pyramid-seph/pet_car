@@ -1,6 +1,5 @@
 @tool
 extends Control
-# FIXME progress 99 appears to be empty
 
 
 @export_range(0, 100) var progress: int:
