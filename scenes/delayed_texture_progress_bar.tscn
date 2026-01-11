@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://q3khi4ru6nry"]
+
+[ext_resource type="Texture2D" uid="uid://des7u7v3ionlm" path="res://art/ui/radial_progressbar/bar_under.png" id="1_so23j"]
+[ext_resource type="Texture2D" uid="uid://c8bmxpxyyyah" path="res://art/ui/radial_progressbar/bar_progress.png" id="2_qtu15"]
+[ext_resource type="Script" uid="uid://vm5gvsjkfwgt" path="res://scenes/delayed_texture_progress_bar.gd" id="3_gdxee"]
+[ext_resource type="Texture2D" uid="uid://dlf47rbu6wylv" path="res://art/ui/radial_progressbar/bar_over.png" id="4_m2cjb"]
+
+[node name="DelayedProgressBar" type="CenterContainer" unique_id=1617165633]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_gdxee")
+
+[node name="BackTextureProgressBar" type="TextureProgressBar" parent="." unique_id=1540526713]
+unique_name_in_owner = true
+layout_mode = 2
+fill_mode = 4
+radial_initial_angle = 270.0
+radial_fill_degrees = 180.0
+texture_under = ExtResource("1_so23j")
+texture_progress = ExtResource("2_qtu15")
+tint_progress = Color(0.77371854, 0.6091585, 0.04802905, 1)
+
+[node name="FrontTextureProgressBar" type="TextureProgressBar" parent="BackTextureProgressBar" unique_id=2116540593]
+unique_name_in_owner = true
+layout_mode = 0
+fill_mode = 4
+radial_initial_angle = 270.0
+radial_fill_degrees = 180.0
+texture_over = ExtResource("4_m2cjb")
+texture_progress = ExtResource("2_qtu15")
+tint_progress = Color(1, 0, 0, 1)
+
+[connection signal="value_changed" from="BackTextureProgressBar/FrontTextureProgressBar" to="." method="_on_front_texture_progress_bar_value_changed"]

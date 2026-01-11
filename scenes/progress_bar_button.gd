@@ -15,17 +15,13 @@ signal pressed
 @export_range(0, 100) var warn_at_progress: int = 30:
 	set(value):
 		warn_at_progress = clampi(value, 0, 100)
-		# Not a typo. This should trigger a redraw of the progress bar.
-		_on_progress_set()
+		_on_warn_at_progress_set()
 @export var disabled: bool:
 	set(value):
 		disabled = value
 		_on_disabled_set()
 
-var _progress_reduction_tween: Tween
-
-@onready var _delayed_progress_bar: TextureProgressBar = %DelayedTextureProgressBar
-@onready var _actual_progress_bar: TextureProgressBar = %ActualTextureProgressBar
+@onready var _delayed_progress_bar := %DelayedProgressBar
 @onready var _icon_texture_rect: TextureRect = %IconTextureRect
 @onready var _texture_button: TextureButton = $TextureButton
 
@@ -41,25 +37,8 @@ func _on_icon_texture_set() -> void:
 
 
 func _on_progress_set() -> void:
-	if not is_node_ready():
-		return
-	
-	if Engine.is_editor_hint():
-		_delayed_progress_bar.value = progress
-	else:
-		if _progress_reduction_tween:
-			_progress_reduction_tween.kill()
-		_progress_reduction_tween = create_tween()
-		_progress_reduction_tween.tween_property(
-				_delayed_progress_bar,
-				"value", 
-				progress, 
-				0.05
-		).set_delay(0.25)
-	
-	_actual_progress_bar.value = progress
-	var color = Color.RED if progress <= warn_at_progress else Color.WHITE
-	_actual_progress_bar.tint_progress = color
+	if is_node_ready():
+		_delayed_progress_bar.progress = progress
 
 
 func _on_disabled_set() -> void:
@@ -71,3 +50,8 @@ func _on_disabled_set() -> void:
 func _on_texture_button_pressed() -> void:
 	if not Engine.is_editor_hint():
 		pressed.emit()
+
+
+func _on_warn_at_progress_set() -> void:
+	if is_node_ready():
+		_delayed_progress_bar.warn_at_progress = warn_at_progress
