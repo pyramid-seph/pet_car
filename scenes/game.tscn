@@ -76,7 +76,7 @@ progress = 50
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("6_gee14")
-progress = 50
+progress = 75
 
 [connection signal="died" from="UI/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_died"]
 [connection signal="dirty_changed" from="UI/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_dirty_changed"]

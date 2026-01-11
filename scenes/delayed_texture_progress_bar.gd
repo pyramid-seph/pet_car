@@ -1,5 +1,6 @@
 @tool
 extends Control
+# FIXME progress 99 appears to be empty
 
 
 @export_range(0, 100) var progress: int:
@@ -11,10 +12,20 @@ extends Control
 	set(value):
 		warn_at_progress = clampi(value, 0, 100)
 		_on_warn_at_progress_set()
-@export_range(0.05, 1, 0.01) var change_anim_delay_sec: float = 0.25
-@export_range(0.05, 1, 0.01) var change_anim_duration_sec: float = 0.05
-@export var normal_tint: Color = Color.WHITE
-@export var warning_tint: Color = Color.RED
+@export_range(0.05, 1.0, 0.01) var change_anim_delay_sec: float = 0.25:
+	set(value):
+		change_anim_delay_sec = clampf(value, 0.05, 1.0)
+@export_range(0.05, 1.0, 0.01) var change_anim_duration_sec: float = 0.05:
+	set(value):
+		change_anim_duration_sec = clampf(value, 0.05, 1.0)
+@export var normal_tint: Color = Color.WHITE:
+	set(value):
+		normal_tint = value
+		_on_normal_tint_set()
+@export var warning_tint: Color = Color.RED:
+	set(value):
+		warning_tint = value
+		_on_warning_tint_set()
 @export var increment_tint: Color = Color.BLUE
 @export var decrement_tint: Color = Color.YELLOW
 
@@ -41,6 +52,7 @@ func _get_progress_color() -> Color:
 
 
 func _update_progress_bar_no_anim() -> void:
+	print(_update_progress_bar_no_anim)
 	_back_progress_bar.value = progress
 	_front_progress_bar.value = progress
 	var progress_color: Color = _get_progress_color()
@@ -79,6 +91,10 @@ func _animate_progress_change() -> void:
 		_animate_increment()
 
 
+func _update_front_bar_color() -> void:
+	_front_progress_bar.tint_progress = _get_progress_color()
+
+
 func _on_progress_set() -> void:
 	if not is_node_ready():
 		return
@@ -91,8 +107,18 @@ func _on_progress_set() -> void:
 
 func _on_warn_at_progress_set() -> void:
 	if is_node_ready():
-		_front_progress_bar.tint_progress = _get_progress_color()
+		_update_front_bar_color()
+
+
+func _on_normal_tint_set() -> void:
+	if is_node_ready():
+		_update_front_bar_color()
+
+
+func _on_warning_tint_set() -> void:
+	if is_node_ready():
+		_update_front_bar_color()
 
 
 func _on_front_texture_progress_bar_value_changed(_value: float) -> void:
-	_front_progress_bar.tint_progress = _get_progress_color()
+	_update_front_bar_color()

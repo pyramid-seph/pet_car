@@ -1,6 +1,6 @@
 @tool
 extends Control
-# FIXME progress 99 appears to be empty
+
 
 signal pressed
 
@@ -12,7 +12,7 @@ signal pressed
 	set(value):
 		progress = clampi(value, 0, 100)
 		_on_progress_set()
-@export_range(0, 100) var warn_at_progress: int = 30:
+@export_range(0, 100) var warn_at_progress: int = 25:
 	set(value):
 		warn_at_progress = clampi(value, 0, 100)
 		_on_warn_at_progress_set()
