@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://c1vgco8t1mpr5" path="res://scenes/game.gd" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://ce7isfjmefsjf" path="res://scenes/pet.tscn" id="2_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://brbv0e7vu86qd" path="res://art/ui/buttons/btn_default_normal.png" id="2_kvpfn"]
-[ext_resource type="Texture2D" uid="uid://bkjn3iodrbcjn" path="res://art/ui/backgrounds/body.png" id="2_trtic"]
+[ext_resource type="Theme" uid="uid://cjt3atijvsctp" path="res://theme.tres" id="2_rysoc"]
+[ext_resource type="Texture2D" uid="uid://bkjn3iodrbcjn" path="res://art/ui/backgrounds/bg_body.png" id="2_trtic"]
 [ext_resource type="Texture2D" uid="uid://y7f8qscouor5" path="res://art/ui/buttons/btn_default_pressed.png" id="3_dinhu"]
 [ext_resource type="PackedScene" uid="uid://b76vraxp4k4yq" path="res://scenes/progress_bar_button.tscn" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://d0p0d0jbwqxmf" path="res://art/ui/buttons/btn_default_hover.png" id="4_kvuet"]
@@ -13,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://rt01cvw2h5wq" path="res://art/ui/icons/ic_clean.png" id="6_gee14"]
 [ext_resource type="Texture2D" uid="uid://v6ehtdfi7re2" path="res://art/ui/icons/ic_power_off.png" id="6_ir15t"]
 [ext_resource type="Script" uid="uid://c7jye2cfr8r3e" path="res://scenes/long_press_texture_button.gd" id="7_ir15t"]
+[ext_resource type="Texture2D" uid="uid://cew3lyssde0ne" path="res://art/ui/backgrounds/bg_screen.png" id="9_ca42v"]
 [ext_resource type="Texture2D" uid="uid://bq0emw78mdjsj" path="res://art/ui/buttons/btn_handle_normal.png" id="13_trtic"]
 [ext_resource type="BitMap" uid="uid://c5lj40mhbb63a" path="res://art/ui/buttons/btn_handle_click_mask.png" id="14_ca42v"]
 
@@ -26,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_rysoc")
 
 [node name="BackgroundTextureRect" type="TextureRect" parent="UI" unique_id=2032686947]
 layout_mode = 1
@@ -92,9 +95,22 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Pet" parent="UI/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer" unique_id=1504390640 instance=ExtResource("2_e2o6t")]
-unique_name_in_owner = true
+[node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer" unique_id=1172567418]
 layout_mode = 2
+texture = ExtResource("9_ca42v")
+stretch_mode = 2
+
+[node name="Pet" parent="UI/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect" unique_id=1504390640 instance=ExtResource("2_e2o6t")]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 _max_tick_sec = 5
 _max_duration_lost_per_tick_sec = 1.0
 _min_hunger_damage = 10
@@ -143,10 +159,10 @@ texture_normal = ExtResource("13_trtic")
 texture_click_mask = ExtResource("14_ca42v")
 
 [connection signal="long_pressed" from="UI/VBoxContainer/MarginContainer2/PowerOffButton" to="." method="_on_power_off_button_long_pressed"]
-[connection signal="died" from="UI/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_died"]
-[connection signal="dirty_changed" from="UI/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_dirty_changed"]
-[connection signal="hunger_changed" from="UI/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_hunger_changed"]
-[connection signal="wear_changed" from="UI/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_wear_changed"]
+[connection signal="died" from="UI/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/Pet" to="." method="_on_pet_died"]
+[connection signal="dirty_changed" from="UI/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/Pet" to="." method="_on_pet_dirty_changed"]
+[connection signal="hunger_changed" from="UI/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/Pet" to="." method="_on_pet_hunger_changed"]
+[connection signal="wear_changed" from="UI/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/Pet" to="." method="_on_pet_wear_changed"]
 [connection signal="pressed" from="UI/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/RepairProgressBarButton" to="." method="_on_repair_progress_bar_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/FeedProgressBarButton" to="." method="_on_feed_progress_bar_button_pressed"]
 [connection signal="pressed" from="UI/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/CleanProgressBarButton" to="." method="_on_clean_progress_bar_button_pressed"]
