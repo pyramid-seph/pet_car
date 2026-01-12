@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://3386ukhqgrem" path="res://scenes/progress_bar_button.gd" id="1_4h5wg"]
 [ext_resource type="PackedScene" uid="uid://q3khi4ru6nry" path="res://scenes/delayed_texture_progress_bar.tscn" id="2_iosd3"]
-[ext_resource type="Texture2D" uid="uid://brbv0e7vu86qd" path="res://art/ui/buttons/button_normal.png" id="5_kpxjd"]
-[ext_resource type="Texture2D" uid="uid://y7f8qscouor5" path="res://art/ui/buttons/button_pressed.png" id="6_riqpk"]
-[ext_resource type="Texture2D" uid="uid://d0p0d0jbwqxmf" path="res://art/ui/buttons/button_hover.png" id="7_af3b8"]
-[ext_resource type="BitMap" uid="uid://d4g8udxm7d0kj" path="res://art/ui/buttons/button_click_mask.png" id="7_tedg1"]
+[ext_resource type="Texture2D" uid="uid://brbv0e7vu86qd" path="res://art/ui/buttons/btn_default_normal.png" id="5_kpxjd"]
+[ext_resource type="Texture2D" uid="uid://y7f8qscouor5" path="res://art/ui/buttons/btn_default_pressed.png" id="6_riqpk"]
+[ext_resource type="Texture2D" uid="uid://d0p0d0jbwqxmf" path="res://art/ui/buttons/btn_default_hover.png" id="7_af3b8"]
+[ext_resource type="BitMap" uid="uid://d4g8udxm7d0kj" path="res://art/ui/buttons/btn_default_click_mask.png" id="7_tedg1"]
 
 [node name="ProgressBarButton" type="CenterContainer" unique_id=816560037]
 offset_right = 80.0

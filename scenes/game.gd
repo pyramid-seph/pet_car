@@ -15,6 +15,9 @@ var _state: State
 
 
 func _ready() -> void:
+	if OS.is_debug_build():
+		get_window().always_on_top = true
+	
 	_repair_progress_bar_button.disabled = true
 	_feed_progress_bar_button.disabled = true
 	_clean_progress_bar_button.disabled = true
@@ -94,3 +97,7 @@ func _on_power_off_button_pressed() -> void:
 	print("Game quit.")
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 	get_tree().quit()
+
+
+func _on_handle_button_button_down() -> void:
+	get_window().start_drag()
