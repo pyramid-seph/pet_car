@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://diawwkp2obeyn" path="res://art/ui/icons/ic_feed.png" id="5_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://rt01cvw2h5wq" path="res://art/ui/icons/ic_clean.png" id="6_gee14"]
 [ext_resource type="Texture2D" uid="uid://v6ehtdfi7re2" path="res://art/ui/icons/ic_power_off.png" id="6_ir15t"]
+[ext_resource type="Script" uid="uid://c7jye2cfr8r3e" path="res://scenes/long_press_texture_button.gd" id="7_ir15t"]
 [ext_resource type="Texture2D" uid="uid://bq0emw78mdjsj" path="res://art/ui/buttons/btn_handle_normal.png" id="13_trtic"]
 [ext_resource type="BitMap" uid="uid://c5lj40mhbb63a" path="res://art/ui/buttons/btn_handle_click_mask.png" id="14_ca42v"]
 
@@ -49,6 +50,7 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 
 [node name="PowerOffButton" type="TextureButton" parent="UI/VBoxContainer/MarginContainer2" unique_id=1587741117]
+process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 8
 focus_mode = 1
@@ -56,6 +58,7 @@ texture_normal = ExtResource("2_kvpfn")
 texture_pressed = ExtResource("3_dinhu")
 texture_hover = ExtResource("4_kvuet")
 texture_click_mask = ExtResource("5_trtic")
+script = ExtResource("7_ir15t")
 
 [node name="TextureRect" type="TextureRect" parent="UI/VBoxContainer/MarginContainer2/PowerOffButton" unique_id=1534000030]
 layout_mode = 1
@@ -137,7 +140,7 @@ focus_mode = 1
 texture_normal = ExtResource("13_trtic")
 texture_click_mask = ExtResource("14_ca42v")
 
-[connection signal="pressed" from="UI/VBoxContainer/MarginContainer2/PowerOffButton" to="." method="_on_power_off_button_pressed"]
+[connection signal="long_pressed" from="UI/VBoxContainer/MarginContainer2/PowerOffButton" to="." method="_on_power_off_button_long_pressed"]
 [connection signal="died" from="UI/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_died"]
 [connection signal="dirty_changed" from="UI/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_dirty_changed"]
 [connection signal="hunger_changed" from="UI/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/Pet" to="." method="_on_pet_hunger_changed"]

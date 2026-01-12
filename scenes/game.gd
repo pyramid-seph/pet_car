@@ -92,7 +92,7 @@ func _on_pet_dirty_changed() -> void:
 		_clean_progress_bar_button.progress = new_val
 
 
-func _on_power_off_button_pressed() -> void:
+func _on_power_off_button_long_pressed() -> void:
 	print("\n*****\n")
 	print("Game quit.")
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
