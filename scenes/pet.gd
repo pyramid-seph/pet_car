@@ -136,7 +136,7 @@ func increase_discomforts() -> void:
 	if any_discomfort_exceeded():
 		return
 	
-	var increased_discomforts: int = randi_range(0, 7)
+	var increased_discomforts: int = Discomforts.DIRT#randi_range(0, 7)
 	if increased_discomforts == 0:
 		Log.d("Discomforts were NOT increased. Lucky!")
 		return

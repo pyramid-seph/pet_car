@@ -9,11 +9,7 @@ enum State {
 var _state: State
 
 @onready var _pet := %Pet
-@onready var _repair_progress_bar_button := %RepairProgressBarButton
-@onready var _feed_progress_bar_button := %FeedProgressBarButton
-@onready var _clean_progress_bar_button := %CleanProgressBarButton
-@onready var _press_any_button_container: VBoxContainer = %PressAnyButtonContainer
-@onready var _turn_off_instructions_container := %TurnOffInstructionsContainer
+@onready var _ui := %Ui
 
 
 func _ready() -> void:
@@ -24,20 +20,20 @@ func _ready() -> void:
 	_on_pet_hunger_changed()
 	_on_pet_dirty_changed()
 	
-	_turn_off_instructions_container.hide()
+	_ui.hide_turn_off_instructions()
 
 
 func _start_game() -> void:
 	print("Game started.")
 	print("==================================\n")
 	_pet.be_born()
-	_press_any_button_container.hide()
+	_ui.hide_press_any_button_indicator()
 	_state = State.STARTED
 
 
 func _game_over() -> void:
 	print("Game over.")
-	_press_any_button_container.show()
+	_ui.show_press_any_button_indicator()
 	_state = State.GAME_OVER
 
 
@@ -79,39 +75,30 @@ func _on_pet_wear_changed() -> void:
 	if not is_node_ready():
 		return
 	
-	var new_val: int = 100 - _pet.get_wear()
-	if new_val > 0 and new_val < 5:
-		new_val = 5
 	if _state == State.STARTED:
-		_repair_progress_bar_button.progress = new_val
+		_ui.update_wear(_pet.get_wear())
 	else:
-		_repair_progress_bar_button.set_progress_no_anim(new_val)
+		_ui.update_wear_no_anim(_pet.get_wear())
 
 
 func _on_pet_hunger_changed() -> void:
 	if not is_node_ready():
 		return
 	
-	var new_val: int = 100 - _pet.get_hunger()
-	if new_val > 0 and new_val < 5:
-		new_val = 5
 	if _state == State.STARTED:
-		_feed_progress_bar_button.progress = new_val
+		_ui.update_hunger(_pet.get_hunger())
 	else:
-		_feed_progress_bar_button.set_progress_no_anim(new_val)
+		_ui.update_hunger_no_anim(_pet.get_hunger())
 
 
 func _on_pet_dirty_changed() -> void:
 	if not is_node_ready():
 		return
 	
-	var new_val: int = 100 - _pet.get_dirt()
-	if new_val > 0 and new_val < 5:
-		new_val = 5
 	if _state == State.STARTED:
-		_clean_progress_bar_button.progress = new_val
+		_ui.update_dirt(_pet.get_dirt())
 	else:
-		_clean_progress_bar_button.set_progress_no_anim(new_val)
+		_ui.update_dirt_no_anim(_pet.get_dirt())
 
 
 func _on_handle_button_button_down() -> void:
@@ -126,8 +113,8 @@ func _on_power_off_button_long_pressed() -> void:
 
 
 func _on_power_off_button_button_up() -> void:
-	_turn_off_instructions_container.hide()
+	_ui.hide_turn_off_instructions()
 
 
 func _on_power_off_button_button_down() -> void:
-	_turn_off_instructions_container.show()
+	_ui.show_turn_off_instructions()

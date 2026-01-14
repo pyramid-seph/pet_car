@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://brbv0e7vu86qd" path="res://art/ui/buttons/btn_default_normal.png" id="2_kvpfn"]
 [ext_resource type="Theme" uid="uid://cjt3atijvsctp" path="res://theme.tres" id="2_rysoc"]
 [ext_resource type="Texture2D" uid="uid://bkjn3iodrbcjn" path="res://art/ui/backgrounds/bg_body.png" id="2_trtic"]
+[ext_resource type="Script" uid="uid://brp8sgreoraw0" path="res://scenes/ui.gd" id="3_1kice"]
 [ext_resource type="Texture2D" uid="uid://y7f8qscouor5" path="res://art/ui/buttons/btn_default_pressed.png" id="3_dinhu"]
 [ext_resource type="PackedScene" uid="uid://b76vraxp4k4yq" path="res://scenes/progress_bar_button.tscn" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://d0p0d0jbwqxmf" path="res://art/ui/buttons/btn_default_hover.png" id="4_kvuet"]
@@ -24,6 +25,7 @@
 script = ExtResource("1_80nbo")
 
 [node name="Ui" type="Control" parent="." unique_id=337055363]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,6 +33,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_rysoc")
+script = ExtResource("3_1kice")
 
 [node name="BackgroundTextureRect" type="TextureRect" parent="Ui" unique_id=2032686947]
 layout_mode = 1
