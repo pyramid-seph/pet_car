@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://ce7isfjmefsjf"]
+
+[ext_resource type="Script" uid="uid://kea21l63608s" path="res://scenes/pet_old.gd" id="1_34gfr"]
+
+[node name="PetOld" type="Control" unique_id=163637920]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_34gfr")
+
+[node name="StatusLabel" type="Label" parent="." unique_id=741522422]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "State"
+
+[node name="TickTimer" type="Timer" parent="." unique_id=503795008]
+one_shot = true
+
+[connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]

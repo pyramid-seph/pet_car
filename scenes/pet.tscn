@@ -1,25 +1,234 @@
-[gd_scene format=3 uid="uid://ce7isfjmefsjf"]
+[gd_scene format=3 uid="uid://526obak4sm7g"]
 
-[ext_resource type="Script" uid="uid://kea21l63608s" path="res://scenes/pet.gd" id="1_34gfr"]
+[ext_resource type="Script" uid="uid://cufyg5yydwtt1" path="res://scenes/pet.gd" id="1_34gfr"]
+[ext_resource type="Texture2D" uid="uid://bqdytsc20n22w" path="res://art/chars/spritesheet_chars_pet.png" id="1_s8qer"]
+[ext_resource type="Script" uid="uid://dfefcum5vs20x" path="res://scenes/ai/state_machines/pet/pet_state_machine.gd" id="3_qd1if"]
+[ext_resource type="Script" uid="uid://chruhaxm76i7i" path="res://scenes/ai/state_machines/pet/conceived_state.gd" id="4_axfbl"]
+[ext_resource type="Script" uid="uid://c4a4yah1ecpxf" path="res://scenes/ai/state_machines/pet/alive_state.gd" id="7_5c8qe"]
+[ext_resource type="Script" uid="uid://ch3u03mrp1fut" path="res://scenes/ai/state_machines/pet/dead_state.gd" id="8_hio3l"]
 
-[node name="Pet" type="Control" unique_id=163637920]
-layout_mode = 3
-anchors_preset = 0
+[sub_resource type="Animation" id="Animation_r348d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_6xo55"]
+resource_name = "born"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8.03, 9.03, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 4, 5, 4, 5, 4]
+}
+
+[sub_resource type="Animation" id="Animation_jaxvr"]
+resource_name = "clean"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 2.9666667, 4, 4.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 24, 25, 26]
+}
+
+[sub_resource type="Animation" id="Animation_7l1lv"]
+resource_name = "conceived"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_yfpvr"]
+resource_name = "die"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [27, 28, 27, 28, 27, 28, 29]
+}
+
+[sub_resource type="Animation" id="Animation_ekmr1"]
+resource_name = "dirty"
+length = 15.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 4, 5, 9, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 15, 16, 15, 16, 15]
+}
+
+[sub_resource type="Animation" id="Animation_bf2t7"]
+resource_name = "feed"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 2.9666667, 4, 4.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [20, 21, 22, 20, 21, 22]
+}
+
+[sub_resource type="Animation" id="Animation_qqyyp"]
+resource_name = "hungry"
+length = 15.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 4, 5, 9, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [13, 14, 13, 14, 13, 14, 13]
+}
+
+[sub_resource type="Animation" id="Animation_s8qer"]
+resource_name = "idle"
+length = 30.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 6, 4, 6, 4, 6, 4, 6, 7, 8, 7, 8, 4, 6, 4, 6, 9, 6, 4, 6, 4, 6, 4, 6, 4, 6, 9, 6, 7, 6]
+}
+
+[sub_resource type="Animation" id="Animation_lfbpm"]
+resource_name = "repair"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 2.9666667, 4, 4.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [17, 18, 19, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_bh3h5"]
+resource_name = "worn_out"
+length = 15.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 4, 5, 9, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [11, 12, 11, 12, 11, 12, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7l1lv"]
+_data = {
+&"RESET": SubResource("Animation_r348d"),
+&"born": SubResource("Animation_6xo55"),
+&"clean": SubResource("Animation_jaxvr"),
+&"conceived": SubResource("Animation_7l1lv"),
+&"die": SubResource("Animation_yfpvr"),
+&"dirty": SubResource("Animation_ekmr1"),
+&"feed": SubResource("Animation_bf2t7"),
+&"hungry": SubResource("Animation_qqyyp"),
+&"idle": SubResource("Animation_s8qer"),
+&"repair": SubResource("Animation_lfbpm"),
+&"worn_out": SubResource("Animation_bh3h5")
+}
+
+[node name="Pet" type="Sprite2D" unique_id=1695973980]
+texture = ExtResource("1_s8qer")
+hframes = 6
+vframes = 5
+frame = 6
 script = ExtResource("1_34gfr")
 
-[node name="StatusLabel" type="Label" parent="." unique_id=741522422]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "State"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1567973953]
+libraries/ = SubResource("AnimationLibrary_7l1lv")
 
-[node name="TickTimer" type="Timer" parent="." unique_id=503795008]
+[node name="TickTimer" type="Timer" parent="." unique_id=1722664115]
 one_shot = true
 
+[node name="PetStateMachine" type="Node" parent="." unique_id=1118360233]
+script = ExtResource("3_qd1if")
+autostart = true
+
+[node name="Conceived" type="Node" parent="PetStateMachine" unique_id=1054978267]
+script = ExtResource("4_axfbl")
+metadata/_custom_type_script = "uid://cbreegbxdjjk8"
+
+[node name="Alive" type="Node" parent="PetStateMachine" unique_id=1100084631]
+script = ExtResource("7_5c8qe")
+metadata/_custom_type_script = "uid://cbreegbxdjjk8"
+
+[node name="Dead" type="Node" parent="PetStateMachine" unique_id=1936791345]
+script = ExtResource("8_hio3l")
+metadata/_custom_type_script = "uid://cbreegbxdjjk8"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]
