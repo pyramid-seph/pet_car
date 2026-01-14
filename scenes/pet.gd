@@ -119,7 +119,7 @@ func get_state_machine() -> PetStateMachine:
 func reduce_hunger() -> void:
 	var reduction: int = randi_range(_min_hunger_reduction, _max_hunger_reduction)
 	_hunger -= reduction
-	print("Fed. Reduction: ", reduction, " - Current val: ", _hunger)
+	Log.d("Fed. Reduction: ", reduction, " - Current val: ", _hunger)
 
 
 func reduce_wear() -> void:
@@ -138,30 +138,30 @@ func increase_discomforts() -> void:
 	
 	var increased_discomforts: int = randi_range(0, 7)
 	if increased_discomforts == 0:
-		print("Discomforts were NOT increased. Lucky!")
+		Log.d("Discomforts were NOT increased. Lucky!")
 		return
 
 	if increased_discomforts & Discomforts.DIRT:
 		var increase: int = randi_range(_min_dirt_damage, _max_dirt_damage)
 		_dirt += increase
-		print("Dirt increased to %s (+%s)" % [_dirt, increase])
+		Log.d("Dirt increased to %s (+%s)" % [_dirt, increase])
 	
 	if increased_discomforts & Discomforts.HUNGER:
 		var increase: int = randi_range(_min_hunger_damage, _max_hunger_damage)
 		_hunger += increase
-		print("Hunger increased to %s (+%s)" % [_hunger, increase])
+		Log.d("Hunger increased to %s (+%s)" % [_hunger, increase])
 	
 	if increased_discomforts & Discomforts.WEAR:
 		var increase: int = randi_range(_min_wear_damage, _max_wear_damage)
 		_wear += increase
-		print("Wear increased to %s (+%s)" % [_wear, increase])
+		Log.d("Wear increased to %s (+%s)" % [_wear, increase])
 
 
 func reset_discomforts() -> void:
 	_hunger = 0
 	_wear = 0
 	_dirt = 0
-	print("Discomforts were reset.")
+	Log.d("Discomforts were reset.")
 
 
 func decrease_tick_duration() -> void:
@@ -171,32 +171,32 @@ func decrease_tick_duration() -> void:
 			_curr_max_tick_duration - tick_duration_lose, 
 			_min_tick_sec, 
 			_max_tick_sec)
-	print("Tick duration decreased to ", _curr_max_tick_duration)
+	Log.d("Tick duration decreased to ", _curr_max_tick_duration)
 
 
 func reset_tick_duration() -> void:
 	_curr_max_tick_duration = _max_tick_sec
-	print("Tick duration reset to ", _curr_max_tick_duration)
+	Log.d("Tick duration reset to ", _curr_max_tick_duration)
 
 
 func start_a_tick() -> void:
 	_tick_timer.start(_curr_max_tick_duration)
-	print("\n==================================================")
-	print("Tick started. Duration: ", _curr_max_tick_duration)
+	Log.d("\n==================================================")
+	Log.d("Tick started. Duration: ", _curr_max_tick_duration)
 
 
 func pause_ticks(pause: bool) -> void:
-	print("Ticks paused" if pause else "Ticks [UN]paused")
+	Log.d("Ticks paused" if pause else "Ticks [UN]paused")
 	_tick_timer.paused = pause
 
 
 func stop_ticks() -> void:
 	_tick_timer.stop()
-	print("Ticks stopped.")
+	Log.d("Ticks stopped.")
 
 
 func _on_tick_timer_timeout() -> void:
-	print("Tick timed out.")
+	Log.d("Tick timed out.")
 	_state_machine.on_tick()
 
 
