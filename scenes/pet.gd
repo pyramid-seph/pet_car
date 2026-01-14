@@ -180,17 +180,13 @@ func reset_tick_duration() -> void:
 
 
 func start_a_tick() -> void:
-	var tick_duration_sec: float = randf_range(_min_tick_sec, _curr_max_tick_duration)
-	_tick_timer.start(tick_duration_sec)
+	_tick_timer.start(_curr_max_tick_duration)
 	print("\n==================================================")
-	print("Tick started. Duration: ", tick_duration_sec)
+	print("Tick started. Duration: ", _curr_max_tick_duration)
 
 
 func pause_ticks(pause: bool) -> void:
-	if pause:
-		print("Ticks paused")
-	else:
-		print("Ticks [UN]paused")
+	print("Ticks paused" if pause else "Ticks [UN]paused")
 	_tick_timer.paused = pause
 
 
