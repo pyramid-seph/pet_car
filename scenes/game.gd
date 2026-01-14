@@ -13,6 +13,7 @@ var _state: State
 @onready var _feed_progress_bar_button := %FeedProgressBarButton
 @onready var _clean_progress_bar_button := %CleanProgressBarButton
 @onready var _press_any_button_container: VBoxContainer = %PressAnyButtonContainer
+@onready var _turn_off_instructions_container := %TurnOffInstructionsContainer
 
 
 func _ready() -> void:
@@ -22,6 +23,8 @@ func _ready() -> void:
 	_on_pet_wear_changed()
 	_on_pet_hunger_changed()
 	_on_pet_dirty_changed()
+	
+	_turn_off_instructions_container.hide()
 
 
 func _start_game() -> void:
@@ -111,6 +114,10 @@ func _on_pet_dirty_changed() -> void:
 		_clean_progress_bar_button.set_progress_no_anim(new_val)
 
 
+func _on_handle_button_button_down() -> void:
+	get_window().start_drag()
+
+
 func _on_power_off_button_long_pressed() -> void:
 	print("\n*****\n")
 	print("Game quit.")
@@ -118,5 +125,9 @@ func _on_power_off_button_long_pressed() -> void:
 	get_tree().quit()
 
 
-func _on_handle_button_button_down() -> void:
-	get_window().start_drag()
+func _on_power_off_button_button_up() -> void:
+	_turn_off_instructions_container.hide()
+
+
+func _on_power_off_button_button_down() -> void:
+	_turn_off_instructions_container.show()
