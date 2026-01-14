@@ -5,14 +5,11 @@ var _is_being_taken_care_of: bool
 
 
 func enter(subject: Pet) -> void:
+	print("Pet started their live.")
 	subject.reset_tick_duration()
 	subject.pause_ticks(false)
 	subject.start_a_tick()
 	_update_state_anim(subject)
-
-
-func exit(subject: Pet) -> void:
-	subject.stop_ticks()
 
 
 func repair(subject: Pet) -> void:
@@ -48,7 +45,6 @@ func clean(subject: Pet) -> void:
 func on_tick(subject: Pet) -> void:
 	subject.increase_discomforts()
 	if subject.any_discomfort_exceeded():
-		subject.stop_ticks()
 		subject.get_state_machine().change_state("Dead")
 	else:
 		subject.decrease_tick_duration()

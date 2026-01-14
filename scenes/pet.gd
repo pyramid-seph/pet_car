@@ -9,14 +9,14 @@ signal dirty_changed
 signal wear_changed
 
 
-enum Status {
-	DIRTY = 1,
+enum Discomforts {
+	DIRT = 1,
 	HUNGER = 2,
 	WEAR = 4,
 }
 
 const MAX_STATUS_VALUE: int = 100
-const WARN_VALUE: int = 70
+const WARN_VALUE: int = 75
 const MIN_STATUS_VALUE: int = 0
 
 @export_range(1, 60, 1, "or_greater") var _min_tick_sec: int = 1
@@ -39,8 +39,6 @@ var _max_duration_lost_per_tick_sec: float = 0.5
 @export_range(1, 100) var _max_dirt_reduction: int = 1
 
 var _curr_max_tick_duration: float
-var _tick_start_sec: float
-var _tick_end_sec: float
 var _hunger: int:
 	set(value):
 		_hunger = clampi(value, MIN_STATUS_VALUE, MAX_STATUS_VALUE)
@@ -138,74 +136,71 @@ func increase_discomforts() -> void:
 	if any_discomfort_exceeded():
 		return
 	
-	var damaged_statuses: int = randi_range(0, 7)
-	print("Damaging statuses: ", damaged_statuses)
-	if damaged_statuses == 0:
-		print("Took no damage.")
+	var increased_discomforts: int = randi_range(0, 7)
+	if increased_discomforts == 0:
+		print("Discomforts were NOT increased. Lucky!")
 		return
+
+	if increased_discomforts & Discomforts.DIRT:
+		var increase: int = randi_range(_min_dirt_damage, _max_dirt_damage)
+		_dirt += increase
+		print("Dirt increased to %s (+%s)" % [_dirt, increase])
 	
-	if damaged_statuses & Status.DIRTY:
-		var damage: int = randi_range(_min_dirt_damage, _max_dirt_damage)
-		_dirt += damage
-		print("Took dirt damage: ", damage, " - Current val: ", _dirt)
+	if increased_discomforts & Discomforts.HUNGER:
+		var increase: int = randi_range(_min_hunger_damage, _max_hunger_damage)
+		_hunger += increase
+		print("Hunger increased to %s (+%s)" % [_hunger, increase])
 	
-	if damaged_statuses & Status.HUNGER:
-		var damage: int = randi_range(_min_hunger_damage, _max_hunger_damage)
-		_hunger += damage
-		print("Took hunger damage: ", damage, " - Current val: ", _hunger)
-	
-	if damaged_statuses & Status.WEAR:
-		var damage: int = randi_range(_min_wear_damage, _max_wear_damage)
-		_wear += damage
-		print("Took wear damage: ", damage, " - Current val: ", _wear)
+	if increased_discomforts & Discomforts.WEAR:
+		var increase: int = randi_range(_min_wear_damage, _max_wear_damage)
+		_wear += increase
+		print("Wear increased to %s (+%s)" % [_wear, increase])
 
 
 func reset_discomforts() -> void:
 	_hunger = 0
 	_wear = 0
 	_dirt = 0
+	print("Discomforts were reset.")
 
 
 func decrease_tick_duration() -> void:
-	print("Making it more difficult.")
 	var tick_duration_lose: float = \
 			randf_range(0.0, _max_duration_lost_per_tick_sec)
 	_curr_max_tick_duration = clampf(
 			_curr_max_tick_duration - tick_duration_lose, 
 			_min_tick_sec, 
 			_max_tick_sec)
-	print("New max tick duration is: %s (lost %s sec)" %
-			[_curr_max_tick_duration, tick_duration_lose])
+	print("Tick duration decreased to ", _curr_max_tick_duration)
 
 
 func reset_tick_duration() -> void:
 	_curr_max_tick_duration = _max_tick_sec
+	print("Tick duration reset to ", _curr_max_tick_duration)
 
 
 func start_a_tick() -> void:
 	var tick_duration_sec: float = randf_range(_min_tick_sec, _curr_max_tick_duration)
-	_tick_start_sec = Time.get_unix_time_from_system()
-	print("A new tick has started at %s. Duration: %s" % 
-			[_tick_start_sec, tick_duration_sec])
 	_tick_timer.start(tick_duration_sec)
+	print("\n==================================================")
+	print("Tick started. Duration: ", tick_duration_sec)
 
 
 func pause_ticks(pause: bool) -> void:
 	if pause:
 		print("Ticks paused")
 	else:
-		print("Ticks UNpaused")
+		print("Ticks [UN]paused")
 	_tick_timer.paused = pause
 
 
 func stop_ticks() -> void:
 	_tick_timer.stop()
+	print("Ticks stopped.")
 
 
 func _on_tick_timer_timeout() -> void:
-	_tick_end_sec = Time.get_unix_time_from_system()
-	var tick_duration: float =  _tick_end_sec - _tick_start_sec
-	print("Tick timed out at %s. Tick duration: %s" % [_tick_end_sec, tick_duration])
+	print("Tick timed out.")
 	_state_machine.on_tick()
 
 

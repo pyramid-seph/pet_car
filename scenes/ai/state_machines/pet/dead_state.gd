@@ -2,6 +2,7 @@ extends PetState
 
 
 func enter(subject: Pet) -> void:
+	print("Pet dead.")
 	subject.stop_ticks()
 	subject.get_animation_player().play(&"die")
 
