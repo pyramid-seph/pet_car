@@ -1,7 +1,7 @@
 extends Node
 
 enum State {
-	TITLE_SCREEN,
+	NOT_STARTED,
 	STARTED,
 	GAME_OVER,
 }
@@ -21,6 +21,7 @@ func _ready() -> void:
 	_on_pet_dirty_changed()
 	
 	_ui.hide_turn_off_instructions()
+	_pet.revive()
 
 
 func _start_game() -> void:
@@ -37,34 +38,34 @@ func _game_over() -> void:
 	_state = State.GAME_OVER
 
 
-func _on_repair_progress_bar_button_pressed() -> void:
+func _on_bottom_button_clicked_not_alive() -> void:
 	match _state:
-		State.TITLE_SCREEN:
+		State.NOT_STARTED:
 			_start_game()
-		State.STARTED:
-			_pet.repair()
 		State.GAME_OVER:
+			_state = State.NOT_STARTED
 			_pet.revive()
+
+
+func _on_repair_progress_bar_button_pressed() -> void:
+	if _state == State.STARTED:
+		_pet.repair()
+	else:
+		_on_bottom_button_clicked_not_alive()
 
 
 func _on_feed_progress_bar_button_pressed() -> void:
-	match _state:
-		State.TITLE_SCREEN:
-			_start_game()
-		State.STARTED:
-			_pet.feed()
-		State.GAME_OVER:
-			_pet.revive()
+	if _state == State.STARTED:
+		_pet.feed()
+	else:
+		_on_bottom_button_clicked_not_alive()
 
 
 func _on_clean_progress_bar_button_pressed() -> void:
-	match _state:
-		State.TITLE_SCREEN:
-			_start_game()
-		State.STARTED:
-			_pet.clean()
-		State.GAME_OVER:
-			_pet.revive()
+	if _state == State.STARTED:
+		_pet.clean()
+	else:
+		_on_bottom_button_clicked_not_alive()
 
 
 func _on_pet_died() -> void:

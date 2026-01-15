@@ -216,7 +216,6 @@ one_shot = true
 
 [node name="PetStateMachine" type="Node" parent="." unique_id=1118360233]
 script = ExtResource("3_qd1if")
-autostart = true
 
 [node name="Conceived" type="Node" parent="PetStateMachine" unique_id=1054978267]
 script = ExtResource("4_axfbl")
