@@ -1,15 +1,10 @@
+class_name Game
 extends Node
 
-enum State {
-	NOT_STARTED,
-	STARTED,
-	GAME_OVER,
-}
-
-var _state: State
 
 @onready var _pet := %Pet
 @onready var _ui := %Ui
+@onready var _state_machine: GameStateMachine = $GameStateMachine
 
 
 func _ready() -> void:
@@ -21,85 +16,49 @@ func _ready() -> void:
 	_on_pet_dirty_changed()
 	
 	_ui.hide_turn_off_instructions()
-	_pet.revive()
 
 
-func _start_game() -> void:
-	print("Game started.")
-	print("==================================\n")
-	_pet.be_born()
-	_ui.hide_press_any_button_indicator()
-	_state = State.STARTED
+func get_ui():
+	return _ui
 
 
-func _game_over() -> void:
-	print("Game over.")
-	_ui.show_press_any_button_indicator()
-	_state = State.GAME_OVER
+func get_pet() -> Pet:
+	return _pet
 
 
-func _on_bottom_button_clicked_not_alive() -> void:
-	match _state:
-		State.NOT_STARTED:
-			_start_game()
-		State.GAME_OVER:
-			_state = State.NOT_STARTED
-			_pet.revive()
+func get_state_machine() -> GameStateMachine:
+	return _state_machine
 
 
 func _on_repair_progress_bar_button_pressed() -> void:
-	if _state == State.STARTED:
-		_pet.repair()
-	else:
-		_on_bottom_button_clicked_not_alive()
+	_state_machine.on_repair_progress_bar_button_pressed()
 
 
 func _on_feed_progress_bar_button_pressed() -> void:
-	if _state == State.STARTED:
-		_pet.feed()
-	else:
-		_on_bottom_button_clicked_not_alive()
+	_state_machine.on_feed_progress_bar_button_pressed()
 
 
 func _on_clean_progress_bar_button_pressed() -> void:
-	if _state == State.STARTED:
-		_pet.clean()
-	else:
-		_on_bottom_button_clicked_not_alive()
+	_state_machine.on_clean_progress_bar_button_pressed()
 
 
 func _on_pet_died() -> void:
-	_game_over()
+	_state_machine.on_pet_died()
 
 
 func _on_pet_wear_changed() -> void:
-	if not is_node_ready():
-		return
-	
-	if _state == State.STARTED:
-		_ui.update_wear(_pet.get_wear())
-	else:
-		_ui.update_wear_no_anim(_pet.get_wear())
+	if is_node_ready():
+		_state_machine.on_pet_wear_changed()
 
 
 func _on_pet_hunger_changed() -> void:
-	if not is_node_ready():
-		return
-	
-	if _state == State.STARTED:
-		_ui.update_hunger(_pet.get_hunger())
-	else:
-		_ui.update_hunger_no_anim(_pet.get_hunger())
+	if is_node_ready():
+		_state_machine.on_pet_hunger_changed()
 
 
 func _on_pet_dirty_changed() -> void:
-	if not is_node_ready():
-		return
-	
-	if _state == State.STARTED:
-		_ui.update_dirt(_pet.get_dirt())
-	else:
-		_ui.update_dirt_no_anim(_pet.get_dirt())
+	if is_node_ready():
+		_state_machine.on_pet_dirty_changed()
 
 
 func _on_handle_button_button_down() -> void:
