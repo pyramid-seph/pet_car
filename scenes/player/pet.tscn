@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://526obak4sm7g"]
 
-[ext_resource type="Script" uid="uid://cufyg5yydwtt1" path="res://scenes/pet.gd" id="1_34gfr"]
+[ext_resource type="Script" uid="uid://cufyg5yydwtt1" path="res://scenes/player/pet.gd" id="1_34gfr"]
 [ext_resource type="Texture2D" uid="uid://bqdytsc20n22w" path="res://art/chars/spritesheet_chars_pet.png" id="1_s8qer"]
 [ext_resource type="Script" uid="uid://dfefcum5vs20x" path="res://scenes/ai/state_machines/pet/pet_state_machine.gd" id="3_qd1if"]
 [ext_resource type="Script" uid="uid://chruhaxm76i7i" path="res://scenes/ai/state_machines/pet/conceived_state.gd" id="4_axfbl"]

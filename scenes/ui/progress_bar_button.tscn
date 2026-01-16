@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b76vraxp4k4yq"]
 
-[ext_resource type="Script" uid="uid://3386ukhqgrem" path="res://scenes/progress_bar_button.gd" id="1_4h5wg"]
-[ext_resource type="PackedScene" uid="uid://q3khi4ru6nry" path="res://scenes/delayed_texture_progress_bar.tscn" id="2_iosd3"]
+[ext_resource type="Script" uid="uid://3386ukhqgrem" path="res://scenes/ui/progress_bar_button.gd" id="1_4h5wg"]
+[ext_resource type="PackedScene" uid="uid://q3khi4ru6nry" path="res://scenes/ui/delayed_texture_progress_bar.tscn" id="2_iosd3"]
 [ext_resource type="Texture2D" uid="uid://brbv0e7vu86qd" path="res://art/ui/buttons/btn_default_normal.png" id="5_kpxjd"]
 [ext_resource type="Texture2D" uid="uid://y7f8qscouor5" path="res://art/ui/buttons/btn_default_pressed.png" id="6_riqpk"]
 [ext_resource type="Texture2D" uid="uid://d0p0d0jbwqxmf" path="res://art/ui/buttons/btn_default_hover.png" id="7_af3b8"]

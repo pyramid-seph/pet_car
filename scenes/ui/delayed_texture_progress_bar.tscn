@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://des7u7v3ionlm" path="res://art/ui/radial_progressbar/bar_under.png" id="1_so23j"]
 [ext_resource type="Texture2D" uid="uid://c8bmxpxyyyah" path="res://art/ui/radial_progressbar/bar_progress.png" id="2_qtu15"]
-[ext_resource type="Script" uid="uid://vm5gvsjkfwgt" path="res://scenes/delayed_texture_progress_bar.gd" id="3_gdxee"]
+[ext_resource type="Script" uid="uid://vm5gvsjkfwgt" path="res://scenes/ui/delayed_texture_progress_bar.gd" id="3_gdxee"]
 [ext_resource type="Texture2D" uid="uid://dlf47rbu6wylv" path="res://art/ui/radial_progressbar/bar_over.png" id="4_m2cjb"]
 
 [node name="DelayedProgressBar" type="CenterContainer" unique_id=1617165633]
