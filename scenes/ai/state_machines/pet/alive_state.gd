@@ -9,7 +9,8 @@ func enter(subject: Pet) -> void:
 	subject.reset_tick_duration()
 	subject.pause_ticks(false)
 	subject.start_a_tick()
-	_update_state_anim(subject)
+	subject.update_body_parts()
+	subject.get_animation_player().play(&"idle")
 
 
 func repair(subject: Pet) -> void:
@@ -52,7 +53,7 @@ func on_tick(subject: Pet) -> void:
 	else:
 		subject.decrease_tick_duration()
 		subject.start_a_tick()
-		_update_state_anim(subject)
+		subject.update_body_parts()
 
 
 func on_animation_finished(subject: Pet, anim_name: StringName) -> void:
@@ -60,18 +61,5 @@ func on_animation_finished(subject: Pet, anim_name: StringName) -> void:
 		&"repair", &"clean", &"feed":
 			_is_being_taken_care_of = false
 			subject.pause_ticks(false)
-			_update_state_anim(subject)
-
-
-func _update_state_anim(subject: Pet) -> void:
-	if subject.any_discomfort_exceeded():
-		return
-	
-	var new_anim: StringName = &"idle"
-	if subject.is_worn_out():
-		new_anim = &"worn_out"
-	elif subject.is_hungry():
-		new_anim = &"hungry"
-	elif subject.is_dirty():
-		new_anim = &"dirty"
-	subject.get_animation_player().play(new_anim)
+			subject.update_body_parts()
+			subject.get_animation_player().play(&"idle")

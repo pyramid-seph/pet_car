@@ -15,6 +15,11 @@ enum Discomforts {
 	WEAR = 4,
 }
 
+const PET_CAR_BODY_MOUTH_DEFAULT: AtlasTexture = preload("uid://cm87hxdymroio")
+const PET_CAR_BODY_MOUTH_WORN_OUT: AtlasTexture = preload("uid://chw5bcj446do2")
+
+const PetCarEyes = preload("uid://biit87cyx6c80")
+
 const MAX_STATUS_VALUE: int = 100
 const WARN_VALUE: int = 75
 const MIN_STATUS_VALUE: int = 0
@@ -55,6 +60,10 @@ var _dirt: int:
 @onready var _tick_timer: Timer = $TickTimer
 @onready var _animation_player: AnimationPlayer = $AnimationPlayer
 @onready var _state_machine: PetStateMachine = $PetStateMachine
+@onready var _eyes: PetCarEyes = $Eyes
+@onready var _mouth_sprite: Sprite2D = $MouthSprite2D
+@onready var _tongue_sprite: Sprite2D = $TongueSprite2D
+@onready var _dirt_sprite: Sprite2D = $DirtSprite2D
 
 
 func revive() -> void:
@@ -114,6 +123,22 @@ func get_animation_player() -> AnimationPlayer:
 
 func get_state_machine() -> PetStateMachine:
 	return _state_machine
+
+
+func update_body_parts() -> void:
+	_dirt_sprite.modulate.a = 1.0 if is_dirty() else 0.0
+	
+	if is_hungry():
+		_eyes.condition = PetCarEyes.Condition.HUNGRY
+		_tongue_sprite.modulate.a = 1.0
+	else:
+		_eyes.condition = PetCarEyes.Condition.DEFAULT
+		_tongue_sprite.modulate.a = 0.0
+	
+	if is_worn_out():
+		_mouth_sprite.texture = PET_CAR_BODY_MOUTH_WORN_OUT
+	else:
+		_mouth_sprite.texture = PET_CAR_BODY_MOUTH_DEFAULT
 
 
 func reduce_hunger() -> void:

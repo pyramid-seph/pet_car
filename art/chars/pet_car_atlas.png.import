@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqdytsc20n22w"
-path="res://.godot/imported/spritesheet_chars_pet.png-9522b1f72fe9d718c02c96d81f5cab44.ctex"
+uid="uid://dvtgb55q2rbpl"
+path="res://.godot/imported/pet_car_atlas.png-c88ecfe78ac339b2f9fc392d44e240e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/chars/spritesheet_chars_pet.png"
-dest_files=["res://.godot/imported/spritesheet_chars_pet.png-9522b1f72fe9d718c02c96d81f5cab44.ctex"]
+source_file="res://art/chars/pet_car_atlas.png"
+dest_files=["res://.godot/imported/pet_car_atlas.png-c88ecfe78ac339b2f9fc392d44e240e2.ctex"]
 
 [params]
 

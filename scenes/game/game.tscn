@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://v6ehtdfi7re2" path="res://art/ui/icons/ic_power_off.png" id="6_ir15t"]
 [ext_resource type="Script" uid="uid://c7jye2cfr8r3e" path="res://scenes/ui/long_press_texture_button.gd" id="7_ir15t"]
 [ext_resource type="Texture2D" uid="uid://cew3lyssde0ne" path="res://art/ui/backgrounds/bg_screen.png" id="9_ca42v"]
-[ext_resource type="Texture2D" uid="uid://byu1qqk3iicvf" path="res://art/ui/textures/screen_down_arrow.png" id="11_264po"]
+[ext_resource type="Texture2D" uid="uid://vd6u3jt8vgyc" path="res://art/ui/textures/screen_down_arrow.png" id="11_264po"]
 [ext_resource type="Script" uid="uid://dkulfqgqrt36n" path="res://scenes/utils/twinkle_tween.gd" id="12_1kice"]
 [ext_resource type="Texture2D" uid="uid://bq0emw78mdjsj" path="res://art/ui/buttons/btn_handle_normal.png" id="13_trtic"]
 [ext_resource type="BitMap" uid="uid://c5lj40mhbb63a" path="res://art/ui/buttons/btn_handle_click_mask.png" id="14_ca42v"]
@@ -127,6 +127,7 @@ texture = ExtResource("9_ca42v")
 stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect" unique_id=272484771]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -141,6 +142,8 @@ theme_override_constants/margin_bottom = 8
 [node name="TurnOffInstructionsContainer" type="VBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer" unique_id=1085898835]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/TurnOffInstructionsContainer" unique_id=815436270]
 layout_mode = 2
@@ -152,19 +155,18 @@ texture = ExtResource("11_264po")
 flip_v = true
 
 [node name="Label" type="Label" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/TurnOffInstructionsContainer" unique_id=2094173874]
-texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 16
 text = "Keep pressing to close"
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="PressAnyButtonContainer" type="VBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer" unique_id=397909431]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 8
+theme_override_constants/separation = 0
 
 [node name="Label" type="Label" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/PressAnyButtonContainer" unique_id=1597432745]
 unique_name_in_owner = true
