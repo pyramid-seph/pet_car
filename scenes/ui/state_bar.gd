@@ -34,7 +34,12 @@ func _on_icon_set() -> void:
 
 
 func _on_value_set() -> void:
-	if is_node_ready():
+	if not is_node_ready():
+		return
+	
+	if value > 0.0 and value < _progress_bar.step:
+		_progress_bar.value = _progress_bar.step
+	else:
 		_progress_bar.value = value
 
 

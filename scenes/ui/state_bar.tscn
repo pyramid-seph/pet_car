@@ -27,3 +27,4 @@ stretch_margin_bottom = 4
 texture_under = ExtResource("2_bklal")
 texture_progress = ExtResource("3_w21n1")
 texture_progress_offset = Vector2(4, 4)
+tint_progress = Color(0.05882353, 0.21960784, 0.05882353, 1)
