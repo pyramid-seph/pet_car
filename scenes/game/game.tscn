@@ -26,6 +26,20 @@
 [ext_resource type="Texture2D" uid="uid://db6un67jh7wdi" path="res://art/ui/icons/ic_state_hunger.png" id="21_h48ew"]
 [ext_resource type="Texture2D" uid="uid://bdo2r4ryxoaxc" path="res://art/ui/icons/ic_state_dirt.png" id="22_fty5b"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wdnak"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+texture = ExtResource("2_trtic")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4vuph"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("9_ca42v")
+
 [node name="Game" type="Node" unique_id=158280699]
 script = ExtResource("1_80nbo")
 
@@ -57,29 +71,19 @@ grow_vertical = 2
 theme = ExtResource("2_rysoc")
 script = ExtResource("3_1kice")
 
-[node name="BackgroundTextureRect" type="TextureRect" parent="Ui" unique_id=2032686947]
+[node name="PanelContainer" type="PanelContainer" parent="Ui" unique_id=1042352349]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_trtic")
+theme_override_styles/panel = SubResource("StyleBoxTexture_wdnak")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui" unique_id=1538653783]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="Ui/VBoxContainer" unique_id=216243049]
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/PanelContainer" unique_id=1538653783]
 layout_mode = 2
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
 
-[node name="PowerOffButton" type="TextureButton" parent="Ui/VBoxContainer/MarginContainer2" unique_id=1587741117]
+[node name="PowerOffButton" type="TextureButton" parent="Ui/PanelContainer/VBoxContainer" unique_id=1587741117]
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 8
@@ -91,7 +95,7 @@ texture_click_mask = ExtResource("5_trtic")
 script = ExtResource("7_ir15t")
 wait_time_sec = 1.5
 
-[node name="TextureRect" type="TextureRect" parent="Ui/VBoxContainer/MarginContainer2/PowerOffButton" unique_id=1534000030]
+[node name="TextureRect" type="TextureRect" parent="Ui/PanelContainer/VBoxContainer/PowerOffButton" unique_id=1534000030]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -107,44 +111,20 @@ grow_vertical = 2
 texture = ExtResource("6_ir15t")
 stretch_mode = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Ui/VBoxContainer" unique_id=1238189058]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui/VBoxContainer/MarginContainer" unique_id=1504578226]
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/PanelContainer/VBoxContainer" unique_id=1504578226]
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1466157710]
+[node name="CenterContainer" type="CenterContainer" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer" unique_id=1466157710]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TextureRect" type="NinePatchRect" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer" unique_id=679105775]
+[node name="PanelContainer" type="PanelContainer" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer" unique_id=1364936060]
+clip_contents = true
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
-texture = ExtResource("9_ca42v")
-patch_margin_left = 13
-patch_margin_top = 13
-patch_margin_right = 10
-patch_margin_bottom = 10
+theme_override_styles/panel = SubResource("StyleBoxTexture_4vuph")
 
-[node name="MarginContainer" type="MarginContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect" unique_id=272484771]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="Clock" type="Label" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer" unique_id=913672568]
+[node name="Clock" type="Label" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer" unique_id=913672568]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
@@ -154,7 +134,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("16_wdnak")
 
-[node name="TurnOffIntructions" type="RichTextLabel" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer" unique_id=1748560569]
+[node name="TurnOffIntructions" type="RichTextLabel" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer" unique_id=1748560569]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 16
@@ -163,13 +143,13 @@ text = "Keep pressing to close [img valign=center]uid://vd6u3jt8vgyc[/img]"
 fit_content = true
 horizontal_alignment = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer" unique_id=397909431]
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer" unique_id=397909431]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 8
 
-[node name="PressAnyButtonLabel" type="Label" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer" unique_id=1597432745]
+[node name="PressAnyButtonLabel" type="Label" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer" unique_id=1597432745]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -179,51 +159,51 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="TwinkleTween" type="Node" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/PressAnyButtonLabel" unique_id=187097544]
+[node name="TwinkleTween" type="Node" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer/PressAnyButtonLabel" unique_id=187097544]
 script = ExtResource("12_1kice")
 metadata/_custom_type_script = "uid://dkulfqgqrt36n"
 
-[node name="BarsContainer" type="HBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer" unique_id=798478575]
+[node name="BarsContainer" type="HBoxContainer" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer" unique_id=798478575]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="WearBar" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer" unique_id=2127616542 instance=ExtResource("18_wdnak")]
+[node name="WearBar" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer/BarsContainer" unique_id=2127616542 instance=ExtResource("18_wdnak")]
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("19_h48ew")
 value = 25.0
 
-[node name="HungerBar" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer" unique_id=865321959 instance=ExtResource("18_wdnak")]
+[node name="HungerBar" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer/BarsContainer" unique_id=865321959 instance=ExtResource("18_wdnak")]
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("21_h48ew")
 value = 50.0
 
-[node name="DirtBar" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer" unique_id=1029196491 instance=ExtResource("18_wdnak")]
+[node name="DirtBar" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer/BarsContainer" unique_id=1029196491 instance=ExtResource("18_wdnak")]
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("22_fty5b")
 value = 75.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer" unique_id=191001152]
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer" unique_id=191001152]
 layout_mode = 2
 theme_override_constants/separation = 56
 alignment = 1
 
-[node name="RepairProgressBarButton" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1527686584 instance=ExtResource("3_feb5d")]
+[node name="RepairProgressBarButton" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1527686584 instance=ExtResource("3_feb5d")]
 unique_name_in_owner = true
 layout_mode = 2
 progress = 25
 
-[node name="FeedProgressBarButton" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=428784174 instance=ExtResource("3_feb5d")]
+[node name="FeedProgressBarButton" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=428784174 instance=ExtResource("3_feb5d")]
 unique_name_in_owner = true
 layout_mode = 2
 progress = 50
 
-[node name="CleanProgressBarButton" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1790869760 instance=ExtResource("3_feb5d")]
+[node name="CleanProgressBarButton" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1790869760 instance=ExtResource("3_feb5d")]
 unique_name_in_owner = true
 layout_mode = 2
 progress = 75
@@ -248,13 +228,13 @@ _max_wear_damage = 50
 _min_dirt_damage = 10
 _max_dirt_damage = 50
 
-[connection signal="button_down" from="Ui/VBoxContainer/MarginContainer2/PowerOffButton" to="." method="_on_power_off_button_button_down"]
-[connection signal="button_up" from="Ui/VBoxContainer/MarginContainer2/PowerOffButton" to="." method="_on_power_off_button_button_up"]
-[connection signal="long_pressed" from="Ui/VBoxContainer/MarginContainer2/PowerOffButton" to="." method="_on_power_off_button_long_pressed"]
-[connection signal="visibility_changed" from="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer" to="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer" method="_on_visibility_changed"]
-[connection signal="pressed" from="Ui/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/RepairProgressBarButton" to="." method="_on_repair_progress_bar_button_pressed"]
-[connection signal="pressed" from="Ui/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/FeedProgressBarButton" to="." method="_on_feed_progress_bar_button_pressed"]
-[connection signal="pressed" from="Ui/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/CleanProgressBarButton" to="." method="_on_clean_progress_bar_button_pressed"]
+[connection signal="button_down" from="Ui/PanelContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_button_down"]
+[connection signal="button_up" from="Ui/PanelContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_button_up"]
+[connection signal="long_pressed" from="Ui/PanelContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_long_pressed"]
+[connection signal="visibility_changed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer" to="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer" method="_on_visibility_changed"]
+[connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/RepairProgressBarButton" to="." method="_on_repair_progress_bar_button_pressed"]
+[connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/FeedProgressBarButton" to="." method="_on_feed_progress_bar_button_pressed"]
+[connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/CleanProgressBarButton" to="." method="_on_clean_progress_bar_button_pressed"]
 [connection signal="button_down" from="Ui/HandleButton" to="." method="_on_handle_button_button_down"]
 [connection signal="borned" from="Pet" to="." method="_on_pet_borned"]
 [connection signal="died" from="Pet" to="." method="_on_pet_died"]
