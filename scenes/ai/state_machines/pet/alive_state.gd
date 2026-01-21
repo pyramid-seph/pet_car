@@ -10,6 +10,7 @@ func enter(subject: Pet) -> void:
 	subject.pause_ticks(false)
 	subject.start_a_tick()
 	subject.update_body_parts()
+	subject.borned.emit()
 	subject.get_animation_player().play(&"idle")
 
 

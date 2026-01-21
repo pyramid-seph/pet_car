@@ -10,11 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://b76vraxp4k4yq" path="res://scenes/ui/progress_bar_button.tscn" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://22vbjgra2o65" path="res://scenes/ai/state_machines/game/started.gd" id="4_e1j6l"]
 [ext_resource type="Texture2D" uid="uid://d0p0d0jbwqxmf" path="res://art/ui/buttons/btn_default_hover.png" id="4_kvuet"]
-[ext_resource type="Texture2D" uid="uid://dtpfbhegrrdi7" path="res://art/ui/icons/ic_repair.png" id="4_p57ef"]
 [ext_resource type="Script" uid="uid://cftqcut2hqpgh" path="res://scenes/ai/state_machines/game/game_over.gd" id="5_pl11u"]
 [ext_resource type="BitMap" uid="uid://d4g8udxm7d0kj" path="res://art/ui/buttons/btn_default_click_mask.png" id="5_trtic"]
-[ext_resource type="Texture2D" uid="uid://diawwkp2obeyn" path="res://art/ui/icons/ic_feed.png" id="5_u5sy4"]
-[ext_resource type="Texture2D" uid="uid://rt01cvw2h5wq" path="res://art/ui/icons/ic_clean.png" id="6_gee14"]
 [ext_resource type="Texture2D" uid="uid://v6ehtdfi7re2" path="res://art/ui/icons/ic_power_off.png" id="6_ir15t"]
 [ext_resource type="Script" uid="uid://c7jye2cfr8r3e" path="res://scenes/ui/long_press_texture_button.gd" id="7_ir15t"]
 [ext_resource type="Texture2D" uid="uid://cew3lyssde0ne" path="res://art/ui/backgrounds/bg_screen.png" id="9_ca42v"]
@@ -22,8 +19,13 @@
 [ext_resource type="Script" uid="uid://dkulfqgqrt36n" path="res://scenes/utils/twinkle_tween.gd" id="12_1kice"]
 [ext_resource type="Texture2D" uid="uid://bq0emw78mdjsj" path="res://art/ui/buttons/btn_handle_normal.png" id="13_trtic"]
 [ext_resource type="BitMap" uid="uid://c5lj40mhbb63a" path="res://art/ui/buttons/btn_handle_click_mask.png" id="14_ca42v"]
+[ext_resource type="Texture2D" uid="uid://cfwkt1su0pag4" path="res://art/ui/icons/ic_state_wear.png" id="18_wdnak"]
 [ext_resource type="PackedScene" uid="uid://526obak4sm7g" path="res://scenes/player/pet.tscn" id="19_264po"]
+[ext_resource type="Texture2D" uid="uid://dgw35ygcniuhc" path="res://art/ui/progress_bar/progressbar_over.png" id="20_firvq"]
 [ext_resource type="Script" uid="uid://muvojygrugxg" path="res://scenes/ai/state_machines/game/game_state_machine.gd" id="21_5newe"]
+[ext_resource type="Texture2D" uid="uid://55lnri4w3xn5" path="res://art/ui/progress_bar/progressbar_progress.png" id="21_8krtj"]
+[ext_resource type="Texture2D" uid="uid://db6un67jh7wdi" path="res://art/ui/icons/ic_state_hunger.png" id="21_h48ew"]
+[ext_resource type="Texture2D" uid="uid://bdo2r4ryxoaxc" path="res://art/ui/icons/ic_state_dirt.png" id="22_fty5b"]
 
 [node name="Game" type="Node" unique_id=158280699]
 script = ExtResource("1_80nbo")
@@ -88,7 +90,7 @@ texture_pressed = ExtResource("3_dinhu")
 texture_hover = ExtResource("4_kvuet")
 texture_click_mask = ExtResource("5_trtic")
 script = ExtResource("7_ir15t")
-wait_time_sec = 2.0
+wait_time_sec = 1.5
 
 [node name="TextureRect" type="TextureRect" parent="Ui/VBoxContainer/MarginContainer2/PowerOffButton" unique_id=1534000030]
 layout_mode = 1
@@ -121,10 +123,14 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer" unique_id=1172567418]
+[node name="TextureRect" type="NinePatchRect" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer" unique_id=679105775]
+custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
 texture = ExtResource("9_ca42v")
-stretch_mode = 2
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 10
+patch_margin_bottom = 10
 
 [node name="MarginContainer" type="MarginContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect" unique_id=272484771]
 texture_filter = 1
@@ -161,14 +167,13 @@ theme_override_font_sizes/font_size = 16
 text = "Keep pressing to close"
 horizontal_alignment = 1
 
-[node name="PressAnyButtonContainer" type="VBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer" unique_id=397909431]
-unique_name_in_owner = true
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer" unique_id=397909431]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_constants/separation = 0
+theme_override_constants/separation = 8
 
-[node name="Label" type="Label" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/PressAnyButtonContainer" unique_id=1597432745]
+[node name="PressAnyButtonLabel" type="Label" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer" unique_id=1597432745]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -177,49 +182,113 @@ text = "Press Any Button"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TwinkleTween" type="Node" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/PressAnyButtonContainer/Label" unique_id=187097544]
+[node name="TwinkleTween" type="Node" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/PressAnyButtonLabel" unique_id=187097544]
 script = ExtResource("12_1kice")
 metadata/_custom_type_script = "uid://dkulfqgqrt36n"
 
-[node name="ArrowsContainer" type="HBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/PressAnyButtonContainer" unique_id=443664704]
+[node name="BarsContainer" type="HBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer" unique_id=798478575]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 48
+size_flags_vertical = 8
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/PressAnyButtonContainer/ArrowsContainer" unique_id=34377226]
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer" unique_id=969816288]
+texture_filter = 1
 layout_mode = 2
-texture = ExtResource("11_264po")
+size_flags_vertical = 8
 
-[node name="TextureRect2" type="TextureRect" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/PressAnyButtonContainer/ArrowsContainer" unique_id=952684406]
+[node name="WearTextureRect" type="TextureRect" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer/VBoxContainer" unique_id=608074009]
+unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("11_264po")
+size_flags_horizontal = 4
+texture = ExtResource("18_wdnak")
+stretch_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/PressAnyButtonContainer/ArrowsContainer" unique_id=1685980059]
+[node name="WearProgressBar" type="TextureProgressBar" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer/VBoxContainer" unique_id=2031607527]
+unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("11_264po")
+step = 10.0
+value = 100.0
+rounded = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_over = ExtResource("20_firvq")
+texture_progress = ExtResource("21_8krtj")
+texture_progress_offset = Vector2(4, 4)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer" unique_id=1885359755]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="HungerTextureRect" type="TextureRect" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer/VBoxContainer2" unique_id=1721520512]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("21_h48ew")
+stretch_mode = 2
+
+[node name="HungerProgressBar" type="TextureProgressBar" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer/VBoxContainer2" unique_id=1868865925]
+unique_name_in_owner = true
+layout_mode = 2
+step = 10.0
+value = 100.0
+rounded = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_over = ExtResource("20_firvq")
+texture_progress = ExtResource("21_8krtj")
+texture_progress_offset = Vector2(4, 4)
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer" unique_id=143685063]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="DirtTextureRect" type="TextureRect" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer/VBoxContainer3" unique_id=1892899168]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("22_fty5b")
+stretch_mode = 2
+
+[node name="DirtProgressBar" type="TextureProgressBar" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer/VBoxContainer3" unique_id=890907591]
+unique_name_in_owner = true
+layout_mode = 2
+step = 10.0
+value = 100.0
+rounded = true
+stretch_margin_left = 1
+stretch_margin_top = 1
+stretch_margin_right = 1
+stretch_margin_bottom = 1
+texture_over = ExtResource("20_firvq")
+texture_progress = ExtResource("21_8krtj")
+texture_progress_offset = Vector2(4, 4)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer" unique_id=191001152]
 layout_mode = 2
-theme_override_constants/separation = 64
+theme_override_constants/separation = 56
 alignment = 1
 
 [node name="RepairProgressBarButton" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1527686584 instance=ExtResource("3_feb5d")]
 unique_name_in_owner = true
 layout_mode = 2
-icon = ExtResource("4_p57ef")
 progress = 25
 
 [node name="FeedProgressBarButton" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=428784174 instance=ExtResource("3_feb5d")]
 unique_name_in_owner = true
 layout_mode = 2
-icon = ExtResource("5_u5sy4")
 progress = 50
 
 [node name="CleanProgressBarButton" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1790869760 instance=ExtResource("3_feb5d")]
 unique_name_in_owner = true
 layout_mode = 2
-icon = ExtResource("6_gee14")
 progress = 75
 
 [node name="HandleButton" type="TextureButton" parent="Ui" unique_id=1926309127]
@@ -233,7 +302,6 @@ texture_click_mask = ExtResource("14_ca42v")
 
 [node name="Pet" parent="." unique_id=1695973980 instance=ExtResource("19_264po")]
 unique_name_in_owner = true
-texture_filter = 1
 position = Vector2(320, 320)
 _max_tick_sec = 10
 _min_hunger_damage = 10
@@ -252,11 +320,12 @@ _max_dirt_reduction = 25
 [connection signal="button_down" from="Ui/VBoxContainer/MarginContainer2/PowerOffButton" to="." method="_on_power_off_button_button_down"]
 [connection signal="button_up" from="Ui/VBoxContainer/MarginContainer2/PowerOffButton" to="." method="_on_power_off_button_button_up"]
 [connection signal="long_pressed" from="Ui/VBoxContainer/MarginContainer2/PowerOffButton" to="." method="_on_power_off_button_long_pressed"]
-[connection signal="visibility_changed" from="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/PressAnyButtonContainer" to="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/PressAnyButtonContainer" method="_on_visibility_changed"]
+[connection signal="visibility_changed" from="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer" to="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="Ui/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/RepairProgressBarButton" to="." method="_on_repair_progress_bar_button_pressed"]
 [connection signal="pressed" from="Ui/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/FeedProgressBarButton" to="." method="_on_feed_progress_bar_button_pressed"]
 [connection signal="pressed" from="Ui/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/CleanProgressBarButton" to="." method="_on_clean_progress_bar_button_pressed"]
 [connection signal="button_down" from="Ui/HandleButton" to="." method="_on_handle_button_button_down"]
+[connection signal="borned" from="Pet" to="." method="_on_pet_borned"]
 [connection signal="died" from="Pet" to="." method="_on_pet_died"]
 [connection signal="dirty_changed" from="Pet" to="." method="_on_pet_dirty_changed"]
 [connection signal="hunger_changed" from="Pet" to="." method="_on_pet_hunger_changed"]

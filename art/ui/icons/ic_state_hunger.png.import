@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diawwkp2obeyn"
-path="res://.godot/imported/ic_feed.png-f0fdf14024e2d6a87035ac2d8d0ec428.ctex"
+uid="uid://db6un67jh7wdi"
+path="res://.godot/imported/ic_state_hunger.png-3e137bbd0097219e9ff8310754da55fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/ui/icons/ic_feed.png"
-dest_files=["res://.godot/imported/ic_feed.png-f0fdf14024e2d6a87035ac2d8d0ec428.ctex"]
+source_file="res://art/ui/icons/ic_state_hunger.png"
+dest_files=["res://.godot/imported/ic_state_hunger.png-3e137bbd0097219e9ff8310754da55fc.ctex"]
 
 [params]
 

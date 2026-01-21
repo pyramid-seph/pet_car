@@ -20,6 +20,7 @@ func _init() -> void:
 
 
 func enter(subject: Game) -> void:
+	subject.get_ui().hide_state_bars()
 	subject.get_ui().hide_press_any_button_indicator()
 	subject.get_pet().revive()
 	subject.get_pet().hide()
@@ -65,15 +66,18 @@ func on_clean_progress_bar_button_pressed(subject: Game) -> void:
 
 
 func on_pet_wear_changed(subject: Game) -> void:
-	subject.get_ui().update_wear_no_anim(subject.get_pet().get_wear())
+	subject.get_ui().update_wear(subject.get_pet().get_wear(),
+			subject.get_pet().is_worn_out())
 
 
 func on_pet_hunger_changed(subject: Game) -> void:
-	subject.get_ui().update_hunger_no_anim(subject.get_pet().get_hunger())
+	subject.get_ui().update_hunger(subject.get_pet().get_hunger(),
+			subject.get_pet().is_hungry())
 
 
 func on_pet_dirty_changed(subject: Game) -> void:
-	subject.get_ui().update_dirt_no_anim(subject.get_pet().get_dirt())
+	subject.get_ui().update_dirt(subject.get_pet().get_dirt(),
+			subject.get_pet().is_dirty())
 
 
 func _on_start_game_delay_timer_timeout(subject: Game) -> void:

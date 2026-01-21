@@ -4,6 +4,7 @@ extends Sprite2D
 
 @warning_ignore("unused_signal")
 signal died
+signal borned
 signal hunger_changed
 signal dirty_changed
 signal wear_changed

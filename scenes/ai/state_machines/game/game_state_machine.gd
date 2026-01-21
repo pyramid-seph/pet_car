@@ -30,6 +30,13 @@ func on_pet_died() -> void:
 		state.on_pet_died(subject)
 
 
+func on_pet_borned() -> void:
+	var state := get_current_state() as GameState
+	var subject := get_subject() as Game 
+	if state and subject:
+		state.on_pet_borned(subject)
+
+
 func on_pet_wear_changed() -> void:
 	var state := get_current_state() as GameState
 	var subject := get_subject() as Game 

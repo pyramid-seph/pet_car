@@ -42,6 +42,10 @@ func _on_clean_progress_bar_button_pressed() -> void:
 	_state_machine.on_clean_progress_bar_button_pressed()
 
 
+func _on_pet_borned() -> void:
+	_state_machine.on_pet_borned()
+
+
 func _on_pet_died() -> void:
 	_state_machine.on_pet_died()
 
