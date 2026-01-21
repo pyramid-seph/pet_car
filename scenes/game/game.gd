@@ -11,6 +11,8 @@ func _ready() -> void:
 	if OS.is_debug_build():
 		get_window().always_on_top = true
 	
+	TranslationServer.set_locale(OS.get_locale_language())
+	
 	_on_pet_wear_changed()
 	_on_pet_hunger_changed()
 	_on_pet_dirty_changed()
