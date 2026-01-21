@@ -15,10 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://v6ehtdfi7re2" path="res://art/ui/icons/ic_power_off.png" id="6_ir15t"]
 [ext_resource type="Script" uid="uid://c7jye2cfr8r3e" path="res://scenes/ui/long_press_texture_button.gd" id="7_ir15t"]
 [ext_resource type="Texture2D" uid="uid://cew3lyssde0ne" path="res://art/ui/backgrounds/bg_screen.png" id="9_ca42v"]
-[ext_resource type="Texture2D" uid="uid://vd6u3jt8vgyc" path="res://art/ui/textures/screen_down_arrow.png" id="11_264po"]
 [ext_resource type="Script" uid="uid://dkulfqgqrt36n" path="res://scenes/utils/twinkle_tween.gd" id="12_1kice"]
 [ext_resource type="Texture2D" uid="uid://bq0emw78mdjsj" path="res://art/ui/buttons/btn_handle_normal.png" id="13_trtic"]
 [ext_resource type="BitMap" uid="uid://c5lj40mhbb63a" path="res://art/ui/buttons/btn_handle_click_mask.png" id="14_ca42v"]
+[ext_resource type="Script" uid="uid://d2p3jukg5yah8" path="res://scenes/ui/clock.gd" id="16_wdnak"]
 [ext_resource type="PackedScene" uid="uid://c36k6pewhd5r4" path="res://scenes/ui/state_bar.tscn" id="18_wdnak"]
 [ext_resource type="PackedScene" uid="uid://526obak4sm7g" path="res://scenes/player/pet.tscn" id="19_264po"]
 [ext_resource type="Texture2D" uid="uid://cfwkt1su0pag4" path="res://art/ui/icons/ic_state_wear.png" id="19_h48ew"]
@@ -144,27 +144,24 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="TurnOffInstructionsContainer" type="VBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer" unique_id=1085898835]
+[node name="Clock" type="Label" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer" unique_id=913672568]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_constants/separation = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/TurnOffInstructionsContainer" unique_id=815436270]
-layout_mode = 2
-alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/TurnOffInstructionsContainer/HBoxContainer" unique_id=880534909]
-layout_mode = 2
-texture = ExtResource("11_264po")
-flip_v = true
-
-[node name="Label" type="Label" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/TurnOffInstructionsContainer" unique_id=2094173874]
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 16
-text = "Keep pressing to close"
+theme_override_colors/font_color = Color(0.1882353, 0.38431373, 0.1882353, 1)
+text = "13:37"
 horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("16_wdnak")
+
+[node name="TurnOffIntructions" type="RichTextLabel" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer" unique_id=1748560569]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Keep pressing to close [img valign=center]uid://vd6u3jt8vgyc[/img]"
+fit_content = true
+horizontal_alignment = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer" unique_id=397909431]
 texture_filter = 1

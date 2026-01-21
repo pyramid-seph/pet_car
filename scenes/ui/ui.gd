@@ -2,7 +2,8 @@ extends Control
 
 
 @onready var _press_any_button_label: Label = %PressAnyButtonLabel
-@onready var _turn_off_instructions_container := %TurnOffInstructionsContainer
+@onready var _turn_off_instructions: RichTextLabel = %TurnOffIntructions
+@onready var _clock: Label = %Clock
 @onready var _bars_container: HBoxContainer = %BarsContainer
 @onready var _wear_bar := %WearBar
 @onready var _hunger_bar := %HungerBar
@@ -41,8 +42,10 @@ func hide_press_any_button_indicator() -> void:
 
 
 func show_turn_off_instructions() -> void:
-	_turn_off_instructions_container.show()
+	_turn_off_instructions.show()
+	_clock.hide()
 
 
 func hide_turn_off_instructions() -> void:
-	_turn_off_instructions_container.hide()
+	_turn_off_instructions.hide()
+	_clock.show()
