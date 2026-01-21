@@ -249,12 +249,6 @@ _min_wear_damage = 10
 _max_wear_damage = 50
 _min_dirt_damage = 10
 _max_dirt_damage = 50
-_min_hunger_reduction = 5
-_max_hunger_reduction = 25
-_min_wear_reduction = 5
-_max_wear_reduction = 25
-_min_dirt_reduction = 5
-_max_dirt_reduction = 25
 
 [connection signal="button_down" from="Ui/VBoxContainer/MarginContainer2/PowerOffButton" to="." method="_on_power_off_button_button_down"]
 [connection signal="button_up" from="Ui/VBoxContainer/MarginContainer2/PowerOffButton" to="." method="_on_power_off_button_button_up"]

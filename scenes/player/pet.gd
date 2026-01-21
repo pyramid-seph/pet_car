@@ -23,27 +23,20 @@ const PET_CAR_BODY_MOUTH_WORN_OUT: AtlasTexture = preload("uid://chw5bcj446do2")
 const PetCarEyes = preload("uid://biit87cyx6c80")
 
 const MAX_STATUS_VALUE: int = 100
-const WARN_VALUE: int = 75
 const MIN_STATUS_VALUE: int = 0
+const WARN_VALUE: int = 60
 
 @export_range(1, 60, 1, "or_greater") var _min_tick_sec: int = 1
 @export_range(1, 60, 1, "or_greater") var _max_tick_sec: int = 1
 @export_range(0.1, 1.0, 0.05, "or_greater")
 var _max_duration_lost_per_tick_sec: float = 0.5
 @export_group("Damage")
-@export_range(1, 100) var _min_hunger_damage: int = 1
-@export_range(1, 100) var _max_hunger_damage: int = 1
-@export_range(1, 100) var _min_wear_damage: int = 1
-@export_range(1, 100) var _max_wear_damage: int = 1
-@export_range(1, 100) var _min_dirt_damage: int = 1
-@export_range(1, 100) var _max_dirt_damage: int = 1
-@export_group("Reduction")
-@export_range(1, 100) var _min_hunger_reduction: int = 1
-@export_range(1, 100) var _max_hunger_reduction: int = 1
-@export_range(1, 100) var _min_wear_reduction: int = 1
-@export_range(1, 100) var _max_wear_reduction: int = 1
-@export_range(1, 100) var _min_dirt_reduction: int = 1
-@export_range(1, 100) var _max_dirt_reduction: int = 1
+@export_range(1, WARN_VALUE) var _min_hunger_damage: int = 1
+@export_range(1, WARN_VALUE) var _max_hunger_damage: int = 1
+@export_range(1, WARN_VALUE) var _min_wear_damage: int = 1
+@export_range(1, WARN_VALUE) var _max_wear_damage: int = 1
+@export_range(1, WARN_VALUE) var _min_dirt_damage: int = 1
+@export_range(1, WARN_VALUE) var _max_dirt_damage: int = 1
 
 var _curr_max_tick_duration: float
 var _hunger: int:
@@ -144,19 +137,24 @@ func update_body_parts() -> void:
 
 
 func reduce_hunger() -> void:
-	var reduction: int = randi_range(_min_hunger_reduction, _max_hunger_reduction)
-	_hunger -= reduction
+	var old_val: int = _hunger
+	_hunger = randi_range(0, WARN_VALUE - 1)
+	var reduction: int = old_val - _hunger
 	Log.d("Fed. Reduction: ", reduction, " - Current val: ", _hunger)
 
 
 func reduce_wear() -> void:
-	var reduction: int = randi_range(_min_wear_reduction, _max_wear_reduction)
-	_wear -= reduction
+	var old_val: int = _wear
+	_wear = randi_range(0, WARN_VALUE - 1)
+	var reduction: int = old_val - _wear
+	Log.d("Repaired. Reduction: ", reduction, " - Current val: ", _wear)
 
 
 func reduce_dirt() -> void:
-	var reduction: int = randi_range(_min_dirt_reduction, _max_dirt_reduction)
-	_dirt -= reduction
+	var old_val: int = _dirt
+	_dirt = randi_range(0, WARN_VALUE - 1)
+	var reduction: int = old_val - _dirt
+	Log.d("Cleaned. Reduction: ", reduction, " - Current val: ", _dirt)
 
 
 func increase_discomforts() -> void:
@@ -220,6 +218,7 @@ func pause_ticks(pause: bool) -> void:
 func stop_ticks() -> void:
 	_tick_timer.stop()
 	Log.d("Ticks stopped.")
+#endregion
 
 
 func _on_tick_timer_timeout() -> void:
@@ -229,4 +228,3 @@ func _on_tick_timer_timeout() -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	_state_machine.on_animation_finished(anim_name)
-#endregion
