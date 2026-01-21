@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c36k6pewhd5r4"]
+
+[ext_resource type="Script" uid="uid://b0t2l3a1rn4dd" path="res://scenes/ui/state_bar.gd" id="1_u08mq"]
+[ext_resource type="Texture2D" uid="uid://dgw35ygcniuhc" path="res://art/ui/progress_bar/progressbar_under.png" id="2_bklal"]
+[ext_resource type="Texture2D" uid="uid://55lnri4w3xn5" path="res://art/ui/progress_bar/progressbar_progress.png" id="3_w21n1"]
+
+[node name="VBoxContainer" type="VBoxContainer" unique_id=2127616542]
+texture_filter = 1
+size_flags_vertical = 8
+script = ExtResource("1_u08mq")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2526722]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+stretch_mode = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1293725373]
+unique_name_in_owner = true
+layout_mode = 2
+step = 10.0
+rounded = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("2_bklal")
+texture_progress = ExtResource("3_w21n1")
+texture_progress_offset = Vector2(4, 4)

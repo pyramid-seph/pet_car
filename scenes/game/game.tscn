@@ -19,11 +19,10 @@
 [ext_resource type="Script" uid="uid://dkulfqgqrt36n" path="res://scenes/utils/twinkle_tween.gd" id="12_1kice"]
 [ext_resource type="Texture2D" uid="uid://bq0emw78mdjsj" path="res://art/ui/buttons/btn_handle_normal.png" id="13_trtic"]
 [ext_resource type="BitMap" uid="uid://c5lj40mhbb63a" path="res://art/ui/buttons/btn_handle_click_mask.png" id="14_ca42v"]
-[ext_resource type="Texture2D" uid="uid://cfwkt1su0pag4" path="res://art/ui/icons/ic_state_wear.png" id="18_wdnak"]
+[ext_resource type="PackedScene" uid="uid://c36k6pewhd5r4" path="res://scenes/ui/state_bar.tscn" id="18_wdnak"]
 [ext_resource type="PackedScene" uid="uid://526obak4sm7g" path="res://scenes/player/pet.tscn" id="19_264po"]
-[ext_resource type="Texture2D" uid="uid://dgw35ygcniuhc" path="res://art/ui/progress_bar/progressbar_over.png" id="20_firvq"]
+[ext_resource type="Texture2D" uid="uid://cfwkt1su0pag4" path="res://art/ui/icons/ic_state_wear.png" id="19_h48ew"]
 [ext_resource type="Script" uid="uid://muvojygrugxg" path="res://scenes/ai/state_machines/game/game_state_machine.gd" id="21_5newe"]
-[ext_resource type="Texture2D" uid="uid://55lnri4w3xn5" path="res://art/ui/progress_bar/progressbar_progress.png" id="21_8krtj"]
 [ext_resource type="Texture2D" uid="uid://db6un67jh7wdi" path="res://art/ui/icons/ic_state_hunger.png" id="21_h48ew"]
 [ext_resource type="Texture2D" uid="uid://bdo2r4ryxoaxc" path="res://art/ui/icons/ic_state_dirt.png" id="22_fty5b"]
 
@@ -193,83 +192,23 @@ size_flags_vertical = 8
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer" unique_id=969816288]
-texture_filter = 1
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="WearTextureRect" type="TextureRect" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer/VBoxContainer" unique_id=608074009]
+[node name="WearBar" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer" unique_id=2127616542 instance=ExtResource("18_wdnak")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("18_wdnak")
-stretch_mode = 2
+icon = ExtResource("19_h48ew")
+value = 25.0
 
-[node name="WearProgressBar" type="TextureProgressBar" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer/VBoxContainer" unique_id=2031607527]
+[node name="HungerBar" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer" unique_id=865321959 instance=ExtResource("18_wdnak")]
 unique_name_in_owner = true
 layout_mode = 2
-step = 10.0
-value = 100.0
-rounded = true
-stretch_margin_left = 4
-stretch_margin_top = 4
-stretch_margin_right = 4
-stretch_margin_bottom = 4
-texture_over = ExtResource("20_firvq")
-texture_progress = ExtResource("21_8krtj")
-texture_progress_offset = Vector2(4, 4)
+icon = ExtResource("21_h48ew")
+value = 50.0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer" unique_id=1885359755]
-texture_filter = 1
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="HungerTextureRect" type="TextureRect" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer/VBoxContainer2" unique_id=1721520512]
+[node name="DirtBar" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer" unique_id=1029196491 instance=ExtResource("18_wdnak")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("21_h48ew")
-stretch_mode = 2
-
-[node name="HungerProgressBar" type="TextureProgressBar" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer/VBoxContainer2" unique_id=1868865925]
-unique_name_in_owner = true
-layout_mode = 2
-step = 10.0
-value = 100.0
-rounded = true
-stretch_margin_left = 4
-stretch_margin_top = 4
-stretch_margin_right = 4
-stretch_margin_bottom = 4
-texture_over = ExtResource("20_firvq")
-texture_progress = ExtResource("21_8krtj")
-texture_progress_offset = Vector2(4, 4)
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer" unique_id=143685063]
-texture_filter = 1
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="DirtTextureRect" type="TextureRect" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer/VBoxContainer3" unique_id=1892899168]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("22_fty5b")
-stretch_mode = 2
-
-[node name="DirtProgressBar" type="TextureProgressBar" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer/CenterContainer/TextureRect/MarginContainer/VBoxContainer/BarsContainer/VBoxContainer3" unique_id=890907591]
-unique_name_in_owner = true
-layout_mode = 2
-step = 10.0
-value = 100.0
-rounded = true
-stretch_margin_left = 1
-stretch_margin_top = 1
-stretch_margin_right = 1
-stretch_margin_bottom = 1
-texture_over = ExtResource("20_firvq")
-texture_progress = ExtResource("21_8krtj")
-texture_progress_offset = Vector2(4, 4)
+icon = ExtResource("22_fty5b")
+value = 75.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Ui/VBoxContainer/MarginContainer/VBoxContainer" unique_id=191001152]
 layout_mode = 2

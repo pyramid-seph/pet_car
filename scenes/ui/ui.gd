@@ -1,33 +1,27 @@
 extends Control
 
 
-@onready var _repair_progress_bar_button := %RepairProgressBarButton
-@onready var _feed_progress_bar_button := %FeedProgressBarButton
-@onready var _clean_progress_bar_button := %CleanProgressBarButton
 @onready var _press_any_button_label: Label = %PressAnyButtonLabel
 @onready var _turn_off_instructions_container := %TurnOffInstructionsContainer
-@onready var _wear_texture_rect: TextureRect = %WearTextureRect
-@onready var _wear_progress_bar: TextureProgressBar = %WearProgressBar
-@onready var _hunger_texture_rect: TextureRect = %HungerTextureRect
-@onready var _hunger_progress_bar: TextureProgressBar = %HungerProgressBar
-@onready var _dirt_texture_rect: TextureRect = %DirtTextureRect
-@onready var _dirt_progress_bar: TextureProgressBar = %DirtProgressBar
 @onready var _bars_container: HBoxContainer = %BarsContainer
+@onready var _wear_bar := %WearBar
+@onready var _hunger_bar := %HungerBar
+@onready var _dirt_bar := %DirtBar
 
 
 func update_wear(value: int, warn: bool) -> void:
-	_wear_progress_bar.value = 100 - value
-	# TODO Change to warn state
+	_wear_bar.value = 100 - value
+	_wear_bar.warn = warn
 
 
 func update_hunger(value: int, warn: bool) -> void:
-	_hunger_progress_bar.value = 100 - value
-	# TODO Change to warn state
+	_hunger_bar.value = 100 - value
+	_hunger_bar.warn = warn
 
 
 func update_dirt(value: int, warn: bool) -> void:
-	_dirt_progress_bar.value = 100 - value
-	# TODO Change to warn state
+	_dirt_bar.value = 100 - value
+	_dirt_bar.warn = warn
 
 
 func show_state_bars() -> void:
