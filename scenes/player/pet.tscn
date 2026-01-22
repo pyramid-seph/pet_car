@@ -555,7 +555,6 @@ max_time_between_blinks_sec = 10.0
 one_shot = true
 
 [node name="TongueSprite2D" type="Sprite2D" parent="." unique_id=311534876]
-z_index = 1
 texture = ExtResource("4_8vod6")
 metadata/_edit_lock_ = true
 
