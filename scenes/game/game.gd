@@ -60,8 +60,8 @@ func _on_handle_button_button_down() -> void:
 
 
 func _on_power_off_button_long_pressed() -> void:
-	print("\n*****\n")
-	print("Game quit.")
+	Log.d("\n*****\n")
+	Log.d("Game quit.")
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 	get_tree().quit()
 
