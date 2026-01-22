@@ -32,18 +32,6 @@ func get_state_machine() -> GameStateMachine:
 	return _state_machine
 
 
-func _on_repair_progress_bar_button_pressed() -> void:
-	_state_machine.on_repair_progress_bar_button_pressed()
-
-
-func _on_feed_progress_bar_button_pressed() -> void:
-	_state_machine.on_feed_progress_bar_button_pressed()
-
-
-func _on_clean_progress_bar_button_pressed() -> void:
-	_state_machine.on_clean_progress_bar_button_pressed()
-
-
 func _on_pet_borned() -> void:
 	_state_machine.on_pet_borned()
 
@@ -84,3 +72,15 @@ func _on_power_off_button_button_up() -> void:
 
 func _on_power_off_button_button_down() -> void:
 	_ui.show_turn_off_instructions()
+
+
+func _on_repair_button_pressed() -> void:
+	_state_machine.on_repair_button_pressed()
+
+
+func _on_feed_button_pressed() -> void:
+	_state_machine.on_feed_button_pressed()
+
+
+func _on_clean_button_pressed() -> void:
+	_state_machine.on_clean_button_pressed()

@@ -5,7 +5,7 @@ var _is_being_taken_care_of: bool
 
 
 func enter(subject: Pet) -> void:
-	Log.d("Pet started their live.")
+	Log.d("Pet started their life.")
 	subject.reset_tick_duration()
 	subject.pause_ticks(false)
 	subject.start_a_tick()

@@ -14,15 +14,15 @@ func play_again(subject: Game) -> void:
 	subject.get_state_machine().change_state("NotStarted")
 
 
-func on_repair_progress_bar_button_pressed(subject: Game) -> void:
+func on_repair_button_pressed(subject: Game) -> void:
 	play_again(subject)
 
 
-func on_feed_progress_bar_button_pressed(subject: Game) -> void:
+func on_feed_button_pressed(subject: Game) -> void:
 	play_again(subject)
 
 
-func on_clean_progress_bar_button_pressed(subject: Game) -> void:
+func on_clean_button_pressed(subject: Game) -> void:
 	play_again(subject)
 
 

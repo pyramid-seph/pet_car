@@ -6,15 +6,15 @@ func enter(subject: Game) -> void:
 	subject.get_pet().be_born()
 
 
-func on_repair_progress_bar_button_pressed(subject: Game) -> void:
+func on_repair_button_pressed(subject: Game) -> void:
 	subject.get_pet().repair()
 
 
-func on_feed_progress_bar_button_pressed(subject: Game) -> void:
+func on_feed_button_pressed(subject: Game) -> void:
 	subject.get_pet().feed()
 
 
-func on_clean_progress_bar_button_pressed(subject: Game) -> void:
+func on_clean_button_pressed(subject: Game) -> void:
 	subject.get_pet().clean()
 
 

@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://brp8sgreoraw0" path="res://scenes/ui/ui.gd" id="3_1kice"]
 [ext_resource type="Script" uid="uid://cdcx651w2snxo" path="res://scenes/ai/state_machines/game/not_started_state.gd" id="3_bt5mj"]
 [ext_resource type="Texture2D" uid="uid://y7f8qscouor5" path="res://art/ui/buttons/btn_default_pressed.png" id="3_dinhu"]
-[ext_resource type="PackedScene" uid="uid://b76vraxp4k4yq" path="res://scenes/ui/progress_bar_button.tscn" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://22vbjgra2o65" path="res://scenes/ai/state_machines/game/started.gd" id="4_e1j6l"]
 [ext_resource type="Texture2D" uid="uid://d0p0d0jbwqxmf" path="res://art/ui/buttons/btn_default_hover.png" id="4_kvuet"]
 [ext_resource type="Script" uid="uid://cftqcut2hqpgh" path="res://scenes/ai/state_machines/game/game_over.gd" id="5_pl11u"]
@@ -194,20 +193,35 @@ layout_mode = 2
 theme_override_constants/separation = 56
 alignment = 1
 
-[node name="RepairProgressBarButton" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1527686584 instance=ExtResource("3_feb5d")]
+[node name="RepairButton" type="TextureButton" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1145578718]
 unique_name_in_owner = true
 layout_mode = 2
-progress = 25
+focus_mode = 1
+action_mode = 0
+texture_normal = ExtResource("2_kvpfn")
+texture_pressed = ExtResource("3_dinhu")
+texture_hover = ExtResource("4_kvuet")
+texture_click_mask = ExtResource("5_trtic")
 
-[node name="FeedProgressBarButton" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=428784174 instance=ExtResource("3_feb5d")]
+[node name="FeedButton" type="TextureButton" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1309574642]
 unique_name_in_owner = true
 layout_mode = 2
-progress = 50
+focus_mode = 1
+action_mode = 0
+texture_normal = ExtResource("2_kvpfn")
+texture_pressed = ExtResource("3_dinhu")
+texture_hover = ExtResource("4_kvuet")
+texture_click_mask = ExtResource("5_trtic")
 
-[node name="CleanProgressBarButton" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1790869760 instance=ExtResource("3_feb5d")]
+[node name="CleanButton" type="TextureButton" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1917791298]
 unique_name_in_owner = true
 layout_mode = 2
-progress = 75
+focus_mode = 1
+action_mode = 0
+texture_normal = ExtResource("2_kvpfn")
+texture_pressed = ExtResource("3_dinhu")
+texture_hover = ExtResource("4_kvuet")
+texture_click_mask = ExtResource("5_trtic")
 
 [node name="HandleButton" type="TextureButton" parent="Ui" unique_id=1926309127]
 layout_mode = 0
@@ -233,9 +247,9 @@ _max_dirt_damage = 50
 [connection signal="button_up" from="Ui/PanelContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_button_up"]
 [connection signal="long_pressed" from="Ui/PanelContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_long_pressed"]
 [connection signal="visibility_changed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer" to="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer" method="_on_visibility_changed"]
-[connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/RepairProgressBarButton" to="." method="_on_repair_progress_bar_button_pressed"]
-[connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/FeedProgressBarButton" to="." method="_on_feed_progress_bar_button_pressed"]
-[connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/CleanProgressBarButton" to="." method="_on_clean_progress_bar_button_pressed"]
+[connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/RepairButton" to="." method="_on_repair_button_pressed"]
+[connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/FeedButton" to="." method="_on_feed_button_pressed"]
+[connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/CleanButton" to="." method="_on_clean_button_pressed"]
 [connection signal="button_down" from="Ui/HandleButton" to="." method="_on_handle_button_button_down"]
 [connection signal="borned" from="Pet" to="." method="_on_pet_borned"]
 [connection signal="died" from="Pet" to="." method="_on_pet_died"]
