@@ -8,8 +8,7 @@ extends Node
 
 
 func _ready() -> void:
-	if OS.is_debug_build():
-		get_window().always_on_top = true
+	get_window().always_on_top = true
 	
 	TranslationServer.set_locale(OS.get_locale_language())
 	
