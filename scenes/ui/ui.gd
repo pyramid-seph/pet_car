@@ -1,6 +1,7 @@
 extends Control
 
 
+@onready var _handle_button: TextureButton = %HandleButton
 @onready var _press_any_button_label: Label = %PressAnyButtonLabel
 @onready var _turn_off_instructions: Label = %TurnOffIntructions
 @onready var _clock: Label = %Clock
@@ -8,6 +9,11 @@ extends Control
 @onready var _wear_bar := %WearBar
 @onready var _hunger_bar := %HungerBar
 @onready var _dirt_bar := %DirtBar
+
+
+func _ready() -> void:
+	if Utils.can_run_js():
+		_handle_button.hide()
 
 
 func update_wear(value: int, warn: bool) -> void:
