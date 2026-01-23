@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://duf6tqr6v6nhm" path="res://scenes/ui/play_on_button_down.gd" id="15_1iff4"]
 [ext_resource type="AudioStream" uid="uid://b556fc8gc7j36" path="res://audio/ui/ui_turn_off.wav" id="16_4vuph"]
 [ext_resource type="Script" uid="uid://d2p3jukg5yah8" path="res://scenes/ui/clock.gd" id="16_wdnak"]
+[ext_resource type="Shader" uid="uid://bsch3t00e052f" path="res://shaders/dot_matrix.gdshader" id="18_h48ew"]
 [ext_resource type="PackedScene" uid="uid://c36k6pewhd5r4" path="res://scenes/ui/state_bar.tscn" id="18_wdnak"]
 [ext_resource type="PackedScene" uid="uid://526obak4sm7g" path="res://scenes/player/pet.tscn" id="19_264po"]
 [ext_resource type="Texture2D" uid="uid://cfwkt1su0pag4" path="res://art/ui/icons/ic_state_wear.png" id="19_h48ew"]
@@ -43,6 +44,16 @@ texture_margin_left = 24.0
 texture_margin_top = 24.0
 texture_margin_right = 24.0
 texture_margin_bottom = 24.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l2dhg"]
+shader = ExtResource("18_h48ew")
+shader_parameter/dot_size = 2.0
+shader_parameter/border_size = 0.0
+shader_parameter/enable_dot_matrix = true
+shader_parameter/glare_amount = 0.1
+shader_parameter/brightness = 0.4
+shader_parameter/pixel_shadow_amount = 0.90000004275
+shader_parameter/lcd_dark_square_transparency = 0.03
 
 [node name="Game" type="Node" unique_id=158280699]
 script = ExtResource("1_80nbo")
@@ -129,10 +140,45 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxTexture_4vuph")
 
-[node name="Clock" type="Label" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer" unique_id=913672568]
+[node name="ShaderSubViewportContainer" type="SubViewportContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer" unique_id=629850889]
+material = SubResource("ShaderMaterial_l2dhg")
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer" unique_id=1262997064]
+disable_3d = true
+canvas_item_default_texture_filter = 0
+gui_disable_input = true
+size = Vector2i(368, 368)
+
+[node name="Control" type="Control" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport" unique_id=1528605934]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_rysoc")
+
+[node name="ColorRect" type="ColorRect" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control" unique_id=1931412395]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.60784316, 0.7372549, 0.05882353, 1)
+
+[node name="Clock" type="Label" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control" unique_id=913672568]
 unique_name_in_owner = true
 texture_filter = 1
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_right = 180.0
+offset_bottom = 23.0
+grow_horizontal = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.1882353, 0.38431373, 0.1882353, 1)
 text = "JAN 1, 13:37"
@@ -141,10 +187,17 @@ vertical_alignment = 1
 uppercase = true
 script = ExtResource("16_wdnak")
 
-[node name="TurnOffIntructions" type="Label" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer" unique_id=1163722031]
+[node name="TurnOffIntructions" type="Label" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control" unique_id=1163722031]
 unique_name_in_owner = true
 texture_filter = 1
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -98.5
+offset_right = 98.5
+offset_bottom = 23.0
+grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Keep pressing to close"
@@ -152,9 +205,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Pet" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer" unique_id=1695973980 instance=ExtResource("19_264po")]
+[node name="Pet" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control" unique_id=1695973980 instance=ExtResource("19_264po")]
 unique_name_in_owner = true
-position = Vector2(200, 200)
+position = Vector2(184, 184)
 _max_tick_sec = 10
 _min_hunger_damage = 10
 _max_hunger_damage = 50
@@ -163,12 +216,22 @@ _max_wear_damage = 50
 _min_dirt_damage = 10
 _max_dirt_damage = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer" unique_id=397909431]
-layout_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control" unique_id=397909431]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -101.0
+offset_right = 180.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_vertical = 8
 theme_override_constants/separation = 8
 
-[node name="PressAnyButtonLabel" type="Label" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1597432745]
+[node name="PressAnyButtonLabel" type="Label" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer" unique_id=1597432745]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
@@ -179,30 +242,30 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="TwinkleTween" type="Node" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/PressAnyButtonLabel" unique_id=187097544]
+[node name="TwinkleTween" type="Node" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer/PressAnyButtonLabel" unique_id=187097544]
 script = ExtResource("12_1kice")
 metadata/_custom_type_script = "uid://dkulfqgqrt36n"
 
-[node name="BarsContainer" type="HBoxContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=798478575]
+[node name="BarsContainer" type="HBoxContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer" unique_id=798478575]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="WearBar" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/BarsContainer" unique_id=2127616542 instance=ExtResource("18_wdnak")]
+[node name="WearBar" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer/BarsContainer" unique_id=2127616542 instance=ExtResource("18_wdnak")]
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("19_h48ew")
 value = 25.0
 
-[node name="HungerBar" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/BarsContainer" unique_id=865321959 instance=ExtResource("18_wdnak")]
+[node name="HungerBar" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer/BarsContainer" unique_id=865321959 instance=ExtResource("18_wdnak")]
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("21_h48ew")
 value = 50.0
 
-[node name="DirtBar" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/BarsContainer" unique_id=1029196491 instance=ExtResource("18_wdnak")]
+[node name="DirtBar" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer/BarsContainer" unique_id=1029196491 instance=ExtResource("18_wdnak")]
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("22_fty5b")
@@ -254,12 +317,12 @@ texture_click_mask = ExtResource("14_ca42v")
 [connection signal="button_down" from="Ui/PanelContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_button_down"]
 [connection signal="button_up" from="Ui/PanelContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_button_up"]
 [connection signal="long_pressed" from="Ui/PanelContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_long_pressed"]
-[connection signal="borned" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/Pet" to="." method="_on_pet_borned"]
-[connection signal="died" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/Pet" to="." method="_on_pet_died"]
-[connection signal="dirty_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/Pet" to="." method="_on_pet_dirty_changed"]
-[connection signal="hunger_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/Pet" to="." method="_on_pet_hunger_changed"]
-[connection signal="wear_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/Pet" to="." method="_on_pet_wear_changed"]
-[connection signal="visibility_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer" to="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer" method="_on_visibility_changed"]
+[connection signal="borned" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/Pet" to="." method="_on_pet_borned"]
+[connection signal="died" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/Pet" to="." method="_on_pet_died"]
+[connection signal="dirty_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/Pet" to="." method="_on_pet_dirty_changed"]
+[connection signal="hunger_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/Pet" to="." method="_on_pet_hunger_changed"]
+[connection signal="wear_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/Pet" to="." method="_on_pet_wear_changed"]
+[connection signal="visibility_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer" to="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/RepairButton" to="." method="_on_repair_button_pressed"]
 [connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/FeedButton" to="." method="_on_feed_button_pressed"]
 [connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/CleanButton" to="." method="_on_clean_button_pressed"]
