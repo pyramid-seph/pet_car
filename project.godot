@@ -13,6 +13,11 @@ config_version=5
 config/name="PetCar"
 run/main_scene="res://scenes/game/game.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
+boot_splash/bg_color=Color(0.60784316, 0.7372549, 0.05882353, 1)
+boot_splash/use_filter=false
+boot_splash/image="uid://duxprf1gtod7r"
+config/icon="uid://bdpms451sss71"
+boot_splash/minimum_display_time=1000
 
 [audio]
 
