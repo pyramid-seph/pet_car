@@ -11,3 +11,7 @@ static func safe_connect(signal_object: Signal, callable: Callable,
 static func safe_disconnect(signal_object: Signal, callable: Callable) -> void:
 	if signal_object.is_connected(callable):
 		signal_object.disconnect(callable)
+
+
+static func can_run_js() -> bool:
+	return OS.has_feature("web")

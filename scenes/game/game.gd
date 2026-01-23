@@ -62,8 +62,12 @@ func _on_handle_button_button_down() -> void:
 func _on_power_off_button_long_pressed() -> void:
 	Log.d("\n*****\n")
 	Log.d("Game quit.")
-	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
-	get_tree().quit()
+	
+	if Utils.can_run_js():
+		JavaScriptBridge.eval("window.close();")
+	else:
+		get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+		get_tree().quit()
 
 
 func _on_power_off_button_button_up() -> void:
