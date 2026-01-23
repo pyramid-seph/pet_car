@@ -2,7 +2,7 @@ extends Control
 
 
 @onready var _press_any_button_label: Label = %PressAnyButtonLabel
-@onready var _turn_off_instructions: RichTextLabel = %TurnOffIntructions
+@onready var _turn_off_instructions: Label = %TurnOffIntructions
 @onready var _clock: Label = %Clock
 @onready var _bars_container: HBoxContainer = %BarsContainer
 @onready var _wear_bar := %WearBar

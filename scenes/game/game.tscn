@@ -13,9 +13,10 @@
 [ext_resource type="BitMap" uid="uid://d4g8udxm7d0kj" path="res://art/ui/buttons/btn_default_click_mask.png" id="5_trtic"]
 [ext_resource type="Texture2D" uid="uid://v6ehtdfi7re2" path="res://art/ui/icons/ic_power_off.png" id="6_ir15t"]
 [ext_resource type="Script" uid="uid://c7jye2cfr8r3e" path="res://scenes/ui/long_press_texture_button.gd" id="7_ir15t"]
+[ext_resource type="Script" uid="uid://22n8fkldp77g" path="res://scenes/utils/ui_sounds.gd" id="8_1iff4"]
+[ext_resource type="AudioStream" uid="uid://oo3scmu2gnop" path="res://audio/ui/kenney_interface_sounds/switch_007.ogg" id="9_4vuph"]
 [ext_resource type="Texture2D" uid="uid://cew3lyssde0ne" path="res://art/ui/backgrounds/bg_screen.png" id="9_ca42v"]
 [ext_resource type="Script" uid="uid://dkulfqgqrt36n" path="res://scenes/utils/twinkle_tween.gd" id="12_1kice"]
-[ext_resource type="Texture2D" uid="uid://bq0emw78mdjsj" path="res://art/ui/buttons/btn_handle_normal.png" id="13_trtic"]
 [ext_resource type="BitMap" uid="uid://c5lj40mhbb63a" path="res://art/ui/buttons/btn_handle_click_mask.png" id="14_ca42v"]
 [ext_resource type="Script" uid="uid://d2p3jukg5yah8" path="res://scenes/ui/clock.gd" id="16_wdnak"]
 [ext_resource type="PackedScene" uid="uid://c36k6pewhd5r4" path="res://scenes/ui/state_bar.tscn" id="18_wdnak"]
@@ -33,11 +34,15 @@ content_margin_bottom = 16.0
 texture = ExtResource("2_trtic")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4vuph"]
-content_margin_left = 16.0
-content_margin_top = 16.0
-content_margin_right = 16.0
-content_margin_bottom = 16.0
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
 texture = ExtResource("9_ca42v")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
 
 [node name="Game" type="Node" unique_id=158280699]
 script = ExtResource("1_80nbo")
@@ -70,6 +75,11 @@ grow_vertical = 2
 theme = ExtResource("2_rysoc")
 script = ExtResource("3_1kice")
 
+[node name="UiSounds" type="Node" parent="Ui" unique_id=1167011518]
+script = ExtResource("8_1iff4")
+pressed_sound = ExtResource("9_4vuph")
+metadata/_custom_type_script = "uid://22n8fkldp77g"
+
 [node name="PanelContainer" type="PanelContainer" parent="Ui" unique_id=1042352349]
 layout_mode = 1
 anchors_preset = 15
@@ -85,7 +95,7 @@ layout_mode = 2
 [node name="PowerOffButton" type="TextureButton" parent="Ui/PanelContainer/VBoxContainer" unique_id=1587741117]
 process_mode = 3
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 4
 focus_mode = 1
 texture_normal = ExtResource("2_kvpfn")
 texture_pressed = ExtResource("3_dinhu")
@@ -96,34 +106,31 @@ wait_time_sec = 1.5
 
 [node name="TextureRect" type="TextureRect" parent="Ui/PanelContainer/VBoxContainer/PowerOffButton" unique_id=1534000030]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_ir15t")
 stretch_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui/PanelContainer/VBoxContainer" unique_id=1504578226]
-layout_mode = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer" unique_id=1466157710]
+[node name="CenterContainer" type="CenterContainer" parent="Ui/PanelContainer/VBoxContainer" unique_id=1466157710]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer" unique_id=1364936060]
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer" unique_id=1504578226]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer" unique_id=1364936060]
 clip_contents = true
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxTexture_4vuph")
 
-[node name="Clock" type="Label" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer" unique_id=913672568]
+[node name="Clock" type="Label" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer" unique_id=913672568]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
@@ -133,17 +140,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("16_wdnak")
 
-[node name="TurnOffIntructions" type="RichTextLabel" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer" unique_id=1748560569]
+[node name="TurnOffIntructions" type="Label" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer" unique_id=1163722031]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 16
-bbcode_enabled = true
-text = "Keep pressing to close [img valign=center]uid://vd6u3jt8vgyc[/img]"
-fit_content = true
-horizontal_alignment = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Keep pressing to close"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
-[node name="Pet" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer" unique_id=1695973980 instance=ExtResource("19_264po")]
+[node name="Pet" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer" unique_id=1695973980 instance=ExtResource("19_264po")]
 unique_name_in_owner = true
 position = Vector2(200, 200)
 _max_tick_sec = 10
@@ -154,13 +162,13 @@ _max_wear_damage = 50
 _min_dirt_damage = 10
 _max_dirt_damage = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer" unique_id=397909431]
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer" unique_id=397909431]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 8
 
-[node name="PressAnyButtonLabel" type="Label" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer" unique_id=1597432745]
+[node name="PressAnyButtonLabel" type="Label" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1597432745]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -170,41 +178,41 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="TwinkleTween" type="Node" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer/PressAnyButtonLabel" unique_id=187097544]
+[node name="TwinkleTween" type="Node" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/PressAnyButtonLabel" unique_id=187097544]
 script = ExtResource("12_1kice")
 metadata/_custom_type_script = "uid://dkulfqgqrt36n"
 
-[node name="BarsContainer" type="HBoxContainer" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer" unique_id=798478575]
+[node name="BarsContainer" type="HBoxContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=798478575]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="WearBar" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer/BarsContainer" unique_id=2127616542 instance=ExtResource("18_wdnak")]
+[node name="WearBar" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/BarsContainer" unique_id=2127616542 instance=ExtResource("18_wdnak")]
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("19_h48ew")
 value = 25.0
 
-[node name="HungerBar" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer/BarsContainer" unique_id=865321959 instance=ExtResource("18_wdnak")]
+[node name="HungerBar" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/BarsContainer" unique_id=865321959 instance=ExtResource("18_wdnak")]
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("21_h48ew")
 value = 50.0
 
-[node name="DirtBar" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer/BarsContainer" unique_id=1029196491 instance=ExtResource("18_wdnak")]
+[node name="DirtBar" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer/BarsContainer" unique_id=1029196491 instance=ExtResource("18_wdnak")]
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("22_fty5b")
 value = 75.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer" unique_id=191001152]
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer" unique_id=191001152]
 layout_mode = 2
-theme_override_constants/separation = 56
+theme_override_constants/separation = 80
 alignment = 1
 
-[node name="RepairButton" type="TextureButton" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1145578718]
+[node name="RepairButton" type="TextureButton" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1145578718]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 1
@@ -214,7 +222,7 @@ texture_pressed = ExtResource("3_dinhu")
 texture_hover = ExtResource("4_kvuet")
 texture_click_mask = ExtResource("5_trtic")
 
-[node name="FeedButton" type="TextureButton" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1309574642]
+[node name="FeedButton" type="TextureButton" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1309574642]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 1
@@ -224,7 +232,7 @@ texture_pressed = ExtResource("3_dinhu")
 texture_hover = ExtResource("4_kvuet")
 texture_click_mask = ExtResource("5_trtic")
 
-[node name="CleanButton" type="TextureButton" parent="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1917791298]
+[node name="CleanButton" type="TextureButton" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1917791298]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 1
@@ -234,25 +242,24 @@ texture_pressed = ExtResource("3_dinhu")
 texture_hover = ExtResource("4_kvuet")
 texture_click_mask = ExtResource("5_trtic")
 
-[node name="HandleButton" type="TextureButton" parent="Ui" unique_id=1926309127]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="HandleButton" type="TextureButton" parent="Ui" unique_id=1926309127 groups=["sound_manager_exclude"]]
+layout_mode = 1
+offset_right = 98.0
+offset_bottom = 90.0
 focus_mode = 1
 mouse_default_cursor_shape = 6
-texture_normal = ExtResource("13_trtic")
 texture_click_mask = ExtResource("14_ca42v")
 
 [connection signal="button_down" from="Ui/PanelContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_button_down"]
 [connection signal="button_up" from="Ui/PanelContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_button_up"]
 [connection signal="long_pressed" from="Ui/PanelContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_long_pressed"]
-[connection signal="borned" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/Pet" to="." method="_on_pet_borned"]
-[connection signal="died" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/Pet" to="." method="_on_pet_died"]
-[connection signal="dirty_changed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/Pet" to="." method="_on_pet_dirty_changed"]
-[connection signal="hunger_changed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/Pet" to="." method="_on_pet_hunger_changed"]
-[connection signal="wear_changed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/Pet" to="." method="_on_pet_wear_changed"]
-[connection signal="visibility_changed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer" to="Ui/PanelContainer/VBoxContainer/VBoxContainer/CenterContainer/PanelContainer/VBoxContainer" method="_on_visibility_changed"]
-[connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/RepairButton" to="." method="_on_repair_button_pressed"]
-[connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/FeedButton" to="." method="_on_feed_button_pressed"]
-[connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/CleanButton" to="." method="_on_clean_button_pressed"]
+[connection signal="borned" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/Pet" to="." method="_on_pet_borned"]
+[connection signal="died" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/Pet" to="." method="_on_pet_died"]
+[connection signal="dirty_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/Pet" to="." method="_on_pet_dirty_changed"]
+[connection signal="hunger_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/Pet" to="." method="_on_pet_hunger_changed"]
+[connection signal="wear_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/Pet" to="." method="_on_pet_wear_changed"]
+[connection signal="visibility_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer" to="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/VBoxContainer" method="_on_visibility_changed"]
+[connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/RepairButton" to="." method="_on_repair_button_pressed"]
+[connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/FeedButton" to="." method="_on_feed_button_pressed"]
+[connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/CleanButton" to="." method="_on_clean_button_pressed"]
 [connection signal="button_down" from="Ui/HandleButton" to="." method="_on_handle_button_button_down"]

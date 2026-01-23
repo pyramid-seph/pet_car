@@ -14,6 +14,14 @@ config/name="PetCar"
 run/main_scene="res://scenes/game/game.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
+[audio]
+
+buses/default_bus_layout="uid://1e7hw7uf0esq"
+
+[autoload]
+
+SoundManager="*uid://t3888i30cs5o"
+
 [display]
 
 window/size/viewport_width=640
@@ -27,7 +35,11 @@ window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/sound_manager/plugin.cfg")
+
+[global_group]
+
+sound_manager_exclude=""
 
 [internationalization]
 
