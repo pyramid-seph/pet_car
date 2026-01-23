@@ -10,7 +10,12 @@
 [ext_resource type="Script" uid="uid://chruhaxm76i7i" path="res://scenes/ai/state_machines/pet/conceived_state.gd" id="4_axfbl"]
 [ext_resource type="Texture2D" uid="uid://duxffajdusb54" path="res://art/chars/pet_car_body_dirt.png" id="5_xb273"]
 [ext_resource type="Script" uid="uid://c4a4yah1ecpxf" path="res://scenes/ai/state_machines/pet/alive_state.gd" id="7_5c8qe"]
+[ext_resource type="AudioStream" uid="uid://5og7l3y15g2h" path="res://audio/sfx/sfx_born_start_0.wav" id="8_dvw3g"]
 [ext_resource type="Script" uid="uid://ch3u03mrp1fut" path="res://scenes/ai/state_machines/pet/dead_state.gd" id="8_hio3l"]
+[ext_resource type="AudioStream" uid="uid://b2bcretwgrnpb" path="res://audio/sfx/sfx_cry_happy.wav" id="8_w6xap"]
+[ext_resource type="AudioStream" uid="uid://cvcw3o12yjpqh" path="res://audio/sfx/sfx_born_start_1.wav" id="9_4n5v8"]
+[ext_resource type="AudioStream" uid="uid://dny2e60a14bx6" path="res://audio/sfx/sfx_activity_start.wav" id="11_4n5v8"]
+[ext_resource type="AudioStream" uid="uid://dg3l887et3ifl" path="res://audio/sfx/sfx_cry_die.wav" id="12_somm0"]
 
 [sub_resource type="Animation" id="Animation_r348d"]
 length = 0.001
@@ -138,6 +143,37 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_dvw3g")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_4n5v8")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_w6xap")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_w6xap")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_w6xap")
+}],
+"times": PackedFloat32Array(0, 2, 3, 4, 5)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_jaxvr"]
 resource_name = "clean"
@@ -202,6 +238,25 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_4n5v8")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_w6xap")
+}],
+"times": PackedFloat32Array(0, 3)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_7l1lv"]
 resource_name = "conceived"
@@ -330,6 +385,21 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_somm0")
+}],
+"times": PackedFloat32Array(7)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_bf2t7"]
 resource_name = "feed"
@@ -394,6 +464,33 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_4n5v8")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_w6xap")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_w6xap")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_w6xap")
+}],
+"times": PackedFloat32Array(0, 1.5, 3, 4.5)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_s8qer"]
 resource_name = "idle"
@@ -522,6 +619,25 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_4n5v8")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_w6xap")
+}],
+"times": PackedFloat32Array(0, 3)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7l1lv"]
 _data = {
@@ -572,6 +688,9 @@ libraries/ = SubResource("AnimationLibrary_7l1lv")
 
 [node name="TickTimer" type="Timer" parent="." unique_id=1722664115]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2136548118]
+bus = &"SFX"
 
 [node name="PetStateMachine" type="Node" parent="." unique_id=1118360233]
 script = ExtResource("3_qd1if")

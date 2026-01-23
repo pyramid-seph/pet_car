@@ -37,10 +37,6 @@ window/handheld/orientation=1
 
 enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/sound_manager/plugin.cfg")
 
-[global_group]
-
-sound_manager_exclude=""
-
 [internationalization]
 
 locale/translations=PackedStringArray("res://localization/text.en.translation", "res://localization/text.es.translation")

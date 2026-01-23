@@ -13,11 +13,11 @@
 [ext_resource type="BitMap" uid="uid://d4g8udxm7d0kj" path="res://art/ui/buttons/btn_default_click_mask.png" id="5_trtic"]
 [ext_resource type="Texture2D" uid="uid://v6ehtdfi7re2" path="res://art/ui/icons/ic_power_off.png" id="6_ir15t"]
 [ext_resource type="Script" uid="uid://c7jye2cfr8r3e" path="res://scenes/ui/long_press_texture_button.gd" id="7_ir15t"]
-[ext_resource type="Script" uid="uid://22n8fkldp77g" path="res://scenes/utils/ui_sounds.gd" id="8_1iff4"]
-[ext_resource type="AudioStream" uid="uid://oo3scmu2gnop" path="res://audio/ui/kenney_interface_sounds/switch_007.ogg" id="9_4vuph"]
 [ext_resource type="Texture2D" uid="uid://cew3lyssde0ne" path="res://art/ui/backgrounds/bg_screen.png" id="9_ca42v"]
 [ext_resource type="Script" uid="uid://dkulfqgqrt36n" path="res://scenes/utils/twinkle_tween.gd" id="12_1kice"]
 [ext_resource type="BitMap" uid="uid://c5lj40mhbb63a" path="res://art/ui/buttons/btn_handle_click_mask.png" id="14_ca42v"]
+[ext_resource type="Script" uid="uid://duf6tqr6v6nhm" path="res://scenes/ui/play_on_button_down.gd" id="15_1iff4"]
+[ext_resource type="AudioStream" uid="uid://b556fc8gc7j36" path="res://audio/ui/ui_turn_off.wav" id="16_4vuph"]
 [ext_resource type="Script" uid="uid://d2p3jukg5yah8" path="res://scenes/ui/clock.gd" id="16_wdnak"]
 [ext_resource type="PackedScene" uid="uid://c36k6pewhd5r4" path="res://scenes/ui/state_bar.tscn" id="18_wdnak"]
 [ext_resource type="PackedScene" uid="uid://526obak4sm7g" path="res://scenes/player/pet.tscn" id="19_264po"]
@@ -75,11 +75,6 @@ grow_vertical = 2
 theme = ExtResource("2_rysoc")
 script = ExtResource("3_1kice")
 
-[node name="UiSounds" type="Node" parent="Ui" unique_id=1167011518]
-script = ExtResource("8_1iff4")
-pressed_sound = ExtResource("9_4vuph")
-metadata/_custom_type_script = "uid://22n8fkldp77g"
-
 [node name="PanelContainer" type="PanelContainer" parent="Ui" unique_id=1042352349]
 layout_mode = 1
 anchors_preset = 15
@@ -113,6 +108,10 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_ir15t")
 stretch_mode = 3
+
+[node name="PlayOnButtonDown" type="Node" parent="Ui/PanelContainer/VBoxContainer/PowerOffButton" unique_id=480416560]
+script = ExtResource("15_1iff4")
+sound = ExtResource("16_4vuph")
 
 [node name="CenterContainer" type="CenterContainer" parent="Ui/PanelContainer/VBoxContainer" unique_id=1466157710]
 layout_mode = 2
@@ -242,7 +241,7 @@ texture_pressed = ExtResource("3_dinhu")
 texture_hover = ExtResource("4_kvuet")
 texture_click_mask = ExtResource("5_trtic")
 
-[node name="HandleButton" type="TextureButton" parent="Ui" unique_id=1926309127 groups=["sound_manager_exclude"]]
+[node name="HandleButton" type="TextureButton" parent="Ui" unique_id=1926309127]
 layout_mode = 1
 offset_right = 98.0
 offset_bottom = 90.0

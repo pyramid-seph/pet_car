@@ -1,6 +1,8 @@
 extends PetState
 
 
+const SFX_ACTIVITY_CANT_START = preload("uid://btwbn7vo1twi6")
+
 var _is_being_taken_care_of: bool
 
 
@@ -16,6 +18,7 @@ func enter(subject: Pet) -> void:
 
 func repair(subject: Pet) -> void:
 	if _is_being_taken_care_of or not subject.is_worn_out():
+		_play_disabled_sound()
 		return
 	_is_being_taken_care_of = true
 	
@@ -26,6 +29,7 @@ func repair(subject: Pet) -> void:
 
 func feed(subject: Pet) -> void:
 	if _is_being_taken_care_of or not subject.is_hungry():
+		_play_disabled_sound()
 		return
 	_is_being_taken_care_of = true
 	
@@ -36,6 +40,7 @@ func feed(subject: Pet) -> void:
 
 func clean(subject: Pet) -> void:
 	if _is_being_taken_care_of or not subject.is_dirty():
+		_play_disabled_sound()
 		return
 	_is_being_taken_care_of = true
 	
@@ -70,3 +75,7 @@ func on_animation_finished(subject: Pet, anim_name: StringName) -> void:
 	subject.pause_ticks(false)
 	subject.update_body_parts()
 	subject.get_animation_player().play(&"idle")
+
+
+func _play_disabled_sound() -> void:
+	SoundManager.play_sound(SFX_ACTIVITY_CANT_START)
