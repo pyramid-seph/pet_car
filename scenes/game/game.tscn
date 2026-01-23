@@ -216,25 +216,21 @@ _max_wear_damage = 50
 _min_dirt_damage = 10
 _max_dirt_damage = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control" unique_id=397909431]
+[node name="PressAnyButtonLabel" type="Label" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control" unique_id=1597432745]
+unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -180.0
-offset_top = -101.0
-offset_right = 180.0
+offset_left = -144.0
+offset_top = -102.0
+offset_right = 144.0
+offset_bottom = -62.0
 grow_horizontal = 2
 grow_vertical = 0
-size_flags_vertical = 8
-theme_override_constants/separation = 8
-
-[node name="PressAnyButtonLabel" type="Label" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer" unique_id=1597432745]
-unique_name_in_owner = true
-texture_filter = 1
-layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
 text = "Press any button"
@@ -242,30 +238,40 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="TwinkleTween" type="Node" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer/PressAnyButtonLabel" unique_id=187097544]
+[node name="TwinkleTween" type="Node" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/PressAnyButtonLabel" unique_id=187097544]
 script = ExtResource("12_1kice")
 metadata/_custom_type_script = "uid://dkulfqgqrt36n"
 
-[node name="BarsContainer" type="HBoxContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer" unique_id=798478575]
+[node name="BarsContainer" type="HBoxContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control" unique_id=798478575]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -48.0
+offset_right = 180.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_vertical = 8
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="WearBar" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer/BarsContainer" unique_id=2127616542 instance=ExtResource("18_wdnak")]
+[node name="WearBar" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/BarsContainer" unique_id=2127616542 instance=ExtResource("18_wdnak")]
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("19_h48ew")
 value = 25.0
 
-[node name="HungerBar" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer/BarsContainer" unique_id=865321959 instance=ExtResource("18_wdnak")]
+[node name="HungerBar" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/BarsContainer" unique_id=865321959 instance=ExtResource("18_wdnak")]
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("21_h48ew")
 value = 50.0
 
-[node name="DirtBar" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer/BarsContainer" unique_id=1029196491 instance=ExtResource("18_wdnak")]
+[node name="DirtBar" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/BarsContainer" unique_id=1029196491 instance=ExtResource("18_wdnak")]
 unique_name_in_owner = true
 layout_mode = 2
 icon = ExtResource("22_fty5b")
@@ -323,7 +329,6 @@ texture_click_mask = ExtResource("14_ca42v")
 [connection signal="dirty_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/Pet" to="." method="_on_pet_dirty_changed"]
 [connection signal="hunger_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/Pet" to="." method="_on_pet_hunger_changed"]
 [connection signal="wear_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/Pet" to="." method="_on_pet_wear_changed"]
-[connection signal="visibility_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer" to="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/VBoxContainer" method="_on_visibility_changed"]
 [connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/RepairButton" to="." method="_on_repair_button_pressed"]
 [connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/FeedButton" to="." method="_on_feed_button_pressed"]
 [connection signal="pressed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/CleanButton" to="." method="_on_clean_button_pressed"]
