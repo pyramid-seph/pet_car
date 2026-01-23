@@ -16,8 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://cew3lyssde0ne" path="res://art/ui/backgrounds/bg_screen.png" id="9_ca42v"]
 [ext_resource type="Script" uid="uid://dkulfqgqrt36n" path="res://scenes/utils/twinkle_tween.gd" id="12_1kice"]
 [ext_resource type="BitMap" uid="uid://c5lj40mhbb63a" path="res://art/ui/buttons/btn_handle_click_mask.png" id="14_ca42v"]
-[ext_resource type="Script" uid="uid://duf6tqr6v6nhm" path="res://scenes/ui/play_on_button_down.gd" id="15_1iff4"]
-[ext_resource type="AudioStream" uid="uid://b556fc8gc7j36" path="res://audio/ui/ui_turn_off.wav" id="16_4vuph"]
 [ext_resource type="Script" uid="uid://d2p3jukg5yah8" path="res://scenes/ui/clock.gd" id="16_wdnak"]
 [ext_resource type="Shader" uid="uid://bsch3t00e052f" path="res://shaders/dot_matrix.gdshader" id="18_h48ew"]
 [ext_resource type="PackedScene" uid="uid://c36k6pewhd5r4" path="res://scenes/ui/state_bar.tscn" id="18_wdnak"]
@@ -119,10 +117,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_ir15t")
 stretch_mode = 3
-
-[node name="PlayOnButtonDown" type="Node" parent="Ui/PanelContainer/VBoxContainer/PowerOffButton" unique_id=480416560]
-script = ExtResource("15_1iff4")
-sound = ExtResource("16_4vuph")
 
 [node name="CenterContainer" type="CenterContainer" parent="Ui/PanelContainer/VBoxContainer" unique_id=1466157710]
 layout_mode = 2
