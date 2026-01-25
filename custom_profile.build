@@ -34,8 +34,6 @@
 		"ImporterMesh",
 		"ItemList",
 		"Joint2D",
-		"Light2D",
-		"LightOccluder2D",
 		"LineEdit",
 		"LinkButton",
 		"MenuBar",
