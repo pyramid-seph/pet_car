@@ -83,11 +83,13 @@ metadata/_custom_type_script = "uid://v0ex8bxgfp2w"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1803069632]
 color = Color(0.53224236, 0.53224236, 0.53224236, 1)
+metadata/_edit_lock_ = true
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=822526997]
 rotation = -2.3561945
 height = 0.2
 max_distance = 0.0
+metadata/_edit_lock_ = true
 
 [node name="Ui" type="Control" parent="." unique_id=337055363]
 unique_name_in_owner = true
@@ -99,6 +101,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_rysoc")
 script = ExtResource("3_1kice")
+metadata/_edit_lock_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="Ui" unique_id=1042352349]
 layout_mode = 1
