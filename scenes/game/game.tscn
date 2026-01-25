@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://v6ehtdfi7re2" path="res://art/ui/icons/ic_power_off.png" id="6_ir15t"]
 [ext_resource type="Script" uid="uid://c7jye2cfr8r3e" path="res://scenes/ui/long_press_texture_button.gd" id="7_ir15t"]
 [ext_resource type="Texture2D" uid="uid://cew3lyssde0ne" path="res://art/textures/bg_screen.png" id="9_ca42v"]
+[ext_resource type="Texture2D" uid="uid://6icjua6vlhu5" path="res://art/textures/bg_body_n.png" id="9_wdnak"]
+[ext_resource type="Texture2D" uid="uid://dgdc4ynrsia4q" path="res://art/textures/bg_body_s.png" id="10_wdnak"]
 [ext_resource type="Script" uid="uid://dkulfqgqrt36n" path="res://scenes/utils/twinkle_tween.gd" id="12_1kice"]
 [ext_resource type="BitMap" uid="uid://c5lj40mhbb63a" path="res://art/ui/buttons/btn_handle_click_mask.png" id="14_ca42v"]
 [ext_resource type="Script" uid="uid://d2p3jukg5yah8" path="res://scenes/ui/clock.gd" id="16_wdnak"]
@@ -24,13 +26,20 @@
 [ext_resource type="Script" uid="uid://muvojygrugxg" path="res://scenes/ai/state_machines/game/game_state_machine.gd" id="21_5newe"]
 [ext_resource type="Texture2D" uid="uid://db6un67jh7wdi" path="res://art/ui/icons/ic_state_hunger.png" id="21_h48ew"]
 [ext_resource type="Texture2D" uid="uid://bdo2r4ryxoaxc" path="res://art/ui/icons/ic_state_dirt.png" id="22_fty5b"]
+[ext_resource type="Texture2D" uid="uid://btc4386xr73of" path="res://art/ui/buttons/btn_default_n.png" id="26_fty5b"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wdnak"]
+diffuse_texture = ExtResource("2_trtic")
+normal_texture = ExtResource("9_wdnak")
+specular_texture = ExtResource("10_wdnak")
+specular_shininess = 0.5
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wdnak"]
 content_margin_left = 16.0
 content_margin_top = 16.0
 content_margin_right = 16.0
 content_margin_bottom = 16.0
-texture = ExtResource("2_trtic")
+texture = SubResource("CanvasTexture_wdnak")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4vuph"]
 content_margin_left = 20.0
@@ -53,6 +62,18 @@ shader_parameter/brightness = 0.4
 shader_parameter/pixel_shadow_amount = 0.90000004275
 shader_parameter/lcd_dark_square_transparency = 0.03
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_h48ew"]
+diffuse_texture = ExtResource("2_kvpfn")
+normal_texture = ExtResource("26_fty5b")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_fty5b"]
+diffuse_texture = ExtResource("3_dinhu")
+normal_texture = ExtResource("26_fty5b")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_l2dhg"]
+diffuse_texture = ExtResource("4_kvuet")
+normal_texture = ExtResource("26_fty5b")
+
 [node name="Game" type="Node" unique_id=158280699]
 script = ExtResource("1_80nbo")
 
@@ -72,6 +93,14 @@ metadata/_custom_type_script = "uid://v0ex8bxgfp2w"
 [node name="GameOver" type="Node" parent="GameStateMachine" unique_id=785781130]
 script = ExtResource("5_pl11u")
 metadata/_custom_type_script = "uid://v0ex8bxgfp2w"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1803069632]
+color = Color(0.53224236, 0.53224236, 0.53224236, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=822526997]
+rotation = -2.3561945
+height = 0.2
+max_distance = 0.0
 
 [node name="Ui" type="Control" parent="." unique_id=337055363]
 unique_name_in_owner = true
@@ -96,7 +125,15 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_wdnak")
 [node name="VBoxContainer" type="VBoxContainer" parent="Ui/PanelContainer" unique_id=1538653783]
 layout_mode = 2
 
-[node name="PowerOffButton" type="TextureButton" parent="Ui/PanelContainer/VBoxContainer" unique_id=1587741117]
+[node name="CenterContainer" type="CenterContainer" parent="Ui/PanelContainer/VBoxContainer" unique_id=1466157710]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer" unique_id=1504578226]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PowerOffButton" type="TextureButton" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer" unique_id=1587741117]
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 4
@@ -108,7 +145,7 @@ texture_click_mask = ExtResource("5_trtic")
 script = ExtResource("7_ir15t")
 wait_time_sec = 1.5
 
-[node name="TextureRect" type="TextureRect" parent="Ui/PanelContainer/VBoxContainer/PowerOffButton" unique_id=1534000030]
+[node name="TextureRect" type="TextureRect" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PowerOffButton" unique_id=1534000030]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,14 +154,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_ir15t")
 stretch_mode = 3
-
-[node name="CenterContainer" type="CenterContainer" parent="Ui/PanelContainer/VBoxContainer" unique_id=1466157710]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer" unique_id=1504578226]
-layout_mode = 2
-theme_override_constants/separation = 16
 
 [node name="PanelContainer" type="PanelContainer" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer" unique_id=1364936060]
 clip_contents = true
@@ -287,9 +316,9 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 1
 action_mode = 0
-texture_normal = ExtResource("2_kvpfn")
-texture_pressed = ExtResource("3_dinhu")
-texture_hover = ExtResource("4_kvuet")
+texture_normal = SubResource("CanvasTexture_h48ew")
+texture_pressed = SubResource("CanvasTexture_fty5b")
+texture_hover = SubResource("CanvasTexture_l2dhg")
 texture_click_mask = ExtResource("5_trtic")
 
 [node name="FeedButton" type="TextureButton" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1309574642]
@@ -297,9 +326,9 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 1
 action_mode = 0
-texture_normal = ExtResource("2_kvpfn")
-texture_pressed = ExtResource("3_dinhu")
-texture_hover = ExtResource("4_kvuet")
+texture_normal = SubResource("CanvasTexture_h48ew")
+texture_pressed = SubResource("CanvasTexture_fty5b")
+texture_hover = SubResource("CanvasTexture_l2dhg")
 texture_click_mask = ExtResource("5_trtic")
 
 [node name="CleanButton" type="TextureButton" parent="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1917791298]
@@ -307,9 +336,9 @@ unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 1
 action_mode = 0
-texture_normal = ExtResource("2_kvpfn")
-texture_pressed = ExtResource("3_dinhu")
-texture_hover = ExtResource("4_kvuet")
+texture_normal = SubResource("CanvasTexture_h48ew")
+texture_pressed = SubResource("CanvasTexture_fty5b")
+texture_hover = SubResource("CanvasTexture_l2dhg")
 texture_click_mask = ExtResource("5_trtic")
 
 [node name="HandleButton" type="TextureButton" parent="Ui" unique_id=1926309127]
@@ -322,9 +351,9 @@ mouse_default_cursor_shape = 6
 texture_click_mask = ExtResource("14_ca42v")
 metadata/_edit_lock_ = true
 
-[connection signal="button_down" from="Ui/PanelContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_button_down"]
-[connection signal="button_up" from="Ui/PanelContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_button_up"]
-[connection signal="long_pressed" from="Ui/PanelContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_long_pressed"]
+[connection signal="button_down" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_button_down"]
+[connection signal="button_up" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_button_up"]
+[connection signal="long_pressed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_long_pressed"]
 [connection signal="borned" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/Pet" to="." method="_on_pet_borned"]
 [connection signal="died" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/Pet" to="." method="_on_pet_died"]
 [connection signal="dirty_changed" from="Ui/PanelContainer/VBoxContainer/CenterContainer/VBoxContainer/PanelContainer/ShaderSubViewportContainer/SubViewport/Control/Pet" to="." method="_on_pet_dirty_changed"]

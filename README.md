@@ -1,6 +1,6 @@
 # Pet Car
 
-A digital pet that does nothing but run and require your attention.
+A digital pet that does nothing but run and demand your attention.
 Babysit it and maybe it will last 5 minutes alive. Maybe...
 
 (This game is totally unbalanced!)
