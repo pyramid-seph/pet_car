@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" format=3 uid="uid://bhho8bsotumew"]
+
+[ext_resource type="Texture2D" uid="uid://y7f8qscouor5" path="res://art/ui/buttons/btn_default_pressed.png" id="1_cf0b5"]
+[ext_resource type="Texture2D" uid="uid://btc4386xr73of" path="res://art/ui/buttons/btn_default_n.png" id="2_rdtll"]
+
+[resource]
+diffuse_texture = ExtResource("1_cf0b5")
+normal_texture = ExtResource("2_rdtll")
