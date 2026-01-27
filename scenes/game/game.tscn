@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://c1vgco8t1mpr5" path="res://scenes/game/game.gd" id="1_80nbo"]
 [ext_resource type="Theme" uid="uid://cjt3atijvsctp" path="res://art/theme.tres" id="2_rysoc"]
-[ext_resource type="Texture2D" uid="uid://bkjn3iodrbcjn" path="res://art/textures/bg_body.png" id="2_trtic"]
 [ext_resource type="Script" uid="uid://brp8sgreoraw0" path="res://scenes/ui/ui.gd" id="3_1kice"]
 [ext_resource type="Script" uid="uid://cdcx651w2snxo" path="res://scenes/ai/state_machines/game/not_started_state.gd" id="3_bt5mj"]
 [ext_resource type="Script" uid="uid://22vbjgra2o65" path="res://scenes/ai/state_machines/game/started.gd" id="4_e1j6l"]
@@ -10,16 +9,19 @@
 [ext_resource type="BitMap" uid="uid://d4g8udxm7d0kj" path="res://art/ui/buttons/btn_default_click_mask.png" id="5_trtic"]
 [ext_resource type="Texture2D" uid="uid://v6ehtdfi7re2" path="res://art/ui/icons/ic_power_off.png" id="6_ir15t"]
 [ext_resource type="Script" uid="uid://c7jye2cfr8r3e" path="res://scenes/ui/long_press_texture_button.gd" id="7_ir15t"]
-[ext_resource type="Texture2D" uid="uid://cew3lyssde0ne" path="res://art/textures/bg_screen.png" id="9_ca42v"]
-[ext_resource type="Texture2D" uid="uid://6icjua6vlhu5" path="res://art/textures/bg_body_n.png" id="9_wdnak"]
-[ext_resource type="Texture2D" uid="uid://dgdc4ynrsia4q" path="res://art/textures/bg_body_s.png" id="10_wdnak"]
+[ext_resource type="Shader" uid="uid://ceqv7f6rmphjw" path="res://shaders/device_color_swap.gdshader" id="8_h48ew"]
+[ext_resource type="Texture2D" uid="uid://cew3lyssde0ne" path="res://art/textures/texture_screen.png" id="9_ca42v"]
+[ext_resource type="Texture2D" uid="uid://vdhh0u7jp7p0" path="res://art/textures/texture_spots.png" id="9_fty5b"]
+[ext_resource type="Texture2D" uid="uid://6icjua6vlhu5" path="res://art/textures/texture_body_n.png" id="9_wdnak"]
+[ext_resource type="Texture2D" uid="uid://bkjn3iodrbcjn" path="res://art/textures/texture_body.png" id="10_wdnak"]
 [ext_resource type="Texture2D" uid="uid://dl0ei7c0iesis" path="res://art/ui/buttons/canvas_texture_btn_default_normal.tres" id="11_wdnak"]
 [ext_resource type="Script" uid="uid://dkulfqgqrt36n" path="res://scenes/utils/twinkle_tween.gd" id="12_1kice"]
+[ext_resource type="Texture2D" uid="uid://dgdc4ynrsia4q" path="res://art/textures/texture_body_s.png" id="12_fty5b"]
 [ext_resource type="Texture2D" uid="uid://bhho8bsotumew" path="res://art/ui/buttons/canvas_texture_btn_default_pressed.tres" id="12_h48ew"]
 [ext_resource type="Texture2D" uid="uid://kr21wh1pru6v" path="res://art/ui/buttons/canvas_texture_btn_default_hover.tres" id="13_fty5b"]
 [ext_resource type="BitMap" uid="uid://c5lj40mhbb63a" path="res://art/ui/buttons/btn_handle_click_mask.png" id="14_ca42v"]
 [ext_resource type="Script" uid="uid://d2p3jukg5yah8" path="res://scenes/ui/clock.gd" id="16_wdnak"]
-[ext_resource type="Shader" uid="uid://bsch3t00e052f" path="res://shaders/dot_matrix.gdshader" id="18_h48ew"]
+[ext_resource type="Shader" uid="uid://bsch3t00e052f" path="res://shaders/dot_matrix/dot_matrix.gdshader" id="18_h48ew"]
 [ext_resource type="PackedScene" uid="uid://c36k6pewhd5r4" path="res://scenes/ui/state_bar.tscn" id="18_wdnak"]
 [ext_resource type="PackedScene" uid="uid://526obak4sm7g" path="res://scenes/player/pet.tscn" id="19_264po"]
 [ext_resource type="Texture2D" uid="uid://cfwkt1su0pag4" path="res://art/ui/icons/ic_state_wear.png" id="19_h48ew"]
@@ -27,18 +29,26 @@
 [ext_resource type="Texture2D" uid="uid://db6un67jh7wdi" path="res://art/ui/icons/ic_state_hunger.png" id="21_h48ew"]
 [ext_resource type="Texture2D" uid="uid://bdo2r4ryxoaxc" path="res://art/ui/icons/ic_state_dirt.png" id="22_fty5b"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_wdnak"]
-diffuse_texture = ExtResource("2_trtic")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_firvq"]
+shader = ExtResource("8_h48ew")
+shader_parameter/spots_texture = ExtResource("9_fty5b")
+shader_parameter/spots_texture_offset_x = 0.0
+shader_parameter/spots_texture_offset_y = 0.0
+shader_parameter/body_color = Color(0, 0, 0, 1)
+shader_parameter/spots_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_l2dhg"]
+diffuse_texture = ExtResource("10_wdnak")
 normal_texture = ExtResource("9_wdnak")
-specular_texture = ExtResource("10_wdnak")
-specular_shininess = 0.5
+specular_texture = ExtResource("12_fty5b")
+specular_shininess = 0.55
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wdnak"]
 content_margin_left = 16.0
 content_margin_top = 16.0
 content_margin_right = 16.0
 content_margin_bottom = 16.0
-texture = SubResource("CanvasTexture_wdnak")
+texture = SubResource("CanvasTexture_l2dhg")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4vuph"]
 content_margin_left = 20.0
@@ -104,6 +114,7 @@ script = ExtResource("3_1kice")
 metadata/_edit_lock_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="Ui" unique_id=1042352349]
+material = SubResource("ShaderMaterial_firvq")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
