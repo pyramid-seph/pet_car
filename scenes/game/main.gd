@@ -8,6 +8,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	_on_settings_language_changed()
 	get_window().always_on_top = true
 	Settings.language_changed.connect(_on_settings_language_changed)
 
