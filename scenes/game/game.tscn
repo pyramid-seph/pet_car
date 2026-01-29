@@ -169,6 +169,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_ir15t")
 stretch_mode = 3
+metadata/_edit_lock_ = true
 
 [node name="Screen" type="PanelContainer" parent="Ui/HBoxContainer/CenterContainer/Device/VBoxContainer/CenterContainer/VBoxContainer" unique_id=1364936060]
 clip_contents = true
@@ -209,25 +210,6 @@ grow_vertical = 2
 color = Color(0.60784316, 0.7372549, 0.05882353, 1)
 
 [node name="Clock" type="Label" parent="Ui/HBoxContainer/CenterContainer/Device/VBoxContainer/CenterContainer/VBoxContainer/Screen/ShaderSubViewportContainer/SubViewport/Control" unique_id=913672568]
-unique_name_in_owner = true
-process_mode = 3
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -180.0
-offset_right = 180.0
-offset_bottom = 23.0
-grow_horizontal = 2
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.1882353, 0.38431373, 0.1882353, 1)
-text = "JAN 1, 13:37"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-script = ExtResource("16_wdnak")
-
-[node name="Clock2" type="Label" parent="Ui/HBoxContainer/CenterContainer/Device/VBoxContainer/CenterContainer/VBoxContainer/Screen/ShaderSubViewportContainer/SubViewport/Control" unique_id=1205541114]
 unique_name_in_owner = true
 process_mode = 3
 layout_mode = 1
@@ -411,8 +393,8 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[connection signal="button_down" from="Ui/HBoxContainer/CenterContainer/Device/VBoxContainer/CenterContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_button_down"]
-[connection signal="button_up" from="Ui/HBoxContainer/CenterContainer/Device/VBoxContainer/CenterContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_button_up"]
+[connection signal="button_down" from="Ui/HBoxContainer/CenterContainer/Device/VBoxContainer/CenterContainer/VBoxContainer/PowerOffButton" to="Ui" method="_on_power_off_button_button_down"]
+[connection signal="button_up" from="Ui/HBoxContainer/CenterContainer/Device/VBoxContainer/CenterContainer/VBoxContainer/PowerOffButton" to="Ui" method="_on_power_off_button_button_up"]
 [connection signal="long_pressed" from="Ui/HBoxContainer/CenterContainer/Device/VBoxContainer/CenterContainer/VBoxContainer/PowerOffButton" to="." method="_on_power_off_button_long_pressed"]
 [connection signal="borned" from="Ui/HBoxContainer/CenterContainer/Device/VBoxContainer/CenterContainer/VBoxContainer/Screen/ShaderSubViewportContainer/SubViewport/Control/Pet" to="." method="_on_pet_borned"]
 [connection signal="died" from="Ui/HBoxContainer/CenterContainer/Device/VBoxContainer/CenterContainer/VBoxContainer/Screen/ShaderSubViewportContainer/SubViewport/Control/Pet" to="." method="_on_pet_died"]

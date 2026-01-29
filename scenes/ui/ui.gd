@@ -13,6 +13,7 @@ extends Control
 
 
 func _ready() -> void:
+	_hide_turn_off_instructions()
 	if Utils.can_run_js():
 		_handle_button.hide()
 
@@ -56,14 +57,22 @@ func hide_press_any_button_indicator() -> void:
 	_press_any_button_label.hide()
 
 
-func show_turn_off_instructions() -> void:
+func _show_turn_off_instructions() -> void:
 	_turn_off_instructions.show()
 	_clock.hide()
 
 
-func hide_turn_off_instructions() -> void:
+func _hide_turn_off_instructions() -> void:
 	_turn_off_instructions.hide()
 	_clock.show()
+
+
+func _on_power_off_button_button_up() -> void:
+	_hide_turn_off_instructions()
+
+
+func _on_power_off_button_button_down() -> void:
+	_show_turn_off_instructions()
 
 
 func _on_open_settings_button_toggled(toggled_on: bool) -> void:

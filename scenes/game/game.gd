@@ -16,8 +16,6 @@ func _ready() -> void:
 	_on_pet_wear_changed()
 	_on_pet_hunger_changed()
 	_on_pet_dirty_changed()
-	
-	_ui.hide_turn_off_instructions()
 
 
 func get_ui():
@@ -80,14 +78,6 @@ func _on_power_off_button_long_pressed() -> void:
 		Settings.save()
 		get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 		get_tree().quit()
-
-
-func _on_power_off_button_button_up() -> void:
-	_ui.hide_turn_off_instructions()
-
-
-func _on_power_off_button_button_down() -> void:
-	_ui.show_turn_off_instructions()
 
 
 func _on_repair_button_pressed() -> void:
