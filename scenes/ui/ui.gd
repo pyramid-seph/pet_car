@@ -77,3 +77,7 @@ func _on_power_off_button_button_down() -> void:
 
 func _on_open_settings_button_toggled(toggled_on: bool) -> void:
 	_settings_panel.visible = toggled_on
+
+
+func _on_handle_button_button_down() -> void:
+	get_window().start_drag()

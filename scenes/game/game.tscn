@@ -405,4 +405,4 @@ theme_override_constants/margin_bottom = 8
 [connection signal="pressed" from="Ui/HBoxContainer/CenterContainer/Device/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/FeedButton" to="." method="_on_feed_button_pressed"]
 [connection signal="pressed" from="Ui/HBoxContainer/CenterContainer/Device/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/CleanButton" to="." method="_on_clean_button_pressed"]
 [connection signal="toggled" from="Ui/HBoxContainer/CenterContainer/Device/OpenSettingsButton" to="Ui" method="_on_open_settings_button_toggled"]
-[connection signal="button_down" from="Ui/HBoxContainer/CenterContainer/HandleButton" to="." method="_on_handle_button_button_down"]
+[connection signal="button_down" from="Ui/HBoxContainer/CenterContainer/HandleButton" to="Ui" method="_on_handle_button_button_down"]
