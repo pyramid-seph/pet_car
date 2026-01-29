@@ -5,8 +5,11 @@ const MONTH_NAMES_SMALL: Array[String] = ["JAN", "FEB", "MAR", "APR", "MAY",
 		"JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
 
 
-func _ready() -> void:
+func _init() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+
+
+func _ready() -> void:
 	_update_clock()
 
 
@@ -28,6 +31,9 @@ func _get_month_name_small(month: int) -> String:
 
 
 func _update_clock() -> void:
+	if not is_node_ready():
+		return
+	
 	var datetime := Time.get_datetime_dict_from_system()
 	
 	text = "%s %s, %02d:%02d" % [_get_month_name_small(datetime.month), 

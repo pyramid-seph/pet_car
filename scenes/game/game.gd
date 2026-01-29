@@ -8,11 +8,6 @@ extends Node
 
 
 func _ready() -> void:
-	Settings.saved.connect(_on_settings_saved)
-	Settings.language_changed.connect(_on_settings_language_changed)
-	
-	get_window().always_on_top = true
-	_on_settings_saved()
 	_on_pet_wear_changed()
 	_on_pet_hunger_changed()
 	_on_pet_dirty_changed()
@@ -28,14 +23,6 @@ func get_pet() -> Pet:
 
 func get_state_machine() -> GameStateMachine:
 	return _state_machine
-
-
-func _on_settings_saved() -> void:
-	TranslationServer.set_locale(Settings.get_language())
-
-
-func _on_settings_language_changed() -> void:
-	TranslationServer.set_locale(Settings.get_language())
 
 
 func _on_pet_borned() -> void:

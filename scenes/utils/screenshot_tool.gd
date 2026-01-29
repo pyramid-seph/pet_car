@@ -1,13 +1,9 @@
+class_name ScreenshotTool
 extends Node
 
 
 func _init() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-
-
-func _ready() -> void:
-	if not OS.is_debug_build():
-		queue_free()
 
 
 func _unhandled_input(event: InputEvent) -> void:
