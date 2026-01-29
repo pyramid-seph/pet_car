@@ -1,7 +1,6 @@
 extends Node
 
 
-@warning_ignore("unused_signal")
 signal saved
 signal language_changed
 signal body_color_changed
@@ -85,12 +84,12 @@ func _load_settings() -> void:
 
 
 func _create_settings_file() -> void:
+	config.set_value(_SECTION, _KEY_LANGUAGE,
+			Utils.supported_lang_or_default(OS.get_locale_language()))
+	config.set_value(_SECTION, _KEY_BODY_COLOR, _pick_random_color())
+	config.set_value(_SECTION, _KEY_PATTERN_COLOR, _pick_random_color())
+	config.set_value(_SECTION, _KEY_PATTERN_OFFSET, _pick_random_offset())
 	set_block_signals(true)
-	set_language(Utils.supported_lang_or_default(OS.get_locale_language()))
-	set_body_color(_pick_random_color())
-	set_pattern_color(_pick_random_color())
-	var default_offset: Vector2 = _pick_random_offset()
-	set_pattern_offset(default_offset.x, default_offset.y)
 	save()
 	set_block_signals(false)
 
