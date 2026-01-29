@@ -6,14 +6,12 @@ const MONTH_NAMES_SMALL: Array[String] = ["JAN", "FEB", "MAR", "APR", "MAY",
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	_update_clock()
 
 
 func _notification(what: int) -> void:
-	if not is_node_ready():
-		return
-	
-	if what == NOTIFICATION_TRANSLATION_CHANGED:
+	if is_node_ready() and what == NOTIFICATION_TRANSLATION_CHANGED:
 		_update_clock()
 
 

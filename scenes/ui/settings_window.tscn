@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://c1hn7w4b8h6lb"]
+
+[ext_resource type="Script" uid="uid://5b07l6kjpg1c" path="res://scenes/ui/settings_panel.gd" id="2_ir64f"]
+
+[node name="SettingsPanel" type="PanelContainer" unique_id=218181632]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ir64f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1067555302]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=395398820]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer" unique_id=68396154]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="LangLabel" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=92566632]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Language"
+vertical_alignment = 1
+
+[node name="LangOptionButton" type="OptionButton" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1189675043]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+
+[node name="BodyColorLabel" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=514053687]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Body"
+vertical_alignment = 1
+
+[node name="BodyColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1122292601]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+edit_alpha = false
+edit_intensity = false
+
+[node name="PatternLabel" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=2036433616]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pattern"
+vertical_alignment = 1
+
+[node name="PatternColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1369475087]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+edit_alpha = false
+edit_intensity = false
+
+[node name="Space" type="Control" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=815473961]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="PatternXSlider" type="HSlider" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1740919154]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_mode = 0
+max_value = 1.0
+step = 0.01
+ticks_on_borders = true
+
+[node name="Space2" type="Control" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1152349919]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PatternYSlider" type="HSlider" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=899440623]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_mode = 0
+max_value = 1.0
+step = 0.01
+
+[node name="VersionLabel" type="Label" parent="VBoxContainer" unique_id=1062023505]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "v 1.0.0"
+vertical_alignment = 1
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="item_selected" from="VBoxContainer/ScrollContainer/GridContainer/LangOptionButton" to="." method="_on_lang_option_button_item_selected"]
+[connection signal="color_changed" from="VBoxContainer/ScrollContainer/GridContainer/BodyColorPickerButton" to="." method="_on_body_color_picker_button_color_changed"]
+[connection signal="picker_created" from="VBoxContainer/ScrollContainer/GridContainer/BodyColorPickerButton" to="." method="_on_body_color_picker_button_picker_created"]
+[connection signal="color_changed" from="VBoxContainer/ScrollContainer/GridContainer/PatternColorPickerButton" to="." method="_on_pattern_color_picker_button_color_changed"]
+[connection signal="picker_created" from="VBoxContainer/ScrollContainer/GridContainer/PatternColorPickerButton" to="." method="_on_pattern_color_picker_button_picker_created"]
+[connection signal="value_changed" from="VBoxContainer/ScrollContainer/GridContainer/PatternXSlider" to="." method="_on_pattern_x_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/ScrollContainer/GridContainer/PatternYSlider" to="." method="_on_pattern_y_slider_value_changed"]

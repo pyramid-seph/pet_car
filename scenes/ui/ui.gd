@@ -1,6 +1,7 @@
 extends Control
 
 
+@onready var _settings_panel: PanelContainer = %SettingsPanel
 @onready var _handle_button: TextureButton = %HandleButton
 @onready var _press_any_button_label: Label = %PressAnyButtonLabel
 @onready var _turn_off_instructions: Label = %TurnOffIntructions
@@ -14,6 +15,14 @@ extends Control
 func _ready() -> void:
 	if Utils.can_run_js():
 		_handle_button.hide()
+
+
+func open_settings() -> void:
+	_settings_panel.show()
+
+
+func close_settings() -> void:
+	_settings_panel.hide()
 
 
 func update_wear(value: int, warn: bool) -> void:
@@ -55,3 +64,7 @@ func show_turn_off_instructions() -> void:
 func hide_turn_off_instructions() -> void:
 	_turn_off_instructions.hide()
 	_clock.show()
+
+
+func _on_open_settings_button_toggled(toggled_on: bool) -> void:
+	_settings_panel.visible = toggled_on

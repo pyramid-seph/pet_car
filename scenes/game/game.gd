@@ -8,10 +8,11 @@ extends Node
 
 
 func _ready() -> void:
+	Settings.saved.connect(_on_settings_saved)
+	Settings.language_changed.connect(_on_settings_language_changed)
+	
 	get_window().always_on_top = true
-	
-	TranslationServer.set_locale(OS.get_locale_language())
-	
+	_on_settings_saved()
 	_on_pet_wear_changed()
 	_on_pet_hunger_changed()
 	_on_pet_dirty_changed()
@@ -29,6 +30,14 @@ func get_pet() -> Pet:
 
 func get_state_machine() -> GameStateMachine:
 	return _state_machine
+
+
+func _on_settings_saved() -> void:
+	TranslationServer.set_locale(Settings.get_language())
+
+
+func _on_settings_language_changed() -> void:
+	TranslationServer.set_locale(Settings.get_language())
 
 
 func _on_pet_borned() -> void:
@@ -60,11 +69,15 @@ func _on_handle_button_button_down() -> void:
 
 func _on_power_off_button_long_pressed() -> void:
 	Log.d("\n*****\n")
-	Log.d("Game quit.")
+	Log.d("Quitting game...")
 	
 	if Utils.can_run_js():
+		# TODO Save settings before closing. Eval seems to prevent
+		# other calls inside this function to be called,
+		# even if they are placed before it.
 		JavaScriptBridge.eval("window.close();")
 	else:
+		Settings.save()
 		get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 		get_tree().quit()
 
