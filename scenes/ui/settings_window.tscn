@@ -75,7 +75,16 @@ edit_intensity = false
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="PatternXSlider" type="HSlider" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1740919154]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1213872249]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/HBoxContainer" unique_id=1099422709]
+layout_mode = 2
+text = "x"
+vertical_alignment = 1
+
+[node name="PatternXSlider" type="HSlider" parent="VBoxContainer/ScrollContainer/GridContainer/HBoxContainer" unique_id=1740919154]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
@@ -91,7 +100,16 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PatternYSlider" type="HSlider" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=899440623]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1856709377]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/HBoxContainer2" unique_id=1830031650]
+layout_mode = 2
+text = "y"
+vertical_alignment = 1
+
+[node name="PatternYSlider" type="HSlider" parent="VBoxContainer/ScrollContainer/GridContainer/HBoxContainer2" unique_id=899440623]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
@@ -114,5 +132,5 @@ vertical_alignment = 1
 [connection signal="picker_created" from="VBoxContainer/ScrollContainer/GridContainer/BodyColorPickerButton" to="." method="_on_body_color_picker_button_picker_created"]
 [connection signal="color_changed" from="VBoxContainer/ScrollContainer/GridContainer/PatternColorPickerButton" to="." method="_on_pattern_color_picker_button_color_changed"]
 [connection signal="picker_created" from="VBoxContainer/ScrollContainer/GridContainer/PatternColorPickerButton" to="." method="_on_pattern_color_picker_button_picker_created"]
-[connection signal="value_changed" from="VBoxContainer/ScrollContainer/GridContainer/PatternXSlider" to="." method="_on_pattern_x_slider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/ScrollContainer/GridContainer/PatternYSlider" to="." method="_on_pattern_y_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/ScrollContainer/GridContainer/HBoxContainer/PatternXSlider" to="." method="_on_pattern_x_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/ScrollContainer/GridContainer/HBoxContainer2/PatternYSlider" to="." method="_on_pattern_y_slider_value_changed"]
