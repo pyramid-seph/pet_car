@@ -12,10 +12,10 @@ Made for fun with [Godot 4.6](https://godotengine.org).
 # Licenses
 
 * All code outside the addons folder is under the MIT License.
-* TODO Manager addon is under the MIT Licencse.
-* Sound Manager addon is under the MIT Licencse.
+* [TODO Manager](https://github.com/OrigamiDev-Pete/TODO_Manager) addon is under the MIT Licencse.
+* [Sound Manager](https://github.com/nathanhoad/godot_sound_manager) addon is under the MIT Licencse.
 * The dot matrix shader is based on 
-[gameboy-dot-matrix-filter-godot](https://github.com/tpnk-dev/gameboy-dot-matrix-filter-godot, 
+[gameboy-dot-matrix-filter-godot](https://github.com/tpnk-dev/gameboy-dot-matrix-filter-godot), 
 which is under the MIT License.
 * All images outside the addons folder are under the Creative Commons Zero, CC0 license.
 * All sounds outside the addons folder are under the Creative Commons Zero, CC0 license.
