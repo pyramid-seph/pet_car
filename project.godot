@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PetCar"
-config/version="1.0.1"
+config/version="1.1.0"
 run/main_scene="res://scenes/game/game.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0.60784316, 0.7372549, 0.05882353, 1)

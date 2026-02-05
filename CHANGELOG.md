@@ -1,3 +1,9 @@
+# v1.1.0
+===============
+* Allow changing the directional light angle.
+* Changed some setting names.
+
+
 # v1.0.1
 ===============
 * Fixed some localization errors.
