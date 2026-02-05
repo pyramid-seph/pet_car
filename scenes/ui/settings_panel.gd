@@ -7,6 +7,7 @@ extends PanelContainer
 @onready var _pattern_x_slider: HSlider = %PatternXSlider
 @onready var _pattern_y_slider: HSlider = %PatternYSlider
 @onready var _version_label: Label = %VersionLabel
+@onready var _light_slider: HSlider = %LightSlider
 
 
 func _ready() -> void:
@@ -32,6 +33,7 @@ func _setup_values() -> void:
 	_pattern_color_picker_button.color = Settings.get_pattern_color()
 	_pattern_x_slider.value = Settings.get_pattern_offset().x
 	_pattern_y_slider.value = Settings.get_pattern_offset().y
+	_light_slider.value = Settings.get_light_angle()
 
 
 func _customize_color_picker(picker_button: ColorPickerButton) -> void:
@@ -70,6 +72,10 @@ func _on_pattern_x_slider_value_changed(new_offset_x: float) -> void:
 
 func _on_pattern_y_slider_value_changed(new_offset_y: float) -> void:
 	Settings.set_pattern_offset(Settings.get_pattern_offset().x, new_offset_y)
+
+
+func _on_light_slider_value_changed(value: int) -> void:
+	Settings.set_light_angle(value)
 
 
 func _on_visibility_changed() -> void:

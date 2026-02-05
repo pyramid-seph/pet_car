@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://22vbjgra2o65" path="res://scenes/ai/state_machines/game/started.gd" id="4_e1j6l"]
 [ext_resource type="Script" uid="uid://cftqcut2hqpgh" path="res://scenes/ai/state_machines/game/game_over.gd" id="5_pl11u"]
 [ext_resource type="BitMap" uid="uid://d4g8udxm7d0kj" path="res://art/ui/buttons/btn_default_click_mask.png" id="5_trtic"]
+[ext_resource type="Script" uid="uid://bxf88r1madhfe" path="res://scenes/game/world_light.gd" id="6_2vph8"]
 [ext_resource type="Theme" uid="uid://b5y132sd0gcpk" path="res://art/themes/ui_theme.tres" id="6_fydea"]
 [ext_resource type="Texture2D" uid="uid://v6ehtdfi7re2" path="res://art/ui/icons/ic_power_off.png" id="6_ir15t"]
 [ext_resource type="Script" uid="uid://c7jye2cfr8r3e" path="res://scenes/ui/long_press_texture_button.gd" id="7_ir15t"]
@@ -105,6 +106,7 @@ metadata/_edit_lock_ = true
 rotation = -2.3561945
 height = 0.2
 max_distance = 0.0
+script = ExtResource("6_2vph8")
 metadata/_edit_lock_ = true
 
 [node name="Ui" type="Control" parent="." unique_id=337055363]

@@ -119,6 +119,19 @@ focus_mode = 0
 max_value = 1.0
 step = 0.01
 
+[node name="LightLabel" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1894204030]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Light Angle"
+vertical_alignment = 1
+
+[node name="LightSlider" type="HSlider" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1490342379]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+max_value = 360.0
+
 [node name="VersionLabel" type="Label" parent="VBoxContainer" unique_id=1062023505]
 unique_name_in_owner = true
 layout_mode = 2
@@ -134,3 +147,4 @@ vertical_alignment = 1
 [connection signal="picker_created" from="VBoxContainer/ScrollContainer/GridContainer/PatternColorPickerButton" to="." method="_on_pattern_color_picker_button_picker_created"]
 [connection signal="value_changed" from="VBoxContainer/ScrollContainer/GridContainer/HBoxContainer/PatternXSlider" to="." method="_on_pattern_x_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/ScrollContainer/GridContainer/HBoxContainer2/PatternYSlider" to="." method="_on_pattern_y_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/ScrollContainer/GridContainer/LightSlider" to="." method="_on_light_slider_value_changed"]
