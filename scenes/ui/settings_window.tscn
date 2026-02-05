@@ -59,7 +59,7 @@ edit_intensity = false
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Pattern"
+text = "Spots"
 vertical_alignment = 1
 
 [node name="PatternColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/ScrollContainer/GridContainer" unique_id=1369475087]
