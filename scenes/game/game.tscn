@@ -32,7 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://db6un67jh7wdi" path="res://art/ui/icons/ic_state_hunger.png" id="21_h48ew"]
 [ext_resource type="Texture2D" uid="uid://bdo2r4ryxoaxc" path="res://art/ui/icons/ic_state_dirt.png" id="22_fty5b"]
 [ext_resource type="Texture2D" uid="uid://p8pv3owa7oxh" path="res://art/ui/buttons/btn_settings_normal.png" id="29_firvq"]
-[ext_resource type="PackedScene" uid="uid://c1hn7w4b8h6lb" path="res://scenes/ui/settings_window.tscn" id="29_l2dhg"]
+[ext_resource type="PackedScene" uid="uid://c1hn7w4b8h6lb" path="res://scenes/ui/settings_panel.tscn" id="29_l2dhg"]
 [ext_resource type="Texture2D" uid="uid://chvxesvbfjmx1" path="res://art/ui/buttons/btn_settings_pressed.png" id="31_af6p5"]
 [ext_resource type="Texture2D" uid="uid://dnd2ii5bqpme8" path="res://art/ui/buttons/btn_settings_hover.png" id="32_mumkj"]
 
@@ -156,7 +156,7 @@ theme_override_constants/separation = 16
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 4
-focus_mode = 1
+focus_mode = 0
 texture_normal = ExtResource("11_wdnak")
 texture_pressed = ExtResource("12_h48ew")
 texture_hover = ExtResource("13_fty5b")
@@ -332,7 +332,7 @@ alignment = 1
 [node name="RepairButton" type="TextureButton" parent="Ui/HBoxContainer/CenterContainer/Device/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1145578718]
 unique_name_in_owner = true
 layout_mode = 2
-focus_mode = 1
+focus_mode = 0
 action_mode = 0
 texture_normal = ExtResource("11_wdnak")
 texture_pressed = ExtResource("12_h48ew")
@@ -342,7 +342,7 @@ texture_click_mask = ExtResource("5_trtic")
 [node name="FeedButton" type="TextureButton" parent="Ui/HBoxContainer/CenterContainer/Device/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1309574642]
 unique_name_in_owner = true
 layout_mode = 2
-focus_mode = 1
+focus_mode = 0
 action_mode = 0
 texture_normal = ExtResource("11_wdnak")
 texture_pressed = ExtResource("12_h48ew")
@@ -352,7 +352,7 @@ texture_click_mask = ExtResource("5_trtic")
 [node name="CleanButton" type="TextureButton" parent="Ui/HBoxContainer/CenterContainer/Device/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1917791298]
 unique_name_in_owner = true
 layout_mode = 2
-focus_mode = 1
+focus_mode = 0
 action_mode = 0
 texture_normal = ExtResource("11_wdnak")
 texture_pressed = ExtResource("12_h48ew")
@@ -365,6 +365,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 tooltip_text = "Settings"
+focus_mode = 0
 toggle_mode = true
 texture_normal = ExtResource("29_firvq")
 texture_pressed = ExtResource("31_af6p5")
@@ -374,7 +375,7 @@ texture_hover = ExtResource("32_mumkj")
 unique_name_in_owner = true
 process_mode = 3
 layout_mode = 2
-focus_mode = 1
+focus_mode = 0
 mouse_default_cursor_shape = 6
 texture_click_mask = ExtResource("14_ca42v")
 metadata/_edit_lock_ = true
