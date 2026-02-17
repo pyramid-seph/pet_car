@@ -6,16 +6,13 @@ func enter(subject: Game) -> void:
 	subject.get_pet().be_born()
 
 
-func on_repair_button_pressed(subject: Game) -> void:
-	subject.get_pet().repair()
-
-
-func on_feed_button_pressed(subject: Game) -> void:
-	subject.get_pet().feed()
-
-
-func on_clean_button_pressed(subject: Game) -> void:
-	subject.get_pet().clean()
+func input(subject: Game, event: InputEvent) -> void:
+	if event.is_action_pressed("clean"):
+		subject.get_pet().clean()
+	if event.is_action_pressed("feed"):
+		subject.get_pet().feed()
+	if event.is_action_pressed("repair"):
+		subject.get_pet().repair()
 
 
 func on_pet_died(subject: Game) -> void:
@@ -24,18 +21,3 @@ func on_pet_died(subject: Game) -> void:
 
 func on_pet_borned(subject: Game) -> void:
 	subject.get_ui().show_state_bars()
-
-
-func on_pet_wear_changed(subject: Game) -> void:
-	subject.get_ui().update_wear(subject.get_pet().get_wear(),
-			subject.get_pet().is_worn_out())
-
-
-func on_pet_hunger_changed(subject: Game) -> void:
-	subject.get_ui().update_hunger(subject.get_pet().get_hunger(),
-			subject.get_pet().is_hungry())
-
-
-func on_pet_dirty_changed(subject: Game) -> void:
-	subject.get_ui().update_dirt(subject.get_pet().get_dirt(),
-			subject.get_pet().is_dirty())

@@ -47,37 +47,17 @@ func exit(subject: Game) -> void:
 	subject.get_ui().hide_press_any_button_indicator()
 
 
+func input(subject, event: InputEvent) -> void:
+	if event.is_action_pressed("clean") or \
+			event.is_action_pressed("feed") or \
+			event.is_action_pressed("repair"):
+				_start_game(subject)
+
+
 func _start_game(subject: Game) -> void:
 	if _start_game_delay_timer.is_stopped():
 		subject.get_ui().hide_press_any_button_indicator()
 		subject.get_state_machine().change_state("Started")
-
-
-func on_repair_button_pressed(subject: Game) -> void:
-	_start_game(subject)
-
-
-func on_feed_button_pressed(subject: Game) -> void:
-	_start_game(subject)
-
-
-func on_clean_button_pressed(subject: Game) -> void:
-	_start_game(subject)
-
-
-func on_pet_wear_changed(subject: Game) -> void:
-	subject.get_ui().update_wear(subject.get_pet().get_wear(),
-			subject.get_pet().is_worn_out())
-
-
-func on_pet_hunger_changed(subject: Game) -> void:
-	subject.get_ui().update_hunger(subject.get_pet().get_hunger(),
-			subject.get_pet().is_hungry())
-
-
-func on_pet_dirty_changed(subject: Game) -> void:
-	subject.get_ui().update_dirt(subject.get_pet().get_dirt(),
-			subject.get_pet().is_dirty())
 
 
 func _on_start_game_delay_timer_timeout(subject: Game) -> void:

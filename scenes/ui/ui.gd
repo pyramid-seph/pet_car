@@ -1,8 +1,7 @@
+class_name GameUi
 extends Control
 
 
-@onready var _settings_panel: PanelContainer = %SettingsPanel
-@onready var _handle_button: TextureButton = %HandleButton
 @onready var _press_any_button_label: Label = %PressAnyButtonLabel
 @onready var _turn_off_instructions: Label = %TurnOffIntructions
 @onready var _clock: Label = %Clock
@@ -13,17 +12,9 @@ extends Control
 
 
 func _ready() -> void:
-	_hide_turn_off_instructions()
-	if Utils.can_run_js():
-		_handle_button.hide()
-
-
-func open_settings() -> void:
-	_settings_panel.show()
-
-
-func close_settings() -> void:
-	_settings_panel.hide()
+	hide_turn_off_instructions()
+	#if Utils.can_run_js():
+		#_handle_button.hide()
 
 
 func update_wear(value: int, warn: bool) -> void:
@@ -57,27 +48,11 @@ func hide_press_any_button_indicator() -> void:
 	_press_any_button_label.hide()
 
 
-func _show_turn_off_instructions() -> void:
+func show_turn_off_instructions() -> void:
 	_turn_off_instructions.show()
 	_clock.hide()
 
 
-func _hide_turn_off_instructions() -> void:
+func hide_turn_off_instructions() -> void:
 	_turn_off_instructions.hide()
 	_clock.show()
-
-
-func _on_power_off_button_button_up() -> void:
-	_hide_turn_off_instructions()
-
-
-func _on_power_off_button_button_down() -> void:
-	_show_turn_off_instructions()
-
-
-func _on_open_settings_button_toggled(toggled_on: bool) -> void:
-	_settings_panel.visible = toggled_on
-
-
-func _on_handle_button_button_down() -> void:
-	get_window().start_drag()

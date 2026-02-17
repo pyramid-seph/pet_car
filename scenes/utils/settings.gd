@@ -22,6 +22,10 @@ const _KEY_LIGHT_ANGLE: String = "light_angle"
 var config: ConfigFile = ConfigFile.new()
 
 
+func _init() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+
 func _ready() -> void:
 	_load_settings()
 	if _get_save_file_version() < SAVE_FILE_VERSION:

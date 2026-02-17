@@ -33,6 +33,11 @@ func _ready() -> void:
 		start()
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if _current_state:
+		_current_state.input(_subject, event)
+
+
 func set_initial_state(state_name: String) -> void:
 	_initial_state = get_node(state_name) as BaseState
 
