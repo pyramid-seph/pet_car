@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://ddghe3j23ey1j"]
+
+[ext_resource type="Theme" uid="uid://b5y132sd0gcpk" path="res://art/themes/ui_theme.tres" id="1_d7k0d"]
+[ext_resource type="Script" uid="uid://c3na4vtplkx0k" path="res://scenes/game/main_screen_ui.gd" id="2_plvjw"]
+[ext_resource type="Texture2D" uid="uid://p8pv3owa7oxh" path="res://art/ui/buttons/btn_settings_normal.png" id="3_jj78g"]
+[ext_resource type="Texture2D" uid="uid://chvxesvbfjmx1" path="res://art/ui/buttons/btn_settings_pressed.png" id="4_awlbx"]
+[ext_resource type="Texture2D" uid="uid://dnd2ii5bqpme8" path="res://art/ui/buttons/btn_settings_hover.png" id="5_clq1p"]
+[ext_resource type="PackedScene" uid="uid://c1hn7w4b8h6lb" path="res://scenes/ui/settings_panel.tscn" id="6_2y0df"]
+
+[node name="MainScreenUi" type="Control" unique_id=1737461162]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d7k0d")
+script = ExtResource("2_plvjw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1164183621]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="EmptySpace" type="Control" parent="HBoxContainer" unique_id=1499861670]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/EmptySpace" unique_id=1708067349]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_right = 16
+
+[node name="OpenSettingsButton" type="TextureButton" parent="HBoxContainer/EmptySpace/MarginContainer" unique_id=665556173]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+tooltip_text = "Settings"
+focus_mode = 0
+toggle_mode = true
+texture_normal = ExtResource("3_jj78g")
+texture_pressed = ExtResource("4_awlbx")
+texture_hover = ExtResource("5_clq1p")
+
+[node name="SettingsPanel" parent="HBoxContainer" unique_id=218181632 instance=ExtResource("6_2y0df")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="item_rect_changed" from="HBoxContainer/EmptySpace" to="." method="_on_empty_space_item_rect_changed"]
+[connection signal="toggled" from="HBoxContainer/EmptySpace/MarginContainer/OpenSettingsButton" to="." method="_on_open_settings_button_toggled"]

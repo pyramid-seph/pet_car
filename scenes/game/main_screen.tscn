@@ -1,67 +1,12 @@
 [gd_scene format=3 uid="uid://bpdunyuobhtju"]
 
+[ext_resource type="Script" uid="uid://crm2dr0ok7te5" path="res://scenes/game/main_screen.gd" id="1_ca666"]
 [ext_resource type="Script" uid="uid://bxf88r1madhfe" path="res://scenes/game/world_light.gd" id="1_ves8o"]
-[ext_resource type="Shader" uid="uid://ceqv7f6rmphjw" path="res://shaders/device_color_swap.gdshader" id="2_ca666"]
-[ext_resource type="Texture2D" uid="uid://vdhh0u7jp7p0" path="res://art/textures/texture_spots.png" id="3_kwklw"]
-[ext_resource type="Texture2D" uid="uid://bkjn3iodrbcjn" path="res://art/textures/texture_body.png" id="4_dguvk"]
-[ext_resource type="Texture2D" uid="uid://6icjua6vlhu5" path="res://art/textures/texture_body_n.png" id="5_yi065"]
-[ext_resource type="Texture2D" uid="uid://dgdc4ynrsia4q" path="res://art/textures/texture_body_s.png" id="6_rrwaf"]
-[ext_resource type="Script" uid="uid://csdxdfho17url" path="res://scenes/game/device.gd" id="7_hnlwn"]
-[ext_resource type="Texture2D" uid="uid://dl0ei7c0iesis" path="res://art/ui/buttons/canvas_texture_btn_default_normal.tres" id="8_rk6bq"]
-[ext_resource type="Texture2D" uid="uid://bhho8bsotumew" path="res://art/ui/buttons/canvas_texture_btn_default_pressed.tres" id="9_no0t3"]
-[ext_resource type="BitMap" uid="uid://d4g8udxm7d0kj" path="res://art/ui/buttons/btn_default_click_mask.png" id="10_rt8ce"]
-[ext_resource type="Script" uid="uid://mctw5x0qj1jm" path="res://scenes/ui/hoverable_touch_screen_button.gd" id="11_cykt8"]
-[ext_resource type="Texture2D" uid="uid://kr21wh1pru6v" path="res://art/ui/buttons/canvas_texture_btn_default_hover.tres" id="12_fxofv"]
-[ext_resource type="Texture2D" uid="uid://v6ehtdfi7re2" path="res://art/ui/icons/ic_power_off.png" id="13_sp3r0"]
-[ext_resource type="Texture2D" uid="uid://cew3lyssde0ne" path="res://art/textures/texture_screen.png" id="14_wrxfu"]
-[ext_resource type="Shader" uid="uid://bsch3t00e052f" path="res://shaders/dot_matrix/dot_matrix.gdshader" id="15_ifcsg"]
-[ext_resource type="PackedScene" uid="uid://p3pl8twg20sy" path="res://scenes/game/game.tscn" id="16_ej11y"]
-[ext_resource type="Theme" uid="uid://b5y132sd0gcpk" path="res://art/themes/ui_theme.tres" id="17_pn8f7"]
-[ext_resource type="Script" uid="uid://c3na4vtplkx0k" path="res://scenes/game/main_screen_ui.gd" id="18_fv5a4"]
-[ext_resource type="Texture2D" uid="uid://p8pv3owa7oxh" path="res://art/ui/buttons/btn_settings_normal.png" id="19_pgtgo"]
-[ext_resource type="Texture2D" uid="uid://chvxesvbfjmx1" path="res://art/ui/buttons/btn_settings_pressed.png" id="20_texfy"]
-[ext_resource type="Texture2D" uid="uid://dnd2ii5bqpme8" path="res://art/ui/buttons/btn_settings_hover.png" id="21_yjfbq"]
-[ext_resource type="PackedScene" uid="uid://c1hn7w4b8h6lb" path="res://scenes/ui/settings_panel.tscn" id="22_ob5or"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j3eoi"]
-shader = ExtResource("2_ca666")
-shader_parameter/spots_texture = ExtResource("3_kwklw")
-shader_parameter/spots_texture_offset_x = 0.0
-shader_parameter/spots_texture_offset_y = 0.0
-shader_parameter/body_color = Color(0.6431373, 0, 0, 1)
-shader_parameter/spots_color = Color(0.028652646, 0.26916346, 0.46253967, 1)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_db41x"]
-diffuse_texture = ExtResource("4_dguvk")
-normal_texture = ExtResource("5_yi065")
-specular_texture = ExtResource("6_rrwaf")
-specular_shininess = 0.55
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_nfekj"]
-radius = 24.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_37hre"]
-content_margin_left = 20.0
-content_margin_top = 20.0
-content_margin_right = 20.0
-content_margin_bottom = 20.0
-texture = ExtResource("14_wrxfu")
-texture_margin_left = 24.0
-texture_margin_top = 24.0
-texture_margin_right = 24.0
-texture_margin_bottom = 24.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ppa6c"]
-shader = ExtResource("15_ifcsg")
-shader_parameter/dot_size = 2.0
-shader_parameter/border_size = 0.0
-shader_parameter/enable_dot_matrix = true
-shader_parameter/glare_amount = 0.1
-shader_parameter/brightness = 0.4
-shader_parameter/pixel_shadow_amount = 0.90000004275
-shader_parameter/lcd_dark_square_transparency = 0.03
+[ext_resource type="PackedScene" uid="uid://cdfa51jgk73ic" path="res://scenes/game/virtual_device.tscn" id="3_wlfgq"]
+[ext_resource type="PackedScene" uid="uid://ddghe3j23ey1j" path="res://scenes/ui/main_screen_ui.tscn" id="4_1rkkt"]
 
 [node name="MainScreen" type="Node" unique_id=738614417]
+script = ExtResource("1_ca666")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1851596977]
 color = Color(0.53224236, 0.53224236, 0.53224236, 1)
@@ -74,120 +19,11 @@ max_distance = 0.0
 script = ExtResource("1_ves8o")
 metadata/_edit_lock_ = true
 
-[node name="Device" type="Sprite2D" parent="." unique_id=758921926]
-material = SubResource("ShaderMaterial_j3eoi")
-texture = SubResource("CanvasTexture_db41x")
-centered = false
-script = ExtResource("7_hnlwn")
-
-[node name="TurnOffTouchScreenButton" type="TouchScreenButton" parent="Device" unique_id=1586473980]
-position = Vector2(296, 52)
-texture_normal = ExtResource("8_rk6bq")
-texture_pressed = ExtResource("9_no0t3")
-bitmask = ExtResource("10_rt8ce")
-shape = SubResource("CircleShape2D_nfekj")
-action = "turn_off"
-script = ExtResource("11_cykt8")
-texture_hover = ExtResource("12_fxofv")
-
-[node name="Sprite2D" type="Sprite2D" parent="Device/TurnOffTouchScreenButton" unique_id=1675033157]
-texture = ExtResource("13_sp3r0")
-centered = false
-
-[node name="RepairTouchScreenButton" type="TouchScreenButton" parent="Device" unique_id=274756002]
-position = Vector2(168, 540)
-texture_normal = ExtResource("8_rk6bq")
-texture_pressed = ExtResource("9_no0t3")
-bitmask = ExtResource("10_rt8ce")
-shape = SubResource("CircleShape2D_nfekj")
-action = "repair"
-
-[node name="FeedTouchScreenButton" type="TouchScreenButton" parent="Device" unique_id=1318081343]
-position = Vector2(296, 540)
-texture_normal = ExtResource("8_rk6bq")
-texture_pressed = ExtResource("9_no0t3")
-bitmask = ExtResource("10_rt8ce")
-shape = SubResource("CircleShape2D_nfekj")
-action = "feed"
-
-[node name="CleanTouchScreenButton" type="TouchScreenButton" parent="Device" unique_id=17485456]
-position = Vector2(416, 541)
-texture_normal = ExtResource("8_rk6bq")
-texture_pressed = ExtResource("9_no0t3")
-bitmask = ExtResource("10_rt8ce")
-shape = SubResource("CircleShape2D_nfekj")
-action = "clean"
-
-[node name="Screen" type="PanelContainer" parent="Device" unique_id=1098927954]
-clip_contents = true
-custom_minimum_size = Vector2(400, 400)
-offset_left = 116.0
-offset_top = 116.0
-offset_right = 524.0
-offset_bottom = 524.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_37hre")
-
-[node name="ShaderSubViewportContainer" type="SubViewportContainer" parent="Device/Screen" unique_id=1705878122]
-material = SubResource("ShaderMaterial_ppa6c")
-layout_mode = 2
-mouse_filter = 2
-
-[node name="SubViewport" type="SubViewport" parent="Device/Screen/ShaderSubViewportContainer" unique_id=1512023179]
-disable_3d = true
-handle_input_locally = false
-canvas_item_default_texture_filter = 0
-size = Vector2i(368, 368)
-render_target_update_mode = 4
-
-[node name="Game" parent="Device/Screen/ShaderSubViewportContainer/SubViewport" unique_id=620677495 instance=ExtResource("16_ej11y")]
-
-[node name="Ui" type="Control" parent="." unique_id=1507533736]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("17_pn8f7")
-script = ExtResource("18_fv5a4")
-
-[node name="OpenSettingsButton" type="TextureButton" parent="Ui" unique_id=2018830525]
-process_mode = 3
-layout_mode = 0
-offset_right = 48.0
-offset_bottom = 48.0
-size_flags_horizontal = 8
-size_flags_vertical = 0
-tooltip_text = "Settings"
-focus_mode = 0
-toggle_mode = true
-texture_normal = ExtResource("19_pgtgo")
-texture_pressed = ExtResource("20_texfy")
-texture_hover = ExtResource("21_yjfbq")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Ui" unique_id=2019446516]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/separation = 16
-
-[node name="EmptySpace" type="Control" parent="Ui/HBoxContainer" unique_id=1765730918]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-mouse_filter = 2
-
-[node name="SettingsPanel" parent="Ui/HBoxContainer" unique_id=218181632 instance=ExtResource("22_ob5or")]
+[node name="VirtualDevice" parent="." unique_id=1403033443 instance=ExtResource("3_wlfgq")]
 unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
+metadata/_edit_lock_ = true
 
-[connection signal="toggled" from="Ui/OpenSettingsButton" to="Ui" method="_on_open_settings_button_toggled"]
+[node name="MainScreenUi" parent="." unique_id=1737461162 instance=ExtResource("4_1rkkt")]
+metadata/_edit_lock_ = true
+
+[connection signal="settings_panel_opened" from="MainScreenUi" to="." method="_on_main_screen_ui_settings_panel_opened"]

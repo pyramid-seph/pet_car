@@ -7,7 +7,7 @@ var _turn_off_long_press := LongPressAction.new(&"turn_off", 1.5,
 
 @onready var _pet: Pet = %Pet
 @onready var _state_machine: GameStateMachine = %GameStateMachine
-@onready var _ui: GameUi = %Ui
+@onready var _ui: GameUi = %GameUi
 
 
 func _ready() -> void:
@@ -36,7 +36,7 @@ func get_pet() -> Pet:
 
 
 func _on_viewport_size_changed() -> void:
-	var center_pos: Vector2 = get_viewport().get_visible_rect().size / 2.0
+	var center_pos: Vector2 = get_viewport().get_visible_rect().get_center()
 	_pet.position = center_pos
 
 

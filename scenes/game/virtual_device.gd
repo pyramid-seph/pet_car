@@ -8,14 +8,6 @@ func _ready() -> void:
 	Settings.pattern_offset_changed.connect(_on_pattern_offset_changed)
 
 
-# TODO This steals the input of the device buttons
-#func _unhandled_input(event: InputEvent) -> void:
-	#print("_input_event")
-	#if event is InputEventMouseButton and event.is_pressed():
-		#if event.button_index == MOUSE_BUTTON_LEFT:
-			#get_window().start_drag()
-
-
 func _apply_customizations() -> void:
 	_on_body_color_changed()
 	_on_pattern_color_changed()
@@ -36,7 +28,6 @@ func _on_pattern_color_changed() -> void:
 		return
 	
 	shader.set_shader_parameter("spots_color", Settings.get_pattern_color())
-
 
 
 func _on_pattern_offset_changed() -> void:

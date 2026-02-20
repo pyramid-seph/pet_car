@@ -13,8 +13,6 @@ extends Control
 
 func _ready() -> void:
 	hide_turn_off_instructions()
-	#if Utils.can_run_js():
-		#_handle_button.hide()
 
 
 func update_wear(value: int, warn: bool) -> void:
