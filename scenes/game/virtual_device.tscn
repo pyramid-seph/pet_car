@@ -9,12 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://dl0ei7c0iesis" path="res://art/ui/buttons/canvas_texture_btn_default_normal.tres" id="7_o2ufa"]
 [ext_resource type="Texture2D" uid="uid://bhho8bsotumew" path="res://art/ui/buttons/canvas_texture_btn_default_pressed.tres" id="8_vvq3s"]
 [ext_resource type="BitMap" uid="uid://d4g8udxm7d0kj" path="res://art/ui/buttons/btn_default_click_mask.png" id="9_2oo70"]
-[ext_resource type="Script" uid="uid://mctw5x0qj1jm" path="res://scenes/ui/hoverable_touch_screen_button.gd" id="10_rydsa"]
 [ext_resource type="Texture2D" uid="uid://kr21wh1pru6v" path="res://art/ui/buttons/canvas_texture_btn_default_hover.tres" id="11_xpc3s"]
 [ext_resource type="Texture2D" uid="uid://v6ehtdfi7re2" path="res://art/ui/icons/ic_power_off.png" id="12_86c28"]
 [ext_resource type="Texture2D" uid="uid://cew3lyssde0ne" path="res://art/textures/texture_screen.png" id="13_ephha"]
 [ext_resource type="Shader" uid="uid://bsch3t00e052f" path="res://shaders/dot_matrix/dot_matrix.gdshader" id="14_pw657"]
 [ext_resource type="PackedScene" uid="uid://p3pl8twg20sy" path="res://scenes/game/game.tscn" id="15_kwwqa"]
+[ext_resource type="Script" uid="uid://b8kcpdfyby187" path="res://scenes/ui/EventTextureButton.gd" id="16_hemsx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j3eoi"]
 shader = ExtResource("1_lqb14")
@@ -29,9 +29,6 @@ diffuse_texture = ExtResource("3_h5anp")
 normal_texture = ExtResource("4_sx6h6")
 specular_texture = ExtResource("5_t16bn")
 specular_shininess = 0.55
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_nfekj"]
-radius = 24.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_37hre"]
 content_margin_left = 20.0
@@ -60,43 +57,83 @@ texture = SubResource("CanvasTexture_db41x")
 centered = false
 script = ExtResource("6_sfqbm")
 
-[node name="TurnOffTouchScreenButton" type="TouchScreenButton" parent="." unique_id=1990572693]
-position = Vector2(296, 52)
+[node name="Buttons" type="Control" parent="." unique_id=2147133098]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TurnOffEventTextureButton" type="TextureButton" parent="Buttons" unique_id=1766521592]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 52.0
+offset_right = 344.0
+offset_bottom = 100.0
+focus_mode = 0
 texture_normal = ExtResource("7_o2ufa")
 texture_pressed = ExtResource("8_vvq3s")
-bitmask = ExtResource("9_2oo70")
-shape = SubResource("CircleShape2D_nfekj")
-action = "turn_off"
-script = ExtResource("10_rydsa")
 texture_hover = ExtResource("11_xpc3s")
+texture_click_mask = ExtResource("9_2oo70")
+script = ExtResource("16_hemsx")
+action = &"turn_off"
+metadata/_custom_type_script = "uid://b8kcpdfyby187"
 
-[node name="Sprite2D" type="Sprite2D" parent="TurnOffTouchScreenButton" unique_id=348382257]
+[node name="TextureRect" type="TextureRect" parent="Buttons/TurnOffEventTextureButton" unique_id=124133383]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("12_86c28")
-centered = false
 
-[node name="RepairTouchScreenButton" type="TouchScreenButton" parent="." unique_id=1849234600]
-position = Vector2(168, 540)
+[node name="RepairEventTextureButton" type="TextureButton" parent="Buttons" unique_id=1128473885]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 540.0
+offset_right = 216.0
+offset_bottom = 588.0
+focus_mode = 0
 texture_normal = ExtResource("7_o2ufa")
 texture_pressed = ExtResource("8_vvq3s")
-bitmask = ExtResource("9_2oo70")
-shape = SubResource("CircleShape2D_nfekj")
-action = "repair"
+texture_hover = ExtResource("11_xpc3s")
+texture_click_mask = ExtResource("9_2oo70")
+script = ExtResource("16_hemsx")
+action = &"repair"
+metadata/_custom_type_script = "uid://b8kcpdfyby187"
 
-[node name="FeedTouchScreenButton" type="TouchScreenButton" parent="." unique_id=2006466793]
-position = Vector2(296, 540)
+[node name="FeedEventTextureButton" type="TextureButton" parent="Buttons" unique_id=1899291699]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 540.0
+offset_right = 344.0
+offset_bottom = 588.0
+focus_mode = 0
 texture_normal = ExtResource("7_o2ufa")
 texture_pressed = ExtResource("8_vvq3s")
-bitmask = ExtResource("9_2oo70")
-shape = SubResource("CircleShape2D_nfekj")
-action = "feed"
+texture_hover = ExtResource("11_xpc3s")
+texture_click_mask = ExtResource("9_2oo70")
+script = ExtResource("16_hemsx")
+action = &"feed"
+metadata/_custom_type_script = "uid://b8kcpdfyby187"
 
-[node name="CleanTouchScreenButton" type="TouchScreenButton" parent="." unique_id=1818127438]
-position = Vector2(416, 541)
+[node name="CleanEventTextureButton" type="TextureButton" parent="Buttons" unique_id=697019603]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 540.0
+offset_right = 464.0
+offset_bottom = 588.0
+focus_mode = 0
 texture_normal = ExtResource("7_o2ufa")
 texture_pressed = ExtResource("8_vvq3s")
-bitmask = ExtResource("9_2oo70")
-shape = SubResource("CircleShape2D_nfekj")
-action = "clean"
+texture_hover = ExtResource("11_xpc3s")
+texture_click_mask = ExtResource("9_2oo70")
+script = ExtResource("16_hemsx")
+action = &"clean"
+metadata/_custom_type_script = "uid://b8kcpdfyby187"
 
 [node name="Screen" type="PanelContainer" parent="." unique_id=2085003094]
 clip_contents = true
