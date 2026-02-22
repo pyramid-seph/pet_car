@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bpdunyuobhtju"]
+
+[ext_resource type="Script" uid="uid://crm2dr0ok7te5" path="res://scenes/game/main_screen.gd" id="1_ca666"]
+[ext_resource type="Script" uid="uid://bxf88r1madhfe" path="res://scenes/game/world_light.gd" id="1_ves8o"]
+[ext_resource type="PackedScene" uid="uid://cdfa51jgk73ic" path="res://scenes/game/virtual_device.tscn" id="3_wlfgq"]
+[ext_resource type="PackedScene" uid="uid://ddghe3j23ey1j" path="res://scenes/ui/main_screen_ui.tscn" id="4_1rkkt"]
+
+[node name="MainScreen" type="Node" unique_id=738614417]
+script = ExtResource("1_ca666")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1851596977]
+color = Color(0.53224236, 0.53224236, 0.53224236, 1)
+metadata/_edit_lock_ = true
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=465150330]
+rotation = -2.3561945
+height = 0.2
+max_distance = 0.0
+script = ExtResource("1_ves8o")
+metadata/_edit_lock_ = true
+
+[node name="VirtualDevice" parent="." unique_id=1403033443 instance=ExtResource("3_wlfgq")]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
+
+[node name="MainScreenUi" parent="." unique_id=1737461162 instance=ExtResource("4_1rkkt")]
+metadata/_edit_lock_ = true
+
+[connection signal="settings_panel_opened" from="MainScreenUi" to="." method="_on_main_screen_ui_settings_panel_opened"]

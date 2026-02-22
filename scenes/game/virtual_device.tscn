@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://cdfa51jgk73ic"]
+
+[ext_resource type="Shader" uid="uid://ceqv7f6rmphjw" path="res://shaders/device_color_swap.gdshader" id="1_lqb14"]
+[ext_resource type="Texture2D" uid="uid://vdhh0u7jp7p0" path="res://art/textures/texture_spots.png" id="2_6k6h1"]
+[ext_resource type="Texture2D" uid="uid://bkjn3iodrbcjn" path="res://art/textures/texture_body.png" id="3_h5anp"]
+[ext_resource type="Texture2D" uid="uid://6icjua6vlhu5" path="res://art/textures/texture_body_n.png" id="4_sx6h6"]
+[ext_resource type="Texture2D" uid="uid://dgdc4ynrsia4q" path="res://art/textures/texture_body_s.png" id="5_t16bn"]
+[ext_resource type="Script" uid="uid://csdxdfho17url" path="res://scenes/game/virtual_device.gd" id="6_sfqbm"]
+[ext_resource type="Texture2D" uid="uid://dl0ei7c0iesis" path="res://art/ui/buttons/canvas_texture_btn_default_normal.tres" id="7_o2ufa"]
+[ext_resource type="Texture2D" uid="uid://bhho8bsotumew" path="res://art/ui/buttons/canvas_texture_btn_default_pressed.tres" id="8_vvq3s"]
+[ext_resource type="BitMap" uid="uid://d4g8udxm7d0kj" path="res://art/ui/buttons/btn_default_click_mask.png" id="9_2oo70"]
+[ext_resource type="Texture2D" uid="uid://kr21wh1pru6v" path="res://art/ui/buttons/canvas_texture_btn_default_hover.tres" id="11_xpc3s"]
+[ext_resource type="Texture2D" uid="uid://v6ehtdfi7re2" path="res://art/ui/icons/ic_power_off.png" id="12_86c28"]
+[ext_resource type="Texture2D" uid="uid://cew3lyssde0ne" path="res://art/textures/texture_screen.png" id="13_ephha"]
+[ext_resource type="Shader" uid="uid://bsch3t00e052f" path="res://shaders/dot_matrix/dot_matrix.gdshader" id="14_pw657"]
+[ext_resource type="PackedScene" uid="uid://p3pl8twg20sy" path="res://scenes/game/game.tscn" id="15_kwwqa"]
+[ext_resource type="Script" uid="uid://b8kcpdfyby187" path="res://scenes/ui/EventTextureButton.gd" id="16_hemsx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j3eoi"]
+shader = ExtResource("1_lqb14")
+shader_parameter/spots_texture = ExtResource("2_6k6h1")
+shader_parameter/spots_texture_offset_x = 0.0
+shader_parameter/spots_texture_offset_y = 0.0
+shader_parameter/body_color = Color(0.6431373, 0, 0, 1)
+shader_parameter/spots_color = Color(0.028652646, 0.26916346, 0.46253967, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_db41x"]
+diffuse_texture = ExtResource("3_h5anp")
+normal_texture = ExtResource("4_sx6h6")
+specular_texture = ExtResource("5_t16bn")
+specular_shininess = 0.55
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_37hre"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+texture = ExtResource("13_ephha")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ppa6c"]
+shader = ExtResource("14_pw657")
+shader_parameter/dot_size = 2.0
+shader_parameter/border_size = 0.0
+shader_parameter/enable_dot_matrix = true
+shader_parameter/glare_amount = 0.1
+shader_parameter/brightness = 0.4
+shader_parameter/pixel_shadow_amount = 0.90000004275
+shader_parameter/lcd_dark_square_transparency = 0.03
+
+[node name="Device" type="Sprite2D" unique_id=1403033443]
+material = SubResource("ShaderMaterial_j3eoi")
+texture = SubResource("CanvasTexture_db41x")
+centered = false
+script = ExtResource("6_sfqbm")
+
+[node name="Buttons" type="Control" parent="." unique_id=2147133098]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TurnOffEventTextureButton" type="TextureButton" parent="Buttons" unique_id=1766521592]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 52.0
+offset_right = 344.0
+offset_bottom = 100.0
+focus_mode = 0
+texture_normal = ExtResource("7_o2ufa")
+texture_pressed = ExtResource("8_vvq3s")
+texture_hover = ExtResource("11_xpc3s")
+texture_click_mask = ExtResource("9_2oo70")
+script = ExtResource("16_hemsx")
+action = &"turn_off"
+metadata/_custom_type_script = "uid://b8kcpdfyby187"
+
+[node name="TextureRect" type="TextureRect" parent="Buttons/TurnOffEventTextureButton" unique_id=124133383]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_86c28")
+
+[node name="RepairEventTextureButton" type="TextureButton" parent="Buttons" unique_id=1128473885]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 540.0
+offset_right = 216.0
+offset_bottom = 588.0
+focus_mode = 0
+texture_normal = ExtResource("7_o2ufa")
+texture_pressed = ExtResource("8_vvq3s")
+texture_hover = ExtResource("11_xpc3s")
+texture_click_mask = ExtResource("9_2oo70")
+script = ExtResource("16_hemsx")
+action = &"repair"
+metadata/_custom_type_script = "uid://b8kcpdfyby187"
+
+[node name="FeedEventTextureButton" type="TextureButton" parent="Buttons" unique_id=1899291699]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 540.0
+offset_right = 344.0
+offset_bottom = 588.0
+focus_mode = 0
+texture_normal = ExtResource("7_o2ufa")
+texture_pressed = ExtResource("8_vvq3s")
+texture_hover = ExtResource("11_xpc3s")
+texture_click_mask = ExtResource("9_2oo70")
+script = ExtResource("16_hemsx")
+action = &"feed"
+metadata/_custom_type_script = "uid://b8kcpdfyby187"
+
+[node name="CleanEventTextureButton" type="TextureButton" parent="Buttons" unique_id=697019603]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 540.0
+offset_right = 464.0
+offset_bottom = 588.0
+focus_mode = 0
+texture_normal = ExtResource("7_o2ufa")
+texture_pressed = ExtResource("8_vvq3s")
+texture_hover = ExtResource("11_xpc3s")
+texture_click_mask = ExtResource("9_2oo70")
+script = ExtResource("16_hemsx")
+action = &"clean"
+metadata/_custom_type_script = "uid://b8kcpdfyby187"
+
+[node name="Screen" type="PanelContainer" parent="." unique_id=2085003094]
+clip_contents = true
+custom_minimum_size = Vector2(400, 400)
+offset_left = 116.0
+offset_top = 116.0
+offset_right = 524.0
+offset_bottom = 524.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_37hre")
+
+[node name="ShaderSubViewportContainer" type="SubViewportContainer" parent="Screen" unique_id=1603181850]
+material = SubResource("ShaderMaterial_ppa6c")
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="Screen/ShaderSubViewportContainer" unique_id=1106627011]
+disable_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(368, 368)
+render_target_update_mode = 4
+
+[node name="Game" parent="Screen/ShaderSubViewportContainer/SubViewport" unique_id=620677495 instance=ExtResource("15_kwwqa")]

@@ -9,5 +9,10 @@ func enter(subject) -> void:
 
 
 @warning_ignore("unused_parameter")
+func input(subject, event: InputEvent) -> void:
+	pass
+
+
+@warning_ignore("unused_parameter")
 func exit(subject) -> void:
 	pass

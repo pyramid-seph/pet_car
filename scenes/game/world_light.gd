@@ -7,5 +7,4 @@ func _ready() -> void:
 
 
 func _on_light_angle_changed() -> void:
-	print("Settings.get_light_angle(): ", Settings.get_light_angle())
 	rotation_degrees = -1 * Settings.get_light_angle() - 90

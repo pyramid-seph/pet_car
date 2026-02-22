@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Sprite2D
 
 
 func _ready() -> void:
@@ -30,7 +30,6 @@ func _on_pattern_color_changed() -> void:
 	shader.set_shader_parameter("spots_color", Settings.get_pattern_color())
 
 
-
 func _on_pattern_offset_changed() -> void:
 	var shader := material as ShaderMaterial
 	if not shader:
@@ -39,3 +38,7 @@ func _on_pattern_offset_changed() -> void:
 	var pattern_offset: Vector2 = Settings.get_pattern_offset()
 	shader.set_shader_parameter("spots_texture_offset_x", pattern_offset.x)
 	shader.set_shader_parameter("spots_texture_offset_y", pattern_offset.y)
+
+
+func _on_texture_button_pressed() -> void:
+	Log.d("IT JUST WORKS!")

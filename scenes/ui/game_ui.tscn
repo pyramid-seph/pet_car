@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://cjiwdvt5oerep"]
+
+[ext_resource type="Theme" uid="uid://cjt3atijvsctp" path="res://art/themes/screen_theme.tres" id="1_yvtb5"]
+[ext_resource type="Script" uid="uid://cfv64hrreamv1" path="res://scenes/ui/game_ui.gd" id="2_k7elv"]
+[ext_resource type="Script" uid="uid://d2p3jukg5yah8" path="res://scenes/ui/clock.gd" id="3_fftnl"]
+[ext_resource type="Script" uid="uid://dkulfqgqrt36n" path="res://scenes/utils/twinkle_tween.gd" id="4_bxde6"]
+[ext_resource type="PackedScene" uid="uid://c36k6pewhd5r4" path="res://scenes/ui/state_bar.tscn" id="5_opxtl"]
+[ext_resource type="Texture2D" uid="uid://cfwkt1su0pag4" path="res://art/ui/icons/ic_state_wear.png" id="6_crnce"]
+[ext_resource type="Texture2D" uid="uid://db6un67jh7wdi" path="res://art/ui/icons/ic_state_hunger.png" id="7_x0n6o"]
+[ext_resource type="Texture2D" uid="uid://bdo2r4ryxoaxc" path="res://art/ui/icons/ic_state_dirt.png" id="8_aq72h"]
+
+[node name="GameUi" type="Control" unique_id=1822025627]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_yvtb5")
+script = ExtResource("2_k7elv")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1805288012]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.60784316, 0.7372549, 0.05882353, 1)
+
+[node name="Clock" type="Label" parent="." unique_id=1120481016]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_right = 180.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.1882353, 0.38431373, 0.1882353, 1)
+text = "JAN 1, 13:37"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("3_fftnl")
+
+[node name="TurnOffIntructions" type="Label" parent="." unique_id=874750272]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -98.5
+offset_right = 98.5
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Keep pressing to close"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="PressAnyButtonLabel" type="Label" parent="." unique_id=386428863]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -102.0
+offset_right = 144.0
+offset_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Press any button"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="TwinkleTween" type="Node" parent="PressAnyButtonLabel" unique_id=168356961]
+script = ExtResource("4_bxde6")
+metadata/_custom_type_script = "uid://dkulfqgqrt36n"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=997872571]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -178.0
+offset_top = -48.0
+offset_right = 178.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 8
+
+[node name="BarsContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1767669776]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="WearBar" parent="MarginContainer/BarsContainer" unique_id=2127616542 instance=ExtResource("5_opxtl")]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("6_crnce")
+value = 25.0
+
+[node name="HungerBar" parent="MarginContainer/BarsContainer" unique_id=1115015082 instance=ExtResource("5_opxtl")]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("7_x0n6o")
+value = 50.0
+
+[node name="DirtBar" parent="MarginContainer/BarsContainer" unique_id=1167718345 instance=ExtResource("5_opxtl")]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("8_aq72h")
+value = 75.0
