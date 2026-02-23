@@ -3,6 +3,8 @@ extends Sprite2D
 
 
 @warning_ignore("unused_signal")
+signal dying
+@warning_ignore("unused_signal")
 signal died
 @warning_ignore("unused_signal")
 signal borned

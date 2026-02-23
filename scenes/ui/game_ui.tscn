@@ -68,13 +68,13 @@ uppercase = true
 layout_mode = 2
 theme_override_constants/margin_right = 2
 
-[node name="TimePassedContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=1405628922]
+[node name="MileageContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=1405628922]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 0
 
-[node name="TimeLabel" type="Label" parent="VBoxContainer/MarginContainer/TimePassedContainer" unique_id=914749662]
+[node name="MileageLabel" type="Label" parent="VBoxContainer/MarginContainer/MileageContainer" unique_id=914749662]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
@@ -82,7 +82,7 @@ text = "999"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UnitLabel" type="Label" parent="VBoxContainer/MarginContainer/TimePassedContainer" unique_id=758422130]
+[node name="UnitLabel" type="Label" parent="VBoxContainer/MarginContainer/MileageContainer" unique_id=758422130]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "mi"

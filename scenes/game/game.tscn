@@ -40,8 +40,6 @@ _max_wear_damage = 50
 _min_dirt_damage = 10
 _max_dirt_damage = 50
 
-[connection signal="borned" from="Pet" to="." method="_on_pet_borned"]
-[connection signal="died" from="Pet" to="." method="_on_pet_died"]
 [connection signal="dirty_changed" from="Pet" to="." method="_on_pet_dirty_changed"]
 [connection signal="hunger_changed" from="Pet" to="." method="_on_pet_hunger_changed"]
 [connection signal="wear_changed" from="Pet" to="." method="_on_pet_wear_changed"]
