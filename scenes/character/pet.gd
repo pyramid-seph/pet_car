@@ -9,6 +9,10 @@ signal borned
 signal hunger_changed
 signal dirty_changed
 signal wear_changed
+@warning_ignore("unused_signal")
+signal busy
+@warning_ignore("unused_signal")
+signal idle
 
 
 enum Discomforts {

@@ -23,6 +23,7 @@ func repair(subject: Pet) -> void:
 	_is_being_taken_care_of = true
 	
 	Log.d("Pet is being repaired.")
+	subject.busy.emit()
 	subject.pause_ticks(true)
 	subject.get_animation_player().play(&"repair")
 
@@ -34,6 +35,7 @@ func feed(subject: Pet) -> void:
 	_is_being_taken_care_of = true
 	
 	Log.d("Pet is being fed.")
+	subject.busy.emit()
 	subject.pause_ticks(true)
 	subject.get_animation_player().play(&"feed")
 
@@ -45,6 +47,7 @@ func clean(subject: Pet) -> void:
 	_is_being_taken_care_of = true
 	
 	Log.d("Pet is being cleaned.")
+	subject.busy.emit()
 	subject.pause_ticks(true)
 	subject.get_animation_player().play(&"clean")
 
@@ -72,6 +75,7 @@ func on_animation_finished(subject: Pet, anim_name: StringName) -> void:
 			subject.reduce_hunger()
 		
 	_is_being_taken_care_of = false
+	subject.idle.emit()
 	subject.pause_ticks(false)
 	subject.update_body_parts()
 	subject.get_animation_player().play(&"idle")

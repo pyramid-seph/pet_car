@@ -4,6 +4,13 @@ extends GameState
 func enter(subject: Game) -> void:
 	subject.get_ui().hide_state_bars()
 	subject.get_pet().be_born()
+	Utils.safe_connect(subject.get_pet().busy, _on_pet_busy.bind(subject))
+	Utils.safe_connect(subject.get_pet().idle, _on_pet_idle.bind(subject))
+
+
+func exit(subject: Game) -> void:
+	Utils.safe_disconnect(subject.get_pet().busy, _on_pet_busy.bind(subject))
+	Utils.safe_disconnect(subject.get_pet().idle, _on_pet_idle.bind(subject))
 
 
 func input(subject: Game, event: InputEvent) -> void:
@@ -21,3 +28,12 @@ func on_pet_died(subject: Game) -> void:
 
 func on_pet_borned(subject: Game) -> void:
 	subject.get_ui().show_state_bars()
+	subject.get_ui().show_time_passed()
+
+
+func _on_pet_busy(subject: Game) -> void:
+	subject.get_ui().hide_time_passed()
+
+
+func _on_pet_idle(subject: Game) -> void:
+	subject.get_ui().show_time_passed()

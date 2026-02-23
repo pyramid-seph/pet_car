@@ -9,6 +9,8 @@ extends Control
 @onready var _wear_bar := %WearBar
 @onready var _hunger_bar := %HungerBar
 @onready var _dirt_bar := %DirtBar
+@onready var _time_label: Label = %TimeLabel
+@onready var _time_passed_container: VBoxContainer = %TimePassedContainer
 
 
 func _ready() -> void:
@@ -54,3 +56,15 @@ func show_turn_off_instructions() -> void:
 func hide_turn_off_instructions() -> void:
 	_turn_off_instructions.hide()
 	_clock.show()
+
+
+func update_time_label(value: int) -> void:
+	_time_label.text = str(value)
+
+
+func show_time_passed() -> void:
+	_time_passed_container.show()
+
+
+func hide_time_passed() -> void:
+	_time_passed_container.hide()
