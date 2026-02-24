@@ -3,12 +3,18 @@ extends Sprite2D
 
 
 @warning_ignore("unused_signal")
+signal dying
+@warning_ignore("unused_signal")
 signal died
 @warning_ignore("unused_signal")
 signal borned
 signal hunger_changed
 signal dirty_changed
 signal wear_changed
+@warning_ignore("unused_signal")
+signal busy
+@warning_ignore("unused_signal")
+signal idle
 
 
 enum Discomforts {

@@ -76,11 +76,3 @@ func _on_pet_hunger_changed() -> void:
 func _on_pet_wear_changed() -> void:
 	if is_node_ready():
 		_ui.update_wear(_pet.get_wear(), _pet.is_worn_out())
-
-
-func _on_pet_died() -> void:
-	_state_machine.on_pet_died()
-
-
-func _on_pet_borned() -> void:
-	_state_machine.on_pet_borned()

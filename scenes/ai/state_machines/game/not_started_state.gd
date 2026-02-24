@@ -22,6 +22,7 @@ func _init() -> void:
 func enter(subject: Game) -> void:
 	subject.get_ui().hide_state_bars()
 	subject.get_ui().hide_press_any_button_indicator()
+	subject.get_ui().hide_time_passed()
 	subject.get_pet().revive()
 	subject.get_pet().hide()
 	

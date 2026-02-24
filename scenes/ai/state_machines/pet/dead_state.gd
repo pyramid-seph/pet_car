@@ -5,6 +5,7 @@ func enter(subject: Pet) -> void:
 	Log.d("Pet dead.")
 	subject.stop_ticks()
 	subject.update_body_parts()
+	subject.dying.emit()
 	subject.get_animation_player().play(&"die")
 
 
