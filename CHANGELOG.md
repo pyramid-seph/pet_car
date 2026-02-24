@@ -1,3 +1,8 @@
+# v1.2.1
+===============
+* Fix main scene load.
+
+
 # v1.2.0
 ===============
 * Show mileage.

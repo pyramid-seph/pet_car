@@ -7,12 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://dnd2ii5bqpme8" path="res://art/ui/buttons/btn_settings_hover.png" id="5_clq1p"]
 [ext_resource type="PackedScene" uid="uid://c1hn7w4b8h6lb" path="res://scenes/ui/settings_panel.tscn" id="6_2y0df"]
 
-[sub_resource type="InputEventAction" id="InputEventAction_d7k0d"]
-action = &"toggle_settings"
-
-[sub_resource type="Shortcut" id="Shortcut_plvjw"]
-events = [SubResource("InputEventAction_d7k0d")]
-
 [node name="MainScreenUi" type="Control" unique_id=1737461162]
 layout_mode = 3
 anchors_preset = 15
@@ -59,7 +53,6 @@ size_flags_vertical = 0
 tooltip_text = "Settings"
 focus_mode = 0
 toggle_mode = true
-shortcut = SubResource("Shortcut_plvjw")
 shortcut_in_tooltip = false
 texture_normal = ExtResource("3_jj78g")
 texture_pressed = ExtResource("4_awlbx")
