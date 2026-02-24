@@ -1,3 +1,8 @@
+# v1.2.0
+===============
+* Show mileage.
+
+
 # v1.1.0
 ===============
 * Fixed an error that made GUI elements get keyboard focus.
