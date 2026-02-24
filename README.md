@@ -5,9 +5,9 @@ Babysit it and maybe it will last 5 minutes alive. Maybe...
 
 (This game is totally unbalanced!)
 
-Made for fun with [Godot 4.6](https://godotengine.org).
+Made for fun with [Godot 4.6.1](https://godotengine.org).
 
-<img width="320" height="320" alt="Game" src="/readme_images/pet_car.gif" />
+<img width="480" height="320" alt="Game" src="/readme_assets/pet_car.gif" />
 
 # Licenses
 
